@@ -29,5 +29,5 @@ RUN useradd --create-home app && mkdir -p /cache && chown app /cache
 USER app
 ENV CACHE_DIR=/cache
 EXPOSE 8000
-# The worker runs the same image: `arq app.worker.WorkerSettings`.
-CMD ["sh", "-c", "/venv/bin/alembic upgrade head && /venv/bin/uvicorn app.main:create_app --factory --host 0.0.0.0 --port 8000 --workers 2"]
+# In free-tier cloud deployment, run alembic migrations, background ARQ worker, and Uvicorn API together
+CMD ["sh", "-c", "/venv/bin/alembic upgrade head && /venv/bin/arq app.worker.WorkerSettings & /venv/bin/uvicorn app.main:create_app --factory --host 0.0.0.0 --port ${PORT:-8000}"]
