@@ -27,7 +27,13 @@ export type SigningKeys = {
   jwks: { keys: JWK[] }
 }
 
-const pem = (value: string) => value.replace(/\\n/g, "\n").trim()
+const pem = (value: string) => {
+  let s = value.trim()
+  if ((s.startsWith('"') && s.endsWith('"')) || (s.startsWith("'") && s.endsWith("'"))) {
+    s = s.slice(1, -1)
+  }
+  return s.replace(/\\\\n/g, "\n").replace(/\\n/g, "\n").replace(/\r\n/g, "\n").trim()
+}
 
 async function publicJwk(publicKey: CryptoKey, kid?: string) {
   const jwk = await exportJWK(publicKey)
