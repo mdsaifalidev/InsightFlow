@@ -27,12 +27,15 @@ export type SigningKeys = {
   jwks: { keys: JWK[] }
 }
 
-const pem = (value: string) => {
-  let s = value.trim()
-  if ((s.startsWith('"') && s.endsWith('"')) || (s.startsWith("'") && s.endsWith("'"))) {
-    s = s.slice(1, -1)
-  }
-  return s.replace(/\\\\n/g, "\n").replace(/\\n/g, "\n").replace(/\r\n/g, "\n").trim()
+const normalizePem = (value: string, type: "PRIVATE" | "PUBLIC") => {
+  if (!value) return ""
+  let s = value.replace(/^["']|["']$/g, "")
+  s = s.replace(/^.*?(?=-----BEGIN)/s, "")
+  s = s.replace(/-----BEGIN\s+[A-Z\s]+KEY-----/i, "")
+       .replace(/-----END\s+[A-Z\s]+KEY-----/i, "")
+  s = s.replace(/[^A-Za-z0-9+/=]/g, "")
+  const lines = s.match(/.{1,64}/g)?.join("\n") ?? ""
+  return `-----BEGIN ${type} KEY-----\n${lines}\n-----END ${type} KEY-----`
 }
 
 async function publicJwk(publicKey: CryptoKey, kid?: string) {
@@ -65,21 +68,38 @@ async function readOrCreateDevKeys(dir: string, warn: (msg: string) => void) {
 }
 
 export async function loadKeys(config: Config, warn: (msg: string) => void = console.warn): Promise<SigningKeys> {
-  let pair: { privateKey: string; publicKey: string }
+  let pair: { privateKey: string; publicKey: string } | null = null
   if (config.JWT_PRIVATE_KEY && config.JWT_PUBLIC_KEY) {
-    pair = { privateKey: pem(config.JWT_PRIVATE_KEY), publicKey: pem(config.JWT_PUBLIC_KEY) }
-  } else if (config.NODE_ENV === "production") {
-    throw new Error("JWT_PRIVATE_KEY and JWT_PUBLIC_KEY are required in production.")
-  } else {
-    pair = await readOrCreateDevKeys(path.resolve(config.KEYS_DIR), warn)
+    try {
+      const priv = normalizePem(config.JWT_PRIVATE_KEY, "PRIVATE")
+      const pub = normalizePem(config.JWT_PUBLIC_KEY, "PUBLIC")
+      await importPKCS8(priv, ALG)
+      await importSPKI(pub, ALG)
+      pair = { privateKey: priv, publicKey: pub }
+    } catch (err) {
+      warn(`Provided JWT keys could not be parsed: ${(err as Error).message}. Generating an automated key pair.`)
+    }
+  }
+
+  if (!pair) {
+    if (config.NODE_ENV !== "production") {
+      pair = await readOrCreateDevKeys(path.resolve(config.KEYS_DIR), warn)
+    } else {
+      pair = await generatePemPair()
+      warn(`Generated automated signing key pair (kid: ${config.JWT_KEY_ID || "auto"}).`)
+    }
   }
 
   const privateKey = await importPKCS8(pair.privateKey, ALG)
   const current = await publicJwk(await importSPKI(pair.publicKey, ALG, { extractable: true }), config.JWT_KEY_ID)
   const keys: JWK[] = [current]
   if (config.JWT_PREVIOUS_PUBLIC_KEY) {
-    const previous = await importSPKI(pem(config.JWT_PREVIOUS_PUBLIC_KEY), ALG, { extractable: true })
-    keys.push(await publicJwk(previous, config.JWT_PREVIOUS_KEY_ID))
+    try {
+      const previous = await importSPKI(normalizePem(config.JWT_PREVIOUS_PUBLIC_KEY, "PUBLIC"), ALG, { extractable: true })
+      keys.push(await publicJwk(previous, config.JWT_PREVIOUS_KEY_ID))
+    } catch {
+      // Ignore invalid retired keys
+    }
   }
   return { kid: current.kid, privateKey, jwks: { keys } }
 }
