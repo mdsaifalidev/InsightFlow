@@ -1,11 +1,12 @@
 """All configuration comes from the environment, validated once at startup."""
 
 import os
+import re
 from functools import lru_cache
 from pathlib import Path
 from typing import Literal, Self
 
-from pydantic import SecretStr, model_validator
+from pydantic import SecretStr, field_validator, model_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -39,6 +40,14 @@ class Settings(BaseSettings):
 
     database_url: str
     redis_url: str = "redis://localhost:6379/0"
+
+    @field_validator("database_url", mode="before")
+    @classmethod
+    def _normalize_database_url(cls, v: str) -> str:
+        if isinstance(v, str):
+            v = re.sub(r"[?&]channel_binding=[^&]*", "", v)
+            v = v.replace("sslmode=", "ssl=").replace("?&", "?").rstrip("?&")
+        return v
 
     # Access tokens come from the auth service; verified locally via its JWKS (ADR-007).
     jwks_url: str = "http://localhost:4000/api/auth/.well-known/jwks.json"
