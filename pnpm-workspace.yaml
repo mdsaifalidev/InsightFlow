@@ -1,0 +1,16 @@
+packages:
+  - "apps/*"
+  - "packages/*"
+  - "services/*"
+
+allowBuilds:
+  sharp: true
+  unrs-resolver: true
+  esbuild: true
+  msw: false
+  # Optional native speedup for ssh2 (via testcontainers); not needed.
+  cpu-features: false
+  # Postinstall only prints a version notice.
+  protobufjs: false
+  # Optional native crypto build for ssh2; the JS fallback is fine.
+  ssh2: false

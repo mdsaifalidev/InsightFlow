@@ -1,0 +1,70 @@
+{
+  "name": "web",
+  "version": "0.0.1",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "dev:docker": "next dev --webpack --hostname 0.0.0.0 --port 3000",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "format": "prettier --write --ignore-path ../../.prettierignore \"**/*.{ts,tsx}\"",
+    "typecheck": "next typegen && tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:e2e": "playwright test",
+    "fixtures:export": "tsx scripts/export-fixtures.ts",
+    "format:check": "prettier --check --ignore-path ../../.prettierignore \"**/*.{ts,tsx}\"",
+    "test:e2e:real": "playwright test --config playwright.real.config.ts",
+    "shots": "playwright test --config playwright.shots.config.ts"
+  },
+  "dependencies": {
+    "@hookform/resolvers": "^5.9.1",
+    "@tanstack/react-query": "^5.103.1",
+    "@tanstack/react-table": "^9.2.4",
+    "@workspace/api-types": "workspace:*",
+    "@workspace/ui": "workspace:*",
+    "cn": "^0.3.0",
+    "date-fns": "^4.4.0",
+    "idb-keyval": "^6.3.0",
+    "lucide-react": "^1.47.0",
+    "motion": "^13.4.1",
+    "next": "16.3.3",
+    "next-themes": "^0.4.6",
+    "nuqs": "^2.10.1",
+    "papaparse": "^5.7.0",
+    "react": "19.2.4",
+    "react-dom": "19.2.4",
+    "react-hook-form": "^7.88.0",
+    "read-excel-file": "^9.3.10",
+    "sonner": "^2.0.8",
+    "zod": "^4.6.5"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.63.0",
+    "@tailwindcss/postcss": "^4",
+    "@testing-library/dom": "^10.4.2",
+    "@testing-library/jest-dom": "^7.0.1",
+    "@testing-library/react": "^16.3.3",
+    "@testing-library/user-event": "^14.6.7",
+    "@types/node": "^24.13.6",
+    "@types/papaparse": "^5.5.2",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@vitejs/plugin-react": "^6.1.1",
+    "@workspace/eslint-config": "workspace:^",
+    "@workspace/typescript-config": "workspace:*",
+    "eslint": "^9",
+    "jsdom": "^27.4.0",
+    "msw": "^2.15.0",
+    "tsx": "^4.23.15",
+    "typescript": "^5",
+    "vitest": "^5.0.1"
+  },
+  "msw": {
+    "workerDirectory": [
+      "public"
+    ]
+  }
+}

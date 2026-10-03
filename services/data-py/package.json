@@ -1,0 +1,18 @@
+{
+  "name": "@insightflow/data-py",
+  "version": "0.0.1",
+  "private": true,
+  "description": "InsightFlow data service (Python, managed with uv). Scripts wrap uv for Turborepo (ADR-001).",
+  "scripts": {
+    "dev": "uv run python scripts/dev.py",
+    "api": "uv run uvicorn app.main:create_app --factory --reload --port 8000",
+    "worker": "uv run watchfiles --filter python \"arq app.worker.WorkerSettings\" app",
+    "lint": "uv run ruff check . && uv run ruff format --check .",
+    "format": "uv run ruff format . && uv run ruff check --fix .",
+    "typecheck": "uv run mypy app",
+    "test": "uv run pytest",
+    "db:migrate": "uv run alembic upgrade head",
+    "spec:dump": "uv run python scripts/dump_openapi.py",
+    "format:check": "uv run ruff format --check ."
+  }
+}

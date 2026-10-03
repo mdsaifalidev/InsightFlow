@@ -1,0 +1,99 @@
+# Overrides for the real-stack E2E run (CI and `pnpm e2e:real --ci`).
+#
+#   docker compose -f docker-compose.yml -f docker-compose.ci.yml up -d --wait
+#
+# Differences from the dev stack:
+# - auth-node, data-py and data-worker run their production image targets, so
+#   the images that would ship are the ones under test.
+# - No bind mounts or dependency volumes: the prod images are self-contained.
+#   Compose APPENDS list fields from an override, so a plain empty list keeps
+#   the dev entries; `!reset []` (Compose 2.24+) is what actually clears them.
+# - Production config: real RS256 keys, non-default S3 credentials, and the
+#   data service's production guard active (app/config.py). Cookies stay
+#   non-secure because Playwright drives plain HTTP.
+# - The web app is not containerised here; Playwright builds and serves it.
+
+services:
+  # Only auth-node and data-py need to be reachable from the host, so the
+  # infrastructure keeps its ports to itself and can't clash with a dev stack.
+  postgres:
+    ports: !reset []
+
+  redis:
+    ports: !reset []
+
+  rustfs:
+    ports: !reset []
+    environment:
+      RUSTFS_ACCESS_KEY: ${CI_S3_ACCESS_KEY:-ci-access-key}
+      RUSTFS_SECRET_KEY: ${CI_S3_SECRET_KEY:-ci-secret-key}
+
+  rustfs-init:
+    environment:
+      AWS_ACCESS_KEY_ID: ${CI_S3_ACCESS_KEY:-ci-access-key}
+      AWS_SECRET_ACCESS_KEY: ${CI_S3_SECRET_KEY:-ci-secret-key}
+
+  auth-node:
+    build:
+      target: runner
+    restart: "no"
+    volumes: !reset []
+    environment:
+      NODE_ENV: production
+      PORT: "4000"
+      LOG_LEVEL: warn
+      DATABASE_URL: postgres://${AUTH_DB_USER:-auth_svc}:${AUTH_DB_PASSWORD:-auth_svc_dev}@postgres:5432/${POSTGRES_DB:-insightflow}
+      REDIS_URL: redis://redis:6379/0
+      # The browser talks to the app, which proxies /api/auth here.
+      WEB_ORIGIN: ${E2E_WEB_ORIGIN:-http://localhost:3101}
+      # Playwright drives http://, so the session cookie must not be Secure.
+      COOKIE_SECURE: "false"
+      # Production refuses to generate keys; CI passes a throwaway pair.
+      JWT_PRIVATE_KEY: ${JWT_PRIVATE_KEY:?set JWT_PRIVATE_KEY (pnpm --filter @insightflow/auth-node keys:generate)}
+      JWT_PUBLIC_KEY: ${JWT_PUBLIC_KEY:?set JWT_PUBLIC_KEY}
+      JWT_KEY_ID: ${JWT_KEY_ID:-ci}
+
+  data-py:
+    build:
+      target: runner
+    restart: "no"
+    volumes: !reset []
+    environment:
+      ENV: production
+      LOG_LEVEL: warning
+      DATABASE_URL: postgresql+asyncpg://${DATA_DB_USER:-data_svc}:${DATA_DB_PASSWORD:-data_svc_dev}@postgres:5432/${POSTGRES_DB:-insightflow}
+      REDIS_URL: redis://redis:6379/0
+      JWKS_URL: http://auth-node:4000/api/auth/.well-known/jwks.json
+      WEB_ORIGIN: ${E2E_WEB_ORIGIN:-http://localhost:3101}
+      S3_ENDPOINT: http://rustfs:9000
+      S3_REGION: ${S3_REGION:-us-east-1}
+      S3_ACCESS_KEY: ${CI_S3_ACCESS_KEY:-ci-access-key}
+      S3_SECRET_KEY: ${CI_S3_SECRET_KEY:-ci-secret-key}
+      S3_BUCKET_RAW: ${S3_BUCKET_RAW:-insightflow-raw}
+      S3_BUCKET_PARQUET: ${S3_BUCKET_PARQUET:-insightflow-parquet}
+      # The image creates and owns /cache; a mounted volume would be root's.
+      CACHE_DIR: /cache
+      LLM_PROVIDER: mock
+
+  data-worker:
+    build:
+      target: runner
+    restart: "no"
+    volumes: !reset []
+    # The runner image has no uv or watchfiles: run ARQ directly.
+    command: ["/venv/bin/arq", "app.worker.WorkerSettings"]
+    environment:
+      ENV: production
+      LOG_LEVEL: warning
+      DATABASE_URL: postgresql+asyncpg://${DATA_DB_USER:-data_svc}:${DATA_DB_PASSWORD:-data_svc_dev}@postgres:5432/${POSTGRES_DB:-insightflow}
+      REDIS_URL: redis://redis:6379/0
+      JWKS_URL: http://auth-node:4000/api/auth/.well-known/jwks.json
+      WEB_ORIGIN: ${E2E_WEB_ORIGIN:-http://localhost:3101}
+      S3_ENDPOINT: http://rustfs:9000
+      S3_REGION: ${S3_REGION:-us-east-1}
+      S3_ACCESS_KEY: ${CI_S3_ACCESS_KEY:-ci-access-key}
+      S3_SECRET_KEY: ${CI_S3_SECRET_KEY:-ci-secret-key}
+      S3_BUCKET_RAW: ${S3_BUCKET_RAW:-insightflow-raw}
+      S3_BUCKET_PARQUET: ${S3_BUCKET_PARQUET:-insightflow-parquet}
+      CACHE_DIR: /cache
+      LLM_PROVIDER: mock

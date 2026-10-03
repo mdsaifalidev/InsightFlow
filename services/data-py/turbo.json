@@ -1,0 +1,19 @@
+{
+  "$schema": "https://turborepo.com/schema.json",
+  "extends": ["//"],
+  "tasks": {
+    "lint": { "inputs": ["**/*.py", "pyproject.toml"] },
+    "typecheck": { "inputs": ["**/*.py", "pyproject.toml", "uv.lock"] },
+    "test": {
+      "inputs": ["**/*.py", "tests/golden/**", "samples/**", "pyproject.toml", "uv.lock"],
+      "passThroughEnv": [
+        "PROCESSOR_*",
+        "SYSTEMROOT",
+        "SystemRoot",
+        "WINDIR",
+        "DOCKER_*",
+        "TESTCONTAINERS_*"
+      ]
+    }
+  }
+}

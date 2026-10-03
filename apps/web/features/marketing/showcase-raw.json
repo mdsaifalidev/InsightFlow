@@ -1,0 +1,115 @@
+{
+  "fileName": "orders.csv",
+  "bytes": 957520,
+  "rowCount": 12253,
+  "columns": [
+    "order_id",
+    "order_date",
+    "region",
+    "category",
+    "channel",
+    "customer_type",
+    "quantity",
+    "unit_price",
+    "discount_pct",
+    "revenue"
+  ],
+  "rows": [
+    {
+      "order_id": "ORD-000001",
+      "order_date": "2025-01-01",
+      "region": "Asia Pacific",
+      "category": "Home & Kitchen",
+      "channel": "Retail partner",
+      "customer_type": "Returning",
+      "quantity": 1,
+      "unit_price": 59.3,
+      "discount_pct": 0,
+      "revenue": 59.3
+    },
+    {
+      "order_id": "ORD-000002",
+      "order_date": "2025-01-01",
+      "region": "North America",
+      "category": "Toys",
+      "channel": "Marketplace",
+      "customer_type": "New",
+      "quantity": 1,
+      "unit_price": 23.48,
+      "discount_pct": 15,
+      "revenue": 19.96
+    },
+    {
+      "order_id": "ORD-000003",
+      "order_date": "2025-01-01",
+      "region": "North America",
+      "category": "Home & Kitchen",
+      "channel": "Retail partner",
+      "customer_type": "Returning",
+      "quantity": 1,
+      "unit_price": 32.3,
+      "discount_pct": 0,
+      "revenue": 32.3
+    },
+    {
+      "order_id": "ORD-000004",
+      "order_date": "2025-01-01",
+      "region": "Middle East & Africa",
+      "category": "Electronics",
+      "channel": "Web",
+      "customer_type": "Returning",
+      "quantity": 1,
+      "unit_price": 114.97,
+      "discount_pct": 0,
+      "revenue": 114.97
+    },
+    {
+      "order_id": "ORD-000005",
+      "order_date": "2025-01-01",
+      "region": "Middle East & Africa",
+      "category": "Beauty",
+      "channel": "Web",
+      "customer_type": "Returning",
+      "quantity": 1,
+      "unit_price": 32.37,
+      "discount_pct": 0,
+      "revenue": 32.37
+    },
+    {
+      "order_id": "ORD-000006",
+      "order_date": "2025-01-01",
+      "region": "Latin America",
+      "category": "Toys",
+      "channel": "Web",
+      "customer_type": "Returning",
+      "quantity": 2,
+      "unit_price": 90.54,
+      "discount_pct": 10,
+      "revenue": 162.97
+    },
+    {
+      "order_id": "ORD-000007",
+      "order_date": "2025-01-01",
+      "region": "Middle East & Africa",
+      "category": "Apparel",
+      "channel": "Web",
+      "customer_type": "Returning",
+      "quantity": 2,
+      "unit_price": 51.11,
+      "discount_pct": 0,
+      "revenue": 102.22
+    },
+    {
+      "order_id": "ORD-000008",
+      "order_date": "2025-01-01",
+      "region": "Middle East & Africa",
+      "category": "Sports & Outdoors",
+      "channel": "Mobile app",
+      "customer_type": "Returning",
+      "quantity": 4,
+      "unit_price": 65.07,
+      "discount_pct": 15,
+      "revenue": 221.24
+    }
+  ]
+}

@@ -1,0 +1,273 @@
+name: insightflow
+
+# Local development stack. See docs/ARCHITECTURE.md §6.
+#   pnpm stack:up   -> everything, open http://localhost:${GATEWAY_PORT:-8080}
+#   pnpm infra:up   -> only postgres/redis/rustfs, run the web app natively with `pnpm dev`
+# Backend services: auth-node (Phase 3), data-py + data-worker (Phase 4).
+# Each Node container installs only its own package (pnpm --filter pkg...) into
+# named volumes, so Linux node_modules never land in the bind-mounted repo.
+
+x-node-modules: &web-volumes
+  - .:/app
+  - web_root_modules:/app/node_modules
+  - web_app_modules:/app/apps/web/node_modules
+  - web_ui_modules:/app/packages/ui/node_modules
+  - web_eslint_modules:/app/packages/eslint-config/node_modules
+  - web_tsconfig_modules:/app/packages/typescript-config/node_modules
+  - web_api_types_modules:/app/packages/api-types/node_modules
+  - web_next_cache:/app/apps/web/.next
+  - pnpm_store:/pnpm-store
+
+x-data-env: &data-env
+  DATABASE_URL: postgresql+asyncpg://${DATA_DB_USER:-data_svc}:${DATA_DB_PASSWORD:-data_svc_dev}@postgres:5432/${POSTGRES_DB:-insightflow}
+  REDIS_URL: redis://redis:6379/0
+  # Tokens are verified locally; the JWKS is fetched once and cached (ADR-007).
+  JWKS_URL: http://auth-node:4000/api/auth/.well-known/jwks.json
+  WEB_ORIGIN: http://localhost:${GATEWAY_PORT:-8080}
+  S3_ENDPOINT: http://rustfs:9000
+  S3_REGION: ${S3_REGION:-us-east-1}
+  S3_ACCESS_KEY: ${S3_ACCESS_KEY:-rustfsadmin}
+  S3_SECRET_KEY: ${S3_SECRET_KEY:-rustfsadmin}
+  S3_BUCKET_RAW: ${S3_BUCKET_RAW:-insightflow-raw}
+  S3_BUCKET_PARQUET: ${S3_BUCKET_PARQUET:-insightflow-parquet}
+  CACHE_DIR: /cache
+  LLM_PROVIDER: ${LLM_PROVIDER:-mock}
+  GEMINI_API_KEY: ${GEMINI_API_KEY:-}
+  GEMINI_MODEL: ${GEMINI_MODEL:-gemini-2.5-flash}
+
+# The Python venv and uv cache live in volumes, outside the bind-mounted repo.
+x-data-volumes: &data-volumes
+  - .:/app
+  - data_venv:/venv
+  - uv_cache:/root/.cache/uv
+  - data_cache:/cache
+
+x-auth-volumes: &auth-volumes
+  - .:/app
+  - auth_root_modules:/app/node_modules
+  - auth_service_modules:/app/services/auth-node/node_modules
+  - auth_eslint_modules:/app/packages/eslint-config/node_modules
+  - auth_tsconfig_modules:/app/packages/typescript-config/node_modules
+  - auth_api_types_modules:/app/packages/api-types/node_modules
+  - pnpm_store:/pnpm-store
+  - auth_keys:/keys
+
+services:
+  postgres:
+    image: postgres:17-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-insightflow}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-insightflow}
+      POSTGRES_DB: ${POSTGRES_DB:-insightflow}
+      AUTH_DB_USER: ${AUTH_DB_USER:-auth_svc}
+      AUTH_DB_PASSWORD: ${AUTH_DB_PASSWORD:-auth_svc_dev}
+      DATA_DB_USER: ${DATA_DB_USER:-data_svc}
+      DATA_DB_PASSWORD: ${DATA_DB_PASSWORD:-data_svc_dev}
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      # Volume name carries the major version: data dirs don't work across majors.
+      - pgdata17:/var/lib/postgresql/data
+      - ./infra/postgres/init:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    command: ["redis-server", "--appendonly", "yes"]
+    ports:
+      - "${REDIS_PORT:-6379}:6379"
+    volumes:
+      - redisdata:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  rustfs:
+    image: rustfs/rustfs:1.0.0
+    restart: unless-stopped
+    environment:
+      RUSTFS_VOLUMES: /data
+      RUSTFS_ADDRESS: 0.0.0.0:9000
+      RUSTFS_CONSOLE_ADDRESS: 0.0.0.0:9001
+      RUSTFS_CONSOLE_ENABLE: "true"
+      RUSTFS_ACCESS_KEY: ${S3_ACCESS_KEY:-rustfsadmin}
+      RUSTFS_SECRET_KEY: ${S3_SECRET_KEY:-rustfsadmin}
+    ports:
+      - "${RUSTFS_API_PORT:-9000}:9000"
+      - "${RUSTFS_CONSOLE_PORT:-9001}:9001"
+    volumes:
+      - s3data:/data
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsS http://127.0.0.1:9000/health || exit 1"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 10s
+
+  # One-shot: creates buckets, then exits. Safe to re-run.
+  rustfs-init:
+    image: amazon/aws-cli:2.36.49
+    depends_on:
+      rustfs:
+        condition: service_healthy
+    environment:
+      AWS_ACCESS_KEY_ID: ${S3_ACCESS_KEY:-rustfsadmin}
+      AWS_SECRET_ACCESS_KEY: ${S3_SECRET_KEY:-rustfsadmin}
+      AWS_DEFAULT_REGION: ${S3_REGION:-us-east-1}
+      AWS_REQUEST_CHECKSUM_CALCULATION: when_required
+      AWS_RESPONSE_CHECKSUM_VALIDATION: when_required
+      BUCKETS: ${S3_BUCKET_RAW:-insightflow-raw} ${S3_BUCKET_PARQUET:-insightflow-parquet}
+    entrypoint: ["/bin/sh", "-c"]
+    command:
+      - |
+        set -e
+        for b in $$BUCKETS; do
+          aws --endpoint-url http://rustfs:9000 s3api head-bucket --bucket "$$b" 2>/dev/null \
+            && echo "bucket $$b exists" \
+            || { aws --endpoint-url http://rustfs:9000 s3 mb "s3://$$b"; }
+        done
+    restart: "no"
+
+  auth-node:
+    build:
+      context: .
+      dockerfile: services/auth-node/Dockerfile
+      target: dev
+    restart: unless-stopped
+    environment:
+      NODE_ENV: development
+      PORT: "4000"
+      DATABASE_URL: postgres://${AUTH_DB_USER:-auth_svc}:${AUTH_DB_PASSWORD:-auth_svc_dev}@postgres:5432/${POSTGRES_DB:-insightflow}
+      REDIS_URL: redis://redis:6379/0
+      # Browsers reach the service through the gateway.
+      WEB_ORIGIN: http://localhost:${GATEWAY_PORT:-8080}
+      COOKIE_SECURE: "false"
+      # Dev signing keys are generated once and kept in this volume.
+      KEYS_DIR: /keys
+      CHOKIDAR_USEPOLLING: "true"
+    ports:
+      - "${AUTH_PORT:-4000}:4000"
+    volumes: *auth-volumes
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://127.0.0.1:4000/health >/dev/null || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 30
+      start_period: 60s
+
+  data-py:
+    build:
+      context: .
+      dockerfile: services/data-py/Dockerfile
+      target: dev
+    restart: unless-stopped
+    environment: *data-env
+    ports:
+      - "${DATA_PORT:-8000}:8000"
+    volumes: *data-volumes
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      rustfs-init:
+        condition: service_completed_successfully
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health')"]
+      interval: 10s
+      timeout: 5s
+      retries: 30
+      start_period: 60s
+
+  # ARQ worker: same image and venv; waits for data-py, which syncs the venv and migrates.
+  data-worker:
+    build:
+      context: .
+      dockerfile: services/data-py/Dockerfile
+      target: dev
+    restart: unless-stopped
+    environment: *data-env
+    # watchfiles restarts the whole process (arq --watch keeps stale modules).
+    command: ["uv", "run", "--no-sync", "watchfiles", "--filter", "python", "arq app.worker.WorkerSettings", "app"]
+    volumes: *data-volumes
+    depends_on:
+      data-py:
+        condition: service_healthy
+
+  web:
+    build:
+      context: .
+      dockerfile: apps/web/Dockerfile
+      target: dev
+    restart: unless-stopped
+    environment:
+      NEXT_PUBLIC_API_MOCKING: ${NEXT_PUBLIC_API_MOCKING:-enabled}
+      # Real auth and data services (ADR-013); set a mode to "mock" to use MSW.
+      NEXT_PUBLIC_AUTH_MODE: ${NEXT_PUBLIC_AUTH_MODE:-service}
+      AUTH_SERVICE_URL: http://auth-node:4000
+      NEXT_PUBLIC_DATA_MODE: ${NEXT_PUBLIC_DATA_MODE:-service}
+      NEXT_PUBLIC_API_BASE_URL: ${NEXT_PUBLIC_API_BASE_URL:-}
+      # Windows/macOS bind mounts don't deliver file events reliably.
+      WATCHPACK_POLLING: "true"
+      CHOKIDAR_USEPOLLING: "true"
+    ports:
+      - "${WEB_PORT:-3000}:3000"
+    volumes: *web-volumes
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://127.0.0.1:3000 >/dev/null || exit 1"]
+      interval: 10s
+      timeout: 10s
+      retries: 30
+      start_period: 60s
+
+  gateway:
+    image: nginx:1.29-alpine
+    restart: unless-stopped
+    depends_on:
+      - web
+      - auth-node
+      - data-py
+    ports:
+      - "${GATEWAY_PORT:-8080}:80"
+    volumes:
+      - ./infra/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://127.0.0.1/healthz >/dev/null || exit 1"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+
+volumes:
+  pgdata17:
+  redisdata:
+  s3data:
+  pnpm_store:
+  web_root_modules:
+  web_app_modules:
+  web_ui_modules:
+  web_api_types_modules:
+  web_eslint_modules:
+  web_tsconfig_modules:
+  web_next_cache:
+  auth_root_modules:
+  auth_service_modules:
+  auth_eslint_modules:
+  auth_tsconfig_modules:
+  auth_api_types_modules:
+  auth_keys:
+  data_venv:
+  uv_cache:
+  data_cache:

@@ -1,0 +1,13 @@
+dist/
+node_modules/
+**/.next/
+**/.next-real/
+**/.next-shots/
+**/next-env.d.ts
+.turbo/
+coverage/
+pnpm-lock.yaml
+.pnpm-store/
+# Generated from the services OpenAPI specs (pnpm api-types).
+packages/api-types/openapi
+packages/api-types/src

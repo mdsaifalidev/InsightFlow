@@ -1,0 +1,240 @@
+{
+  "datasetName": "E-commerce orders",
+  "rowCount": 12253,
+  "widgetId": "auto:0",
+  "kpis": [
+    {
+      "id": "entities",
+      "label": "Orders",
+      "column": "order_id",
+      "aggregation": "count_distinct",
+      "value": 12253,
+      "delta": 0.0233,
+      "deltaLabel": "Last 30 days vs prior 30",
+      "format": "number"
+    },
+    {
+      "id": "m:revenue",
+      "label": "Total revenue",
+      "column": "revenue",
+      "aggregation": "sum",
+      "value": 1769540.66,
+      "delta": 0.0249,
+      "deltaLabel": "Last 30 days vs prior 30",
+      "format": "currency"
+    },
+    {
+      "id": "m:unit_price",
+      "label": "Average unit price",
+      "column": "unit_price",
+      "aggregation": "avg",
+      "value": 85.62,
+      "delta": -0.0019,
+      "deltaLabel": "Last 30 days vs prior 30",
+      "format": "currency"
+    }
+  ],
+  "spec": {
+    "chartType": "line",
+    "title": "Total revenue by month",
+    "x": "order_date",
+    "y": "revenue",
+    "aggregation": "sum",
+    "timeGrain": "month"
+  },
+  "result": {
+    "widgetId": "w0",
+    "series": [
+      "value"
+    ],
+    "points": [
+      {
+        "x": "2025-01-01",
+        "value": 139789.36
+      },
+      {
+        "x": "2025-02-01",
+        "value": 123469.18
+      },
+      {
+        "x": "2025-03-01",
+        "value": 138025.26
+      },
+      {
+        "x": "2025-04-01",
+        "value": 107570.76
+      },
+      {
+        "x": "2025-05-01",
+        "value": 142172.37
+      },
+      {
+        "x": "2025-06-01",
+        "value": 148199.28
+      },
+      {
+        "x": "2025-07-01",
+        "value": 146624.18
+      },
+      {
+        "x": "2025-08-01",
+        "value": 156126.19
+      },
+      {
+        "x": "2025-09-01",
+        "value": 157723.3
+      },
+      {
+        "x": "2025-10-01",
+        "value": 149278.27
+      },
+      {
+        "x": "2025-11-01",
+        "value": 174190.84
+      },
+      {
+        "x": "2025-12-01",
+        "value": 186371.67
+      }
+    ],
+    "format": "currency"
+  },
+  "anomalies": [
+    {
+      "x": "2025-11-01",
+      "label": "Unusually high total revenue on Nov 28."
+    }
+  ],
+  "breakdown": {
+    "widgetId": "auto:3",
+    "spec": {
+      "chartType": "donut",
+      "title": "Share of revenue by channel",
+      "x": "channel",
+      "y": "revenue",
+      "aggregation": "sum",
+      "limit": 6
+    },
+    "result": {
+      "widgetId": "w3",
+      "series": [
+        "value"
+      ],
+      "points": [
+        {
+          "x": "Web",
+          "value": 839967.99
+        },
+        {
+          "x": "Mobile app",
+          "value": 617785.73
+        },
+        {
+          "x": "Marketplace",
+          "value": 207839.69
+        },
+        {
+          "x": "Retail partner",
+          "value": 103947.25
+        }
+      ],
+      "format": "currency"
+    }
+  },
+  "insight": {
+    "datasetId": "x",
+    "summary": "Total revenue spiked to {{f5}} on Nov 28, far above the usual level, with Electronics (category) accounting for {{f6}} of the jump. Total revenue fell {{f2}} in April 2025, driven mostly by Electronics (category), which moved {{f3}} and accounts for {{f4}} of the change. Across the whole dataset, total revenue is {{f1}}.",
+    "findings": [
+      "North America is the largest region, with {{f7}} of revenue."
+    ],
+    "nextQuestions": [
+      "What changed for Electronics in April 2025?",
+      "Is the drop in April 2025 a one-off or the start of a trend?",
+      "What happened to Electronics on Nov 28?"
+    ],
+    "facts": [
+      {
+        "id": "f1",
+        "kind": "total",
+        "label": "Total revenue",
+        "value": 1769540.66,
+        "format": "currency"
+      },
+      {
+        "id": "f2",
+        "kind": "change",
+        "label": "Total revenue change in April 2025",
+        "value": -0.2206,
+        "format": "change",
+        "ref": {
+          "widgetId": "auto:0",
+          "x": "2025-04-01"
+        }
+      },
+      {
+        "id": "f3",
+        "kind": "contributor",
+        "label": "Electronics total revenue change in April 2025",
+        "value": -0.4218,
+        "format": "change",
+        "ref": {
+          "widgetId": "auto:2",
+          "x": "Electronics"
+        }
+      },
+      {
+        "id": "f4",
+        "kind": "contributor",
+        "label": "Electronics share of the drop",
+        "value": 100,
+        "format": "percent"
+      },
+      {
+        "id": "f5",
+        "kind": "anomaly",
+        "label": "Total revenue on Nov 28",
+        "value": 18084.77,
+        "format": "currency",
+        "ref": {
+          "widgetId": "auto:0",
+          "x": "2025-11-01"
+        }
+      },
+      {
+        "id": "f6",
+        "kind": "contributor",
+        "label": "Electronics share of the spike on Nov 28",
+        "value": 65.3,
+        "format": "percent",
+        "ref": {
+          "widgetId": "auto:2",
+          "x": "Electronics"
+        }
+      },
+      {
+        "id": "f7",
+        "kind": "total",
+        "label": "North America share of revenue",
+        "value": 34.7,
+        "format": "percent",
+        "ref": {
+          "widgetId": "auto:1",
+          "x": "North America"
+        }
+      }
+    ],
+    "anomalies": [
+      {
+        "id": "a1",
+        "factId": "f5",
+        "column": "revenue",
+        "at": "2025-11-28",
+        "zScore": 9.1,
+        "direction": "spike",
+        "description": "Unusually high total revenue on Nov 28."
+      }
+    ],
+    "provider": "mock",
+    "model": "template-v1"
+  }
+}

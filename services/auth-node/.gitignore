@@ -1,0 +1,3 @@
+dist/
+# Development signing keys (generated on first boot)
+.keys/

@@ -1,0 +1,20 @@
+{
+  "name": "@workspace/api-types",
+  "version": "0.0.0",
+  "type": "module",
+  "private": true,
+  "description": "TypeScript types generated from the services' OpenAPI specs (PRD §7: CI fails on drift).",
+  "exports": {
+    "./auth": "./src/auth.d.ts",
+    "./data": "./src/data.d.ts"
+  },
+  "scripts": {
+    "generate": "pnpm --filter @insightflow/auth-node spec:dump && pnpm --filter @insightflow/data-py spec:dump && pnpm exec openapi-typescript openapi/auth.json -o src/auth.d.ts && pnpm exec openapi-typescript openapi/data.json -o src/data.d.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@workspace/typescript-config": "workspace:*",
+    "openapi-typescript": "^7.9.1",
+    "typescript": "^5.9.3"
+  }
+}

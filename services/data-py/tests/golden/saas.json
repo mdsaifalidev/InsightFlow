@@ -1,0 +1,1740 @@
+{
+ "key": "saas",
+ "rowCount": 9635,
+ "columns": [
+  {
+   "name": "month",
+   "originalName": "month",
+   "position": 0,
+   "inferredType": "datetime",
+   "overrideType": null,
+   "profile": {
+    "nullPct": 0,
+    "distinctCount": 24,
+    "datetime": {
+     "min": "2024-01-01",
+     "max": "2025-12-01",
+     "grain": "month"
+    }
+   }
+  },
+  {
+   "name": "account_id",
+   "originalName": "account_id",
+   "position": 1,
+   "inferredType": "id",
+   "overrideType": null,
+   "profile": {
+    "nullPct": 0,
+    "distinctCount": 743,
+    "categorical": {
+     "top": [
+      {
+       "value": "ACC-00002",
+       "count": 24
+      },
+      {
+       "value": "ACC-00003",
+       "count": 24
+      },
+      {
+       "value": "ACC-00006",
+       "count": 24
+      },
+      {
+       "value": "ACC-00007",
+       "count": 24
+      },
+      {
+       "value": "ACC-00008",
+       "count": 24
+      },
+      {
+       "value": "ACC-00009",
+       "count": 24
+      },
+      {
+       "value": "ACC-00010",
+       "count": 24
+      },
+      {
+       "value": "ACC-00013",
+       "count": 24
+      },
+      {
+       "value": "ACC-00014",
+       "count": 24
+      },
+      {
+       "value": "ACC-00015",
+       "count": 24
+      }
+     ]
+    }
+   }
+  },
+  {
+   "name": "plan",
+   "originalName": "plan",
+   "position": 2,
+   "inferredType": "categorical",
+   "overrideType": null,
+   "profile": {
+    "nullPct": 0,
+    "distinctCount": 3,
+    "categorical": {
+     "top": [
+      {
+       "value": "Starter",
+       "count": 4971
+      },
+      {
+       "value": "Growth",
+       "count": 3487
+      },
+      {
+       "value": "Scale",
+       "count": 1177
+      }
+     ]
+    }
+   }
+  },
+  {
+   "name": "country",
+   "originalName": "country",
+   "position": 3,
+   "inferredType": "categorical",
+   "overrideType": null,
+   "profile": {
+    "nullPct": 0,
+    "distinctCount": 8,
+    "categorical": {
+     "top": [
+      {
+       "value": "United States",
+       "count": 3846
+      },
+      {
+       "value": "Germany",
+       "count": 1175
+      },
+      {
+       "value": "India",
+       "count": 1016
+      },
+      {
+       "value": "United Kingdom",
+       "count": 958
+      },
+      {
+       "value": "Japan",
+       "count": 747
+      },
+      {
+       "value": "Canada",
+       "count": 665
+      },
+      {
+       "value": "Brazil",
+       "count": 619
+      },
+      {
+       "value": "Australia",
+       "count": 609
+      }
+     ]
+    }
+   }
+  },
+  {
+   "name": "seats",
+   "originalName": "seats",
+   "position": 4,
+   "inferredType": "numeric",
+   "overrideType": null,
+   "profile": {
+    "nullPct": 0,
+    "distinctCount": 105,
+    "numeric": {
+     "min": 1,
+     "max": 122,
+     "mean": 18.2394,
+     "median": 7,
+     "p95": 92,
+     "sum": 175737
+    }
+   }
+  },
+  {
+   "name": "mrr",
+   "originalName": "mrr",
+   "position": 5,
+   "inferredType": "numeric",
+   "overrideType": null,
+   "profile": {
+    "nullPct": 0,
+    "distinctCount": 117,
+    "numeric": {
+     "min": 12,
+     "max": 7808,
+     "mean": 825.9966,
+     "median": 84,
+     "p95": 5888,
+     "sum": 7958477
+    }
+   }
+  },
+  {
+   "name": "is_new",
+   "originalName": "is_new",
+   "position": 6,
+   "inferredType": "boolean",
+   "overrideType": null,
+   "profile": {
+    "nullPct": 0,
+    "distinctCount": 2,
+    "categorical": {
+     "top": [
+      {
+       "value": "false",
+       "count": 9142
+      },
+      {
+       "value": "true",
+       "count": 493
+      }
+     ]
+    }
+   }
+  },
+  {
+   "name": "churned",
+   "originalName": "churned",
+   "position": 7,
+   "inferredType": "boolean",
+   "overrideType": null,
+   "profile": {
+    "nullPct": 0,
+    "distinctCount": 2,
+    "categorical": {
+     "top": [
+      {
+       "value": "false",
+       "count": 9440
+      },
+      {
+       "value": "true",
+       "count": 195
+      }
+     ]
+    }
+   }
+  }
+ ],
+ "dateColumn": "month",
+ "autoSpecs": [
+  {
+   "chartType": "line",
+   "title": "Total MRR by month",
+   "x": "month",
+   "y": "mrr",
+   "aggregation": "sum",
+   "timeGrain": "month"
+  },
+  {
+   "chartType": "line",
+   "title": "Churn by month",
+   "x": "month",
+   "y": "churned",
+   "aggregation": "sum",
+   "timeGrain": "month"
+  },
+  {
+   "chartType": "bar",
+   "title": "Total MRR by plan",
+   "x": "plan",
+   "y": "mrr",
+   "aggregation": "sum",
+   "limit": 8
+  },
+  {
+   "chartType": "bar",
+   "title": "Total MRR by country",
+   "x": "country",
+   "y": "mrr",
+   "aggregation": "sum",
+   "limit": 8
+  },
+  {
+   "chartType": "histogram",
+   "title": "Distribution of MRR",
+   "x": "mrr",
+   "aggregation": "count"
+  }
+ ],
+ "kpis": [
+  {
+   "id": "entities",
+   "label": "Accounts",
+   "column": "account_id",
+   "aggregation": "count_distinct",
+   "value": 743,
+   "delta": 0.0334,
+   "deltaLabel": "Last 30 days vs prior 30",
+   "format": "number"
+  },
+  {
+   "id": "m:mrr",
+   "label": "Total MRR",
+   "column": "mrr",
+   "aggregation": "sum",
+   "value": 7958477,
+   "delta": 0.0182,
+   "deltaLabel": "Last 30 days vs prior 30",
+   "format": "currency"
+  },
+  {
+   "id": "m:seats",
+   "label": "Total seats",
+   "column": "seats",
+   "aggregation": "sum",
+   "value": 175737,
+   "delta": 0.0242,
+   "deltaLabel": "Last 30 days vs prior 30",
+   "format": "number"
+  },
+  {
+   "id": "rate:churned",
+   "label": "Churn rate",
+   "column": "churned",
+   "aggregation": "avg",
+   "value": 2.02,
+   "delta": 0.0946,
+   "deltaLabel": "Last 30 days vs prior 30",
+   "format": "percent"
+  }
+ ],
+ "filters": {
+  "dateRange": {
+   "column": "month",
+   "from": "2025-01-01"
+  },
+  "where": [
+   {
+    "column": "plan",
+    "op": "in",
+    "values": [
+     "Starter"
+    ]
+   }
+  ]
+ },
+ "kpisFiltered": [
+  {
+   "id": "entities",
+   "label": "Accounts",
+   "column": "account_id",
+   "aggregation": "count_distinct",
+   "value": 359,
+   "delta": 0.0458,
+   "deltaLabel": "Last 30 days vs prior 30",
+   "format": "number"
+  },
+  {
+   "id": "m:mrr",
+   "label": "Total MRR",
+   "column": "mrr",
+   "aggregation": "sum",
+   "value": 146280,
+   "delta": 0.0635,
+   "deltaLabel": "Last 30 days vs prior 30",
+   "format": "currency"
+  },
+  {
+   "id": "m:seats",
+   "label": "Total seats",
+   "column": "seats",
+   "aggregation": "sum",
+   "value": 12190,
+   "delta": 0.0635,
+   "deltaLabel": "Last 30 days vs prior 30",
+   "format": "number"
+  },
+  {
+   "id": "rate:churned",
+   "label": "Churn rate",
+   "column": "churned",
+   "aggregation": "avg",
+   "value": 3.11,
+   "delta": -0.3184,
+   "deltaLabel": "Last 30 days vs prior 30",
+   "format": "percent"
+  }
+ ],
+ "results": [
+  {
+   "widgetId": "w0",
+   "series": [
+    "value"
+   ],
+   "points": [
+    {
+     "x": "2024-01-01",
+     "value": 186327
+    },
+    {
+     "x": "2024-02-01",
+     "value": 196880
+    },
+    {
+     "x": "2024-03-01",
+     "value": 202382
+    },
+    {
+     "x": "2024-04-01",
+     "value": 212337
+    },
+    {
+     "x": "2024-05-01",
+     "value": 226241
+    },
+    {
+     "x": "2024-06-01",
+     "value": 244651
+    },
+    {
+     "x": "2024-07-01",
+     "value": 258245
+    },
+    {
+     "x": "2024-08-01",
+     "value": 275421
+    },
+    {
+     "x": "2024-09-01",
+     "value": 293754
+    },
+    {
+     "x": "2024-10-01",
+     "value": 316290
+    },
+    {
+     "x": "2024-11-01",
+     "value": 329445
+    },
+    {
+     "x": "2024-12-01",
+     "value": 334256
+    },
+    {
+     "x": "2025-01-01",
+     "value": 340274
+    },
+    {
+     "x": "2025-02-01",
+     "value": 347461
+    },
+    {
+     "x": "2025-03-01",
+     "value": 357979
+    },
+    {
+     "x": "2025-04-01",
+     "value": 361520
+    },
+    {
+     "x": "2025-05-01",
+     "value": 372773
+    },
+    {
+     "x": "2025-06-01",
+     "value": 395846
+    },
+    {
+     "x": "2025-07-01",
+     "value": 410830
+    },
+    {
+     "x": "2025-08-01",
+     "value": 414056
+    },
+    {
+     "x": "2025-09-01",
+     "value": 433743
+    },
+    {
+     "x": "2025-10-01",
+     "value": 457571
+    },
+    {
+     "x": "2025-11-01",
+     "value": 490633
+    },
+    {
+     "x": "2025-12-01",
+     "value": 499562
+    }
+   ],
+   "format": "currency"
+  },
+  {
+   "widgetId": "w1",
+   "series": [
+    "value"
+   ],
+   "points": [
+    {
+     "x": "2024-01-01",
+     "value": 8
+    },
+    {
+     "x": "2024-02-01",
+     "value": 9
+    },
+    {
+     "x": "2024-03-01",
+     "value": 10
+    },
+    {
+     "x": "2024-04-01",
+     "value": 6
+    },
+    {
+     "x": "2024-05-01",
+     "value": 5
+    },
+    {
+     "x": "2024-06-01",
+     "value": 6
+    },
+    {
+     "x": "2024-07-01",
+     "value": 6
+    },
+    {
+     "x": "2024-08-01",
+     "value": 5
+    },
+    {
+     "x": "2024-09-01",
+     "value": 4
+    },
+    {
+     "x": "2024-10-01",
+     "value": 8
+    },
+    {
+     "x": "2024-11-01",
+     "value": 5
+    },
+    {
+     "x": "2024-12-01",
+     "value": 9
+    },
+    {
+     "x": "2025-01-01",
+     "value": 8
+    },
+    {
+     "x": "2025-02-01",
+     "value": 10
+    },
+    {
+     "x": "2025-03-01",
+     "value": 5
+    },
+    {
+     "x": "2025-04-01",
+     "value": 7
+    },
+    {
+     "x": "2025-05-01",
+     "value": 5
+    },
+    {
+     "x": "2025-06-01",
+     "value": 37
+    },
+    {
+     "x": "2025-07-01",
+     "value": 8
+    },
+    {
+     "x": "2025-08-01",
+     "value": 2
+    },
+    {
+     "x": "2025-09-01",
+     "value": 9
+    },
+    {
+     "x": "2025-10-01",
+     "value": 6
+    },
+    {
+     "x": "2025-11-01",
+     "value": 8
+    },
+    {
+     "x": "2025-12-01",
+     "value": 9
+    }
+   ],
+   "format": "number"
+  },
+  {
+   "widgetId": "w2",
+   "series": [
+    "value"
+   ],
+   "points": [
+    {
+     "x": "Scale",
+     "value": 5852416
+    },
+    {
+     "x": "Growth",
+     "value": 1867165
+    },
+    {
+     "x": "Starter",
+     "value": 238896
+    }
+   ],
+   "format": "currency"
+  },
+  {
+   "widgetId": "w3",
+   "series": [
+    "value"
+   ],
+   "points": [
+    {
+     "x": "United States",
+     "value": 2790427
+    },
+    {
+     "x": "Germany",
+     "value": 1024283
+    },
+    {
+     "x": "United Kingdom",
+     "value": 939462
+    },
+    {
+     "x": "Japan",
+     "value": 772474
+    },
+    {
+     "x": "Australia",
+     "value": 720401
+    },
+    {
+     "x": "Brazil",
+     "value": 679515
+    },
+    {
+     "x": "India",
+     "value": 610773
+    },
+    {
+     "x": "Canada",
+     "value": 421142
+    }
+   ],
+   "format": "currency"
+  },
+  {
+   "widgetId": "w4",
+   "series": [
+    "value"
+   ],
+   "points": [
+    {
+     "x": 12,
+     "x2": 401.8,
+     "value": 6080
+    },
+    {
+     "x": 401.8,
+     "x2": 791.6,
+     "value": 1755
+    },
+    {
+     "x": 791.6,
+     "x2": 1181.4,
+     "value": 623
+    },
+    {
+     "x": 1181.4,
+     "x2": 1571.2,
+     "value": 0
+    },
+    {
+     "x": 1571.2,
+     "x2": 1961,
+     "value": 38
+    },
+    {
+     "x": 1961,
+     "x2": 2350.8,
+     "value": 87
+    },
+    {
+     "x": 2350.8,
+     "x2": 2740.6,
+     "value": 46
+    },
+    {
+     "x": 2740.6,
+     "x2": 3130.4,
+     "value": 34
+    },
+    {
+     "x": 3130.4,
+     "x2": 3520.2,
+     "value": 135
+    },
+    {
+     "x": 3520.2,
+     "x2": 3910,
+     "value": 81
+    },
+    {
+     "x": 3910,
+     "x2": 4299.8,
+     "value": 22
+    },
+    {
+     "x": 4299.8,
+     "x2": 4689.6,
+     "value": 64
+    },
+    {
+     "x": 4689.6,
+     "x2": 5079.4,
+     "value": 40
+    },
+    {
+     "x": 5079.4,
+     "x2": 5469.2,
+     "value": 114
+    },
+    {
+     "x": 5469.2,
+     "x2": 5859,
+     "value": 31
+    },
+    {
+     "x": 5859,
+     "x2": 6248.8,
+     "value": 79
+    },
+    {
+     "x": 6248.8,
+     "x2": 6638.6,
+     "value": 128
+    },
+    {
+     "x": 6638.6,
+     "x2": 7028.4,
+     "value": 113
+    },
+    {
+     "x": 7028.4,
+     "x2": 7418.2,
+     "value": 107
+    },
+    {
+     "x": 7418.2,
+     "x2": 7808,
+     "value": 58
+    }
+   ],
+   "format": "number",
+   "xFormat": "currency"
+  },
+  {
+   "widgetId": "w5",
+   "series": [
+    "Scale",
+    "Growth",
+    "Starter"
+   ],
+   "points": [
+    {
+     "x": "2024-01-01",
+     "Scale": 136576,
+     "Growth": 43703,
+     "Starter": 6048
+    },
+    {
+     "x": "2024-02-01",
+     "Scale": 142656,
+     "Growth": 48140,
+     "Starter": 6084
+    },
+    {
+     "x": "2024-03-01",
+     "Scale": 146752,
+     "Growth": 49474,
+     "Starter": 6156
+    },
+    {
+     "x": "2024-04-01",
+     "Scale": 155072,
+     "Growth": 50953,
+     "Starter": 6312
+    },
+    {
+     "x": "2024-05-01",
+     "Scale": 166784,
+     "Growth": 52461,
+     "Starter": 6996
+    },
+    {
+     "x": "2024-06-01",
+     "Scale": 183424,
+     "Growth": 53679,
+     "Starter": 7548
+    },
+    {
+     "x": "2024-07-01",
+     "Scale": 192704,
+     "Growth": 57681,
+     "Starter": 7860
+    },
+    {
+     "x": "2024-08-01",
+     "Scale": 205184,
+     "Growth": 62089,
+     "Starter": 8148
+    },
+    {
+     "x": "2024-09-01",
+     "Scale": 217792,
+     "Growth": 67454,
+     "Starter": 8508
+    },
+    {
+     "x": "2024-10-01",
+     "Scale": 237056,
+     "Growth": 70006,
+     "Starter": 9228
+    },
+    {
+     "x": "2024-11-01",
+     "Scale": 247360,
+     "Growth": 72413,
+     "Starter": 9672
+    },
+    {
+     "x": "2024-12-01",
+     "Scale": 247872,
+     "Growth": 76328,
+     "Starter": 10056
+    },
+    {
+     "x": "2025-01-01",
+     "Scale": 248320,
+     "Growth": 81142,
+     "Starter": 10812
+    },
+    {
+     "x": "2025-02-01",
+     "Scale": 253824,
+     "Growth": 82621,
+     "Starter": 11016
+    },
+    {
+     "x": "2025-03-01",
+     "Scale": 262336,
+     "Growth": 84303,
+     "Starter": 11340
+    },
+    {
+     "x": "2025-04-01",
+     "Scale": 262656,
+     "Growth": 87116,
+     "Starter": 11748
+    },
+    {
+     "x": "2025-05-01",
+     "Scale": 268736,
+     "Growth": 92133,
+     "Starter": 11904
+    },
+    {
+     "x": "2025-06-01",
+     "Scale": 288320,
+     "Growth": 95178,
+     "Starter": 12348
+    },
+    {
+     "x": "2025-07-01",
+     "Scale": 301696,
+     "Growth": 97614,
+     "Starter": 11520
+    },
+    {
+     "x": "2025-08-01",
+     "Scale": 302144,
+     "Growth": 99876,
+     "Starter": 12036
+    },
+    {
+     "x": "2025-09-01",
+     "Scale": 317696,
+     "Growth": 103327,
+     "Starter": 12720
+    },
+    {
+     "x": "2025-10-01",
+     "Scale": 335872,
+     "Growth": 108547,
+     "Starter": 13152
+    },
+    {
+     "x": "2025-11-01",
+     "Scale": 363392,
+     "Growth": 113825,
+     "Starter": 13416
+    },
+    {
+     "x": "2025-12-01",
+     "Scale": 368192,
+     "Growth": 117102,
+     "Starter": 14268
+    }
+   ],
+   "format": "currency"
+  },
+  {
+   "widgetId": "w6",
+   "series": [
+    "value"
+   ],
+   "points": [
+    {
+     "x": "Starter",
+     "value": 0.0298
+    },
+    {
+     "x": "Growth",
+     "value": 0.0109
+    },
+    {
+     "x": "Scale",
+     "value": 0.0076
+    }
+   ],
+   "format": "number"
+  },
+  {
+   "widgetId": "w7",
+   "series": [
+    "Starter",
+    "Growth",
+    "Scale"
+   ],
+   "points": [
+    {
+     "x": "No",
+     "Starter": 4692,
+     "Growth": 3324,
+     "Scale": 1126
+    },
+    {
+     "x": "Yes",
+     "Starter": 279,
+     "Growth": 163,
+     "Scale": 51
+    }
+   ],
+   "format": "number"
+  }
+ ],
+ "resultsFiltered": [
+  {
+   "widgetId": "w0",
+   "series": [
+    "value"
+   ],
+   "points": [
+    {
+     "x": "2025-01-01",
+     "value": 10812
+    },
+    {
+     "x": "2025-02-01",
+     "value": 11016
+    },
+    {
+     "x": "2025-03-01",
+     "value": 11340
+    },
+    {
+     "x": "2025-04-01",
+     "value": 11748
+    },
+    {
+     "x": "2025-05-01",
+     "value": 11904
+    },
+    {
+     "x": "2025-06-01",
+     "value": 12348
+    },
+    {
+     "x": "2025-07-01",
+     "value": 11520
+    },
+    {
+     "x": "2025-08-01",
+     "value": 12036
+    },
+    {
+     "x": "2025-09-01",
+     "value": 12720
+    },
+    {
+     "x": "2025-10-01",
+     "value": 13152
+    },
+    {
+     "x": "2025-11-01",
+     "value": 13416
+    },
+    {
+     "x": "2025-12-01",
+     "value": 14268
+    }
+   ],
+   "format": "currency"
+  },
+  {
+   "widgetId": "w1",
+   "series": [
+    "value"
+   ],
+   "points": [
+    {
+     "x": "2025-01-01",
+     "value": 7
+    },
+    {
+     "x": "2025-02-01",
+     "value": 6
+    },
+    {
+     "x": "2025-03-01",
+     "value": 5
+    },
+    {
+     "x": "2025-04-01",
+     "value": 7
+    },
+    {
+     "x": "2025-05-01",
+     "value": 4
+    },
+    {
+     "x": "2025-06-01",
+     "value": 34
+    },
+    {
+     "x": "2025-07-01",
+     "value": 4
+    },
+    {
+     "x": "2025-08-01",
+     "value": 1
+    },
+    {
+     "x": "2025-09-01",
+     "value": 5
+    },
+    {
+     "x": "2025-10-01",
+     "value": 5
+    },
+    {
+     "x": "2025-11-01",
+     "value": 7
+    },
+    {
+     "x": "2025-12-01",
+     "value": 5
+    }
+   ],
+   "format": "number"
+  },
+  {
+   "widgetId": "w2",
+   "series": [
+    "value"
+   ],
+   "points": [
+    {
+     "x": "Starter",
+     "value": 146280
+    }
+   ],
+   "format": "currency"
+  },
+  {
+   "widgetId": "w3",
+   "series": [
+    "value"
+   ],
+   "points": [
+    {
+     "x": "United States",
+     "value": 55404
+    },
+    {
+     "x": "Germany",
+     "value": 18180
+    },
+    {
+     "x": "United Kingdom",
+     "value": 16116
+    },
+    {
+     "x": "India",
+     "value": 15912
+    },
+    {
+     "x": "Japan",
+     "value": 12120
+    },
+    {
+     "x": "Canada",
+     "value": 10056
+    },
+    {
+     "x": "Australia",
+     "value": 9480
+    },
+    {
+     "x": "Brazil",
+     "value": 9012
+    }
+   ],
+   "format": "currency"
+  },
+  {
+   "widgetId": "w4",
+   "series": [
+    "value"
+   ],
+   "points": [
+    {
+     "x": 12,
+     "x2": 18,
+     "value": 258
+    },
+    {
+     "x": 18,
+     "x2": 24,
+     "value": 0
+    },
+    {
+     "x": 24,
+     "x2": 30,
+     "value": 407
+    },
+    {
+     "x": 30,
+     "x2": 36,
+     "value": 0
+    },
+    {
+     "x": 36,
+     "x2": 42,
+     "value": 429
+    },
+    {
+     "x": 42,
+     "x2": 48,
+     "value": 0
+    },
+    {
+     "x": 48,
+     "x2": 54,
+     "value": 493
+    },
+    {
+     "x": 54,
+     "x2": 60,
+     "value": 0
+    },
+    {
+     "x": 60,
+     "x2": 66,
+     "value": 502
+    },
+    {
+     "x": 66,
+     "x2": 72,
+     "value": 0
+    },
+    {
+     "x": 72,
+     "x2": 78,
+     "value": 477
+    },
+    {
+     "x": 78,
+     "x2": 84,
+     "value": 0
+    },
+    {
+     "x": 84,
+     "x2": 90,
+     "value": 203
+    },
+    {
+     "x": 90,
+     "x2": 96,
+     "value": 0
+    },
+    {
+     "x": 96,
+     "x2": 102,
+     "value": 77
+    },
+    {
+     "x": 102,
+     "x2": 108,
+     "value": 0
+    },
+    {
+     "x": 108,
+     "x2": 114,
+     "value": 25
+    },
+    {
+     "x": 114,
+     "x2": 120,
+     "value": 0
+    },
+    {
+     "x": 120,
+     "x2": 126,
+     "value": 17
+    },
+    {
+     "x": 126,
+     "x2": 132,
+     "value": 5
+    }
+   ],
+   "format": "number",
+   "xFormat": "currency"
+  },
+  {
+   "widgetId": "w5",
+   "series": [
+    "Starter"
+   ],
+   "points": [
+    {
+     "x": "2025-01-01",
+     "Starter": 10812
+    },
+    {
+     "x": "2025-02-01",
+     "Starter": 11016
+    },
+    {
+     "x": "2025-03-01",
+     "Starter": 11340
+    },
+    {
+     "x": "2025-04-01",
+     "Starter": 11748
+    },
+    {
+     "x": "2025-05-01",
+     "Starter": 11904
+    },
+    {
+     "x": "2025-06-01",
+     "Starter": 12348
+    },
+    {
+     "x": "2025-07-01",
+     "Starter": 11520
+    },
+    {
+     "x": "2025-08-01",
+     "Starter": 12036
+    },
+    {
+     "x": "2025-09-01",
+     "Starter": 12720
+    },
+    {
+     "x": "2025-10-01",
+     "Starter": 13152
+    },
+    {
+     "x": "2025-11-01",
+     "Starter": 13416
+    },
+    {
+     "x": "2025-12-01",
+     "Starter": 14268
+    }
+   ],
+   "format": "currency"
+  },
+  {
+   "widgetId": "w6",
+   "series": [
+    "value"
+   ],
+   "points": [
+    {
+     "x": "Starter",
+     "value": 0.0311
+    }
+   ],
+   "format": "number"
+  },
+  {
+   "widgetId": "w7",
+   "series": [
+    "Starter"
+   ],
+   "points": [
+    {
+     "x": "No",
+     "Starter": 2741
+    },
+    {
+     "x": "Yes",
+     "Starter": 152
+    }
+   ],
+   "format": "number"
+  }
+ ],
+ "specs": [
+  {
+   "chartType": "line",
+   "title": "Total MRR by month",
+   "x": "month",
+   "y": "mrr",
+   "aggregation": "sum",
+   "timeGrain": "month"
+  },
+  {
+   "chartType": "line",
+   "title": "Churn by month",
+   "x": "month",
+   "y": "churned",
+   "aggregation": "sum",
+   "timeGrain": "month"
+  },
+  {
+   "chartType": "bar",
+   "title": "Total MRR by plan",
+   "x": "plan",
+   "y": "mrr",
+   "aggregation": "sum",
+   "limit": 8
+  },
+  {
+   "chartType": "bar",
+   "title": "Total MRR by country",
+   "x": "country",
+   "y": "mrr",
+   "aggregation": "sum",
+   "limit": 8
+  },
+  {
+   "chartType": "histogram",
+   "title": "Distribution of MRR",
+   "x": "mrr",
+   "aggregation": "count"
+  },
+  {
+   "chartType": "line",
+   "title": "MRR by plan",
+   "x": "month",
+   "y": "mrr",
+   "aggregation": "sum",
+   "split": "plan",
+   "timeGrain": "month"
+  },
+  {
+   "chartType": "bar",
+   "title": "Churn by plan",
+   "x": "plan",
+   "y": "churned",
+   "aggregation": "avg"
+  },
+  {
+   "chartType": "bar",
+   "title": "New accounts by plan",
+   "x": "is_new",
+   "aggregation": "count",
+   "split": "plan"
+  }
+ ],
+ "rowsPage": {
+  "sort": "seats:desc",
+  "total": 2893,
+  "rows": [
+   {
+    "month": "2025-10-01",
+    "account_id": "ACC-00190",
+    "plan": "Starter",
+    "country": "Australia",
+    "seats": 11,
+    "mrr": 132,
+    "is_new": false,
+    "churned": false
+   },
+   {
+    "month": "2025-11-01",
+    "account_id": "ACC-00190",
+    "plan": "Starter",
+    "country": "Australia",
+    "seats": 11,
+    "mrr": 132,
+    "is_new": false,
+    "churned": false
+   },
+   {
+    "month": "2025-11-01",
+    "account_id": "ACC-00329",
+    "plan": "Starter",
+    "country": "United States",
+    "seats": 11,
+    "mrr": 132,
+    "is_new": false,
+    "churned": false
+   },
+   {
+    "month": "2025-12-01",
+    "account_id": "ACC-00190",
+    "plan": "Starter",
+    "country": "Australia",
+    "seats": 11,
+    "mrr": 132,
+    "is_new": false,
+    "churned": false
+   },
+   {
+    "month": "2025-12-01",
+    "account_id": "ACC-00329",
+    "plan": "Starter",
+    "country": "United States",
+    "seats": 11,
+    "mrr": 132,
+    "is_new": false,
+    "churned": false
+   },
+   {
+    "month": "2025-03-01",
+    "account_id": "ACC-00158",
+    "plan": "Starter",
+    "country": "United States",
+    "seats": 10,
+    "mrr": 120,
+    "is_new": false,
+    "churned": false
+   },
+   {
+    "month": "2025-04-01",
+    "account_id": "ACC-00158",
+    "plan": "Starter",
+    "country": "United States",
+    "seats": 10,
+    "mrr": 120,
+    "is_new": false,
+    "churned": false
+   },
+   {
+    "month": "2025-04-01",
+    "account_id": "ACC-00303",
+    "plan": "Starter",
+    "country": "Brazil",
+    "seats": 10,
+    "mrr": 120,
+    "is_new": false,
+    "churned": false
+   },
+   {
+    "month": "2025-05-01",
+    "account_id": "ACC-00158",
+    "plan": "Starter",
+    "country": "United States",
+    "seats": 10,
+    "mrr": 120,
+    "is_new": false,
+    "churned": false
+   },
+   {
+    "month": "2025-05-01",
+    "account_id": "ACC-00303",
+    "plan": "Starter",
+    "country": "Brazil",
+    "seats": 10,
+    "mrr": 120,
+    "is_new": false,
+    "churned": false
+   },
+   {
+    "month": "2025-06-01",
+    "account_id": "ACC-00158",
+    "plan": "Starter",
+    "country": "United States",
+    "seats": 10,
+    "mrr": 120,
+    "is_new": false,
+    "churned": false
+   },
+   {
+    "month": "2025-06-01",
+    "account_id": "ACC-00303",
+    "plan": "Starter",
+    "country": "Brazil",
+    "seats": 10,
+    "mrr": 120,
+    "is_new": false,
+    "churned": true
+   },
+   {
+    "month": "2025-07-01",
+    "account_id": "ACC-00158",
+    "plan": "Starter",
+    "country": "United States",
+    "seats": 10,
+    "mrr": 120,
+    "is_new": false,
+    "churned": false
+   },
+   {
+    "month": "2025-08-01",
+    "account_id": "ACC-00158",
+    "plan": "Starter",
+    "country": "United States",
+    "seats": 10,
+    "mrr": 120,
+    "is_new": false,
+    "churned": false
+   },
+   {
+    "month": "2025-08-01",
+    "account_id": "ACC-00190",
+    "plan": "Starter",
+    "country": "Australia",
+    "seats": 10,
+    "mrr": 120,
+    "is_new": false,
+    "churned": false
+   },
+   {
+    "month": "2025-09-01",
+    "account_id": "ACC-00158",
+    "plan": "Starter",
+    "country": "United States",
+    "seats": 10,
+    "mrr": 120,
+    "is_new": false,
+    "churned": false
+   },
+   {
+    "month": "2025-09-01",
+    "account_id": "ACC-00190",
+    "plan": "Starter",
+    "country": "Australia",
+    "seats": 10,
+    "mrr": 120,
+    "is_new": false,
+    "churned": false
+   },
+   {
+    "month": "2025-09-01",
+    "account_id": "ACC-00329",
+    "plan": "Starter",
+    "country": "United States",
+    "seats": 10,
+    "mrr": 120,
+    "is_new": false,
+    "churned": false
+   },
+   {
+    "month": "2025-10-01",
+    "account_id": "ACC-00158",
+    "plan": "Starter",
+    "country": "United States",
+    "seats": 10,
+    "mrr": 120,
+    "is_new": false,
+    "churned": false
+   },
+   {
+    "month": "2025-10-01",
+    "account_id": "ACC-00329",
+    "plan": "Starter",
+    "country": "United States",
+    "seats": 10,
+    "mrr": 120,
+    "is_new": false,
+    "churned": false
+   },
+   {
+    "month": "2025-11-01",
+    "account_id": "ACC-00158",
+    "plan": "Starter",
+    "country": "United States",
+    "seats": 10,
+    "mrr": 120,
+    "is_new": false,
+    "churned": false
+   },
+   {
+    "month": "2025-12-01",
+    "account_id": "ACC-00158",
+    "plan": "Starter",
+    "country": "United States",
+    "seats": 10,
+    "mrr": 120,
+    "is_new": false,
+    "churned": false
+   },
+   {
+    "month": "2025-01-01",
+    "account_id": "ACC-00158",
+    "plan": "Starter",
+    "country": "United States",
+    "seats": 9,
+    "mrr": 108,
+    "is_new": false,
+    "churned": false
+   },
+   {
+    "month": "2025-01-01",
+    "account_id": "ACC-00208",
+    "plan": "Starter",
+    "country": "United Kingdom",
+    "seats": 9,
+    "mrr": 108,
+    "is_new": false,
+    "churned": false
+   },
+   {
+    "month": "2025-01-01",
+    "account_id": "ACC-00303",
+    "plan": "Starter",
+    "country": "Brazil",
+    "seats": 9,
+    "mrr": 108,
+    "is_new": false,
+    "churned": false
+   }
+  ]
+ },
+ "insight": {
+  "datasetId": "x",
+  "summary": "Churned accounts spiked to {{f5}} in June 2025, far above the usual level, with Starter (plan) accounting for {{f6}} of the jump. Total MRR rose {{f2}} in June 2024, driven mostly by Scale (plan), which moved {{f3}} and accounts for {{f4}} of the change. Across the whole dataset, total MRR is {{f1}}.",
+  "findings": [
+   "Scale is the largest plan, with {{f7}} of MRR."
+  ],
+  "nextQuestions": [
+   "What changed for Scale in June 2024?",
+   "Is the rise in June 2024 a one-off or the start of a trend?",
+   "What happened to Starter in June 2025?"
+  ],
+  "facts": [
+   {
+    "id": "f1",
+    "kind": "total",
+    "label": "Total MRR",
+    "value": 7958477,
+    "format": "currency"
+   },
+   {
+    "id": "f2",
+    "kind": "change",
+    "label": "Total MRR change in June 2024",
+    "value": 0.0814,
+    "format": "change",
+    "ref": {
+     "widgetId": "auto:0",
+     "x": "2024-06-01"
+    }
+   },
+   {
+    "id": "f3",
+    "kind": "contributor",
+    "label": "Scale total MRR change in June 2024",
+    "value": 0.0998,
+    "format": "change",
+    "ref": {
+     "widgetId": "auto:2",
+     "x": "Scale"
+    }
+   },
+   {
+    "id": "f4",
+    "kind": "contributor",
+    "label": "Scale share of the increase",
+    "value": 90.4,
+    "format": "percent"
+   },
+   {
+    "id": "f5",
+    "kind": "anomaly",
+    "label": "Churned accounts in June 2025",
+    "value": 37,
+    "format": "number",
+    "ref": {
+     "widgetId": "auto:1",
+     "x": "2025-06-01"
+    }
+   },
+   {
+    "id": "f6",
+    "kind": "contributor",
+    "label": "Starter share of the spike in June 2025",
+    "value": 93.8,
+    "format": "percent",
+    "ref": {
+     "widgetId": "auto:2",
+     "x": "Starter"
+    }
+   },
+   {
+    "id": "f7",
+    "kind": "total",
+    "label": "Scale share of MRR",
+    "value": 73.5,
+    "format": "percent",
+    "ref": {
+     "widgetId": "auto:2",
+     "x": "Scale"
+    }
+   }
+  ],
+  "anomalies": [
+   {
+    "id": "a1",
+    "factId": "f5",
+    "column": "churned",
+    "at": "2025-06-01",
+    "zScore": 13.3,
+    "direction": "spike",
+    "description": "Unusually high churned accounts in June 2025."
+   }
+  ],
+  "provider": "mock",
+  "model": "template-v1"
+ }
+}

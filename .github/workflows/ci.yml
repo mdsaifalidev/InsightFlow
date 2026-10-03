@@ -1,0 +1,133 @@
+name: CI
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+
+# A newer push supersedes an in-flight run on the same ref.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  TURBO_TELEMETRY_DISABLED: 1
+  NEXT_TELEMETRY_DISABLED: 1
+
+jobs:
+  checks:
+    name: lint, types, build, unit tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+      - uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+          cache-dependency-glob: services/data-py/uv.lock
+      - run: pnpm install --frozen-lockfile
+      - name: Sync the Python environment
+        run: uv sync --frozen
+        working-directory: services/data-py
+      - uses: actions/cache@v4
+        with:
+          path: .turbo
+          key: turbo-${{ runner.os }}-${{ github.sha }}
+          restore-keys: turbo-${{ runner.os }}-
+      - run: pnpm lint
+      - run: pnpm format:check
+      - run: pnpm typecheck
+      - run: pnpm build
+      # Both service suites start Postgres/Redis through Testcontainers, which
+      # uses the Docker daemon the runner already provides.
+      - run: pnpm test
+
+  contract:
+    name: API types match the services
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+      - uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+          cache-dependency-glob: services/data-py/uv.lock
+      - run: pnpm install --frozen-lockfile
+      - name: Sync the Python environment
+        run: uv sync --frozen
+        working-directory: services/data-py
+      # Dumping the specs needs no database: both apps are built, not started.
+      - run: pnpm api-types
+      - name: Specs and generated types are up to date
+        run: git diff --exit-code -- packages/api-types
+
+  e2e-mock:
+    name: E2E (MSW backend)
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - name: Install Chromium
+        run: pnpm exec playwright install --with-deps chromium
+        working-directory: apps/web
+      - run: pnpm --filter web test:e2e
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: playwright-mock-traces
+          path: apps/web/test-results
+          retention-days: 7
+
+  e2e-real:
+    name: E2E (real services)
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - name: Install Chromium
+        run: pnpm exec playwright install --with-deps chromium
+        working-directory: apps/web
+      - name: Generate throwaway signing keys
+        # Production mode refuses to invent its own keys (services/auth-node/src/keys.ts).
+        # The generator quotes its values; GITHUB_ENV takes them literally.
+        run: |
+          pnpm --filter @insightflow/auth-node keys:generate \
+            | grep '^JWT_' \
+            | tr -d '"' >> "$GITHUB_ENV"
+      - name: Start the services (production images)
+        run: node scripts/e2e-stack.mjs up --ci
+      - run: pnpm --filter web test:e2e:real
+      - name: Service logs
+        if: failure()
+        run: docker compose -p insightflow-ci -f docker-compose.yml -f docker-compose.ci.yml logs --tail=200
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: playwright-real-traces
+          path: apps/web/test-results
+          retention-days: 7
+      - name: Stop the services
+        if: always()
+        run: node scripts/e2e-stack.mjs down --ci

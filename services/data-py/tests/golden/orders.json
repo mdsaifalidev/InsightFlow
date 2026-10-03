@@ -1,0 +1,4008 @@
+{
+ "key": "orders",
+ "rowCount": 12253,
+ "columns": [
+  {
+   "name": "order_id",
+   "originalName": "order_id",
+   "position": 0,
+   "inferredType": "id",
+   "overrideType": null,
+   "profile": {
+    "nullPct": 0,
+    "distinctCount": 12253,
+    "categorical": {
+     "top": [
+      {
+       "value": "ORD-000001",
+       "count": 1
+      },
+      {
+       "value": "ORD-000002",
+       "count": 1
+      },
+      {
+       "value": "ORD-000003",
+       "count": 1
+      },
+      {
+       "value": "ORD-000004",
+       "count": 1
+      },
+      {
+       "value": "ORD-000005",
+       "count": 1
+      },
+      {
+       "value": "ORD-000006",
+       "count": 1
+      },
+      {
+       "value": "ORD-000007",
+       "count": 1
+      },
+      {
+       "value": "ORD-000008",
+       "count": 1
+      },
+      {
+       "value": "ORD-000009",
+       "count": 1
+      },
+      {
+       "value": "ORD-000010",
+       "count": 1
+      }
+     ]
+    }
+   }
+  },
+  {
+   "name": "order_date",
+   "originalName": "order_date",
+   "position": 1,
+   "inferredType": "datetime",
+   "overrideType": null,
+   "profile": {
+    "nullPct": 0,
+    "distinctCount": 365,
+    "datetime": {
+     "min": "2025-01-01",
+     "max": "2025-12-31",
+     "grain": "week"
+    }
+   }
+  },
+  {
+   "name": "region",
+   "originalName": "region",
+   "position": 2,
+   "inferredType": "categorical",
+   "overrideType": null,
+   "profile": {
+    "nullPct": 0,
+    "distinctCount": 5,
+    "categorical": {
+     "top": [
+      {
+       "value": "North America",
+       "count": 4211
+      },
+      {
+       "value": "Europe",
+       "count": 3417
+      },
+      {
+       "value": "Asia Pacific",
+       "count": 2446
+      },
+      {
+       "value": "Latin America",
+       "count": 1176
+      },
+      {
+       "value": "Middle East & Africa",
+       "count": 1003
+      }
+     ]
+    }
+   }
+  },
+  {
+   "name": "category",
+   "originalName": "category",
+   "position": 3,
+   "inferredType": "categorical",
+   "overrideType": null,
+   "profile": {
+    "nullPct": 0,
+    "distinctCount": 6,
+    "categorical": {
+     "top": [
+      {
+       "value": "Electronics",
+       "count": 3020
+      },
+      {
+       "value": "Home & Kitchen",
+       "count": 2674
+      },
+      {
+       "value": "Apparel",
+       "count": 2443
+      },
+      {
+       "value": "Beauty",
+       "count": 1710
+      },
+      {
+       "value": "Sports & Outdoors",
+       "count": 1412
+      },
+      {
+       "value": "Toys",
+       "count": 994
+      }
+     ]
+    }
+   }
+  },
+  {
+   "name": "channel",
+   "originalName": "channel",
+   "position": 4,
+   "inferredType": "categorical",
+   "overrideType": null,
+   "profile": {
+    "nullPct": 0,
+    "distinctCount": 4,
+    "categorical": {
+     "top": [
+      {
+       "value": "Web",
+       "count": 5806
+      },
+      {
+       "value": "Mobile app",
+       "count": 4279
+      },
+      {
+       "value": "Marketplace",
+       "count": 1429
+      },
+      {
+       "value": "Retail partner",
+       "count": 739
+      }
+     ]
+    }
+   }
+  },
+  {
+   "name": "customer_type",
+   "originalName": "customer_type",
+   "position": 5,
+   "inferredType": "categorical",
+   "overrideType": null,
+   "profile": {
+    "nullPct": 0,
+    "distinctCount": 2,
+    "categorical": {
+     "top": [
+      {
+       "value": "Returning",
+       "count": 7542
+      },
+      {
+       "value": "New",
+       "count": 4711
+      }
+     ]
+    }
+   }
+  },
+  {
+   "name": "quantity",
+   "originalName": "quantity",
+   "position": 6,
+   "inferredType": "numeric",
+   "overrideType": null,
+   "profile": {
+    "nullPct": 0,
+    "distinctCount": 5,
+    "numeric": {
+     "min": 1,
+     "max": 5,
+     "mean": 1.7662,
+     "median": 1,
+     "p95": 4,
+     "sum": 21641
+    }
+   }
+  },
+  {
+   "name": "unit_price",
+   "originalName": "unit_price",
+   "position": 7,
+   "inferredType": "numeric",
+   "overrideType": null,
+   "profile": {
+    "nullPct": 0,
+    "distinctCount": 8344,
+    "numeric": {
+     "min": 8.28,
+     "max": 601,
+     "mean": 85.6157,
+     "median": 59.23,
+     "p95": 234.692,
+     "sum": 1049049.39
+    }
+   }
+  },
+  {
+   "name": "discount_pct",
+   "originalName": "discount_pct",
+   "position": 8,
+   "inferredType": "numeric",
+   "overrideType": null,
+   "profile": {
+    "nullPct": 0,
+    "distinctCount": 7,
+    "numeric": {
+     "min": 0,
+     "max": 40,
+     "mean": 4.132,
+     "median": 0,
+     "p95": 15,
+     "sum": 50630
+    }
+   }
+  },
+  {
+   "name": "revenue",
+   "originalName": "revenue",
+   "position": 9,
+   "inferredType": "numeric",
+   "overrideType": null,
+   "profile": {
+    "nullPct": 0,
+    "distinctCount": 9529,
+    "numeric": {
+     "min": 9.13,
+     "max": 1804.52,
+     "mean": 144.4169,
+     "median": 87.98,
+     "p95": 456.918,
+     "sum": 1769540.66
+    }
+   }
+  }
+ ],
+ "dateColumn": "order_date",
+ "autoSpecs": [
+  {
+   "chartType": "line",
+   "title": "Total revenue by month",
+   "x": "order_date",
+   "y": "revenue",
+   "aggregation": "sum",
+   "timeGrain": "month"
+  },
+  {
+   "chartType": "bar",
+   "title": "Total revenue by region",
+   "x": "region",
+   "y": "revenue",
+   "aggregation": "sum",
+   "limit": 8
+  },
+  {
+   "chartType": "bar",
+   "title": "Total revenue by category",
+   "x": "category",
+   "y": "revenue",
+   "aggregation": "sum",
+   "limit": 8
+  },
+  {
+   "chartType": "donut",
+   "title": "Share of revenue by channel",
+   "x": "channel",
+   "y": "revenue",
+   "aggregation": "sum",
+   "limit": 6
+  },
+  {
+   "chartType": "histogram",
+   "title": "Distribution of revenue",
+   "x": "revenue",
+   "aggregation": "count"
+  }
+ ],
+ "kpis": [
+  {
+   "id": "entities",
+   "label": "Orders",
+   "column": "order_id",
+   "aggregation": "count_distinct",
+   "value": 12253,
+   "delta": 0.0233,
+   "deltaLabel": "Last 30 days vs prior 30",
+   "format": "number"
+  },
+  {
+   "id": "m:revenue",
+   "label": "Total revenue",
+   "column": "revenue",
+   "aggregation": "sum",
+   "value": 1769540.66,
+   "delta": 0.0249,
+   "deltaLabel": "Last 30 days vs prior 30",
+   "format": "currency"
+  },
+  {
+   "id": "m:unit_price",
+   "label": "Average unit price",
+   "column": "unit_price",
+   "aggregation": "avg",
+   "value": 85.62,
+   "delta": -0.0019,
+   "deltaLabel": "Last 30 days vs prior 30",
+   "format": "currency"
+  }
+ ],
+ "filters": {
+  "dateRange": {
+   "column": "order_date",
+   "from": "2025-03-01",
+   "to": "2025-05-31"
+  },
+  "where": [
+   {
+    "column": "region",
+    "op": "in",
+    "values": [
+     "North America",
+     "Europe"
+    ]
+   }
+  ]
+ },
+ "kpisFiltered": [
+  {
+   "id": "entities",
+   "label": "Orders",
+   "column": "order_id",
+   "aggregation": "count_distinct",
+   "value": 1795,
+   "delta": 0.6318,
+   "deltaLabel": "vs previous 92 days",
+   "format": "number"
+  },
+  {
+   "id": "m:revenue",
+   "label": "Total revenue",
+   "column": "revenue",
+   "aggregation": "sum",
+   "value": 238158.85,
+   "delta": 0.4789,
+   "deltaLabel": "vs previous 92 days",
+   "format": "currency"
+  },
+  {
+   "id": "m:unit_price",
+   "label": "Average unit price",
+   "column": "unit_price",
+   "aggregation": "avg",
+   "value": 80.1,
+   "delta": -0.0828,
+   "deltaLabel": "vs previous 92 days",
+   "format": "currency"
+  }
+ ],
+ "results": [
+  {
+   "widgetId": "w0",
+   "series": [
+    "value"
+   ],
+   "points": [
+    {
+     "x": "2025-01-01",
+     "value": 139789.36
+    },
+    {
+     "x": "2025-02-01",
+     "value": 123469.18
+    },
+    {
+     "x": "2025-03-01",
+     "value": 138025.26
+    },
+    {
+     "x": "2025-04-01",
+     "value": 107570.76
+    },
+    {
+     "x": "2025-05-01",
+     "value": 142172.37
+    },
+    {
+     "x": "2025-06-01",
+     "value": 148199.28
+    },
+    {
+     "x": "2025-07-01",
+     "value": 146624.18
+    },
+    {
+     "x": "2025-08-01",
+     "value": 156126.19
+    },
+    {
+     "x": "2025-09-01",
+     "value": 157723.3
+    },
+    {
+     "x": "2025-10-01",
+     "value": 149278.27
+    },
+    {
+     "x": "2025-11-01",
+     "value": 174190.84
+    },
+    {
+     "x": "2025-12-01",
+     "value": 186371.67
+    }
+   ],
+   "format": "currency"
+  },
+  {
+   "widgetId": "w1",
+   "series": [
+    "value"
+   ],
+   "points": [
+    {
+     "x": "North America",
+     "value": 613455.51
+    },
+    {
+     "x": "Europe",
+     "value": 480238.67
+    },
+    {
+     "x": "Asia Pacific",
+     "value": 358652.44
+    },
+    {
+     "x": "Latin America",
+     "value": 168641.45
+    },
+    {
+     "x": "Middle East & Africa",
+     "value": 148552.59
+    }
+   ],
+   "format": "currency"
+  },
+  {
+   "widgetId": "w2",
+   "series": [
+    "value"
+   ],
+   "points": [
+    {
+     "x": "Electronics",
+     "value": 934218.91
+    },
+    {
+     "x": "Home & Kitchen",
+     "value": 301212.68
+    },
+    {
+     "x": "Apparel",
+     "value": 192743.98
+    },
+    {
+     "x": "Sports & Outdoors",
+     "value": 191113.81
+    },
+    {
+     "x": "Beauty",
+     "value": 87835.09
+    },
+    {
+     "x": "Toys",
+     "value": 62416.19
+    }
+   ],
+   "format": "currency"
+  },
+  {
+   "widgetId": "w3",
+   "series": [
+    "value"
+   ],
+   "points": [
+    {
+     "x": "Web",
+     "value": 839967.99
+    },
+    {
+     "x": "Mobile app",
+     "value": 617785.73
+    },
+    {
+     "x": "Marketplace",
+     "value": 207839.69
+    },
+    {
+     "x": "Retail partner",
+     "value": 103947.25
+    }
+   ],
+   "format": "currency"
+  },
+  {
+   "widgetId": "w4",
+   "series": [
+    "value"
+   ],
+   "points": [
+    {
+     "x": 9.13,
+     "x2": 98.9,
+     "value": 6626
+    },
+    {
+     "x": 98.9,
+     "x2": 188.67,
+     "value": 2860
+    },
+    {
+     "x": 188.67,
+     "x2": 278.44,
+     "value": 1264
+    },
+    {
+     "x": 278.44,
+     "x2": 368.21,
+     "value": 572
+    },
+    {
+     "x": 368.21,
+     "x2": 457.98,
+     "value": 321
+    },
+    {
+     "x": 457.98,
+     "x2": 547.75,
+     "value": 201
+    },
+    {
+     "x": 547.75,
+     "x2": 637.52,
+     "value": 127
+    },
+    {
+     "x": 637.52,
+     "x2": 727.29,
+     "value": 82
+    },
+    {
+     "x": 727.29,
+     "x2": 817.06,
+     "value": 79
+    },
+    {
+     "x": 817.06,
+     "x2": 906.83,
+     "value": 41
+    },
+    {
+     "x": 906.83,
+     "x2": 996.59,
+     "value": 26
+    },
+    {
+     "x": 996.59,
+     "x2": 1086.36,
+     "value": 15
+    },
+    {
+     "x": 1086.36,
+     "x2": 1176.13,
+     "value": 14
+    },
+    {
+     "x": 1176.13,
+     "x2": 1265.9,
+     "value": 10
+    },
+    {
+     "x": 1265.9,
+     "x2": 1355.67,
+     "value": 6
+    },
+    {
+     "x": 1355.67,
+     "x2": 1445.44,
+     "value": 2
+    },
+    {
+     "x": 1445.44,
+     "x2": 1535.21,
+     "value": 4
+    },
+    {
+     "x": 1535.21,
+     "x2": 1624.98,
+     "value": 1
+    },
+    {
+     "x": 1624.98,
+     "x2": 1714.75,
+     "value": 0
+    },
+    {
+     "x": 1714.75,
+     "x2": 1804.52,
+     "value": 2
+    }
+   ],
+   "format": "number",
+   "xFormat": "currency"
+  },
+  {
+   "widgetId": "w5",
+   "series": [
+    "North America",
+    "Europe",
+    "Asia Pacific",
+    "Latin America",
+    "Middle East & Africa"
+   ],
+   "points": [
+    {
+     "x": "2024-12-30",
+     "North America": 7060.1,
+     "Europe": 6602.47,
+     "Asia Pacific": 4644.33,
+     "Latin America": 2574.45,
+     "Middle East & Africa": 2504.73
+    },
+    {
+     "x": "2025-01-06",
+     "North America": 11340.59,
+     "Europe": 6417.71,
+     "Asia Pacific": 7645.17,
+     "Latin America": 3419.36,
+     "Middle East & Africa": 2599.55
+    },
+    {
+     "x": "2025-01-13",
+     "North America": 12211.02,
+     "Europe": 9255.22,
+     "Asia Pacific": 6186.22,
+     "Latin America": 2751.51,
+     "Middle East & Africa": 4094.9
+    },
+    {
+     "x": "2025-01-20",
+     "North America": 9100.05,
+     "Europe": 8961.22,
+     "Asia Pacific": 5783.75,
+     "Latin America": 3672.88,
+     "Middle East & Africa": 2426.96
+    },
+    {
+     "x": "2025-01-27",
+     "North America": 11144.55,
+     "Europe": 10624.88,
+     "Asia Pacific": 6794.4,
+     "Latin America": 2003.53,
+     "Middle East & Africa": 1535.66
+    },
+    {
+     "x": "2025-02-03",
+     "North America": 8442.47,
+     "Europe": 5607.93,
+     "Asia Pacific": 4233.48,
+     "Latin America": 1616.28,
+     "Middle East & Africa": 1889.82
+    },
+    {
+     "x": "2025-02-10",
+     "North America": 10157.32,
+     "Europe": 7579.18,
+     "Asia Pacific": 5579.29,
+     "Latin America": 2454.33,
+     "Middle East & Africa": 2557.51
+    },
+    {
+     "x": "2025-02-17",
+     "North America": 9406.41,
+     "Europe": 11159.32,
+     "Asia Pacific": 7130.39,
+     "Latin America": 5164.08,
+     "Middle East & Africa": 3828.93
+    },
+    {
+     "x": "2025-02-24",
+     "North America": 13550.92,
+     "Europe": 10127.47,
+     "Asia Pacific": 6369.64,
+     "Latin America": 4597.34,
+     "Middle East & Africa": 3012.35
+    },
+    {
+     "x": "2025-03-03",
+     "North America": 10598.8,
+     "Europe": 8931.02,
+     "Asia Pacific": 6267.98,
+     "Latin America": 2885.95,
+     "Middle East & Africa": 2537.01
+    },
+    {
+     "x": "2025-03-10",
+     "North America": 10952.32,
+     "Europe": 9695.83,
+     "Asia Pacific": 5678.22,
+     "Latin America": 3575.24,
+     "Middle East & Africa": 1633.24
+    },
+    {
+     "x": "2025-03-17",
+     "North America": 8218.64,
+     "Europe": 7505.79,
+     "Asia Pacific": 5775.86,
+     "Latin America": 2604.7,
+     "Middle East & Africa": 3708.38
+    },
+    {
+     "x": "2025-03-24",
+     "North America": 9929.49,
+     "Europe": 9232.35,
+     "Asia Pacific": 5319.6,
+     "Latin America": 3580.58,
+     "Middle East & Africa": 1010.43
+    },
+    {
+     "x": "2025-03-31",
+     "North America": 8862.09,
+     "Europe": 7261.73,
+     "Asia Pacific": 7031.13,
+     "Latin America": 1055.42,
+     "Middle East & Africa": 1777.89
+    },
+    {
+     "x": "2025-04-07",
+     "North America": 10095.79,
+     "Europe": 7407.39,
+     "Asia Pacific": 4846.92,
+     "Latin America": 3362.95,
+     "Middle East & Africa": 2583.89
+    },
+    {
+     "x": "2025-04-14",
+     "North America": 9056.28,
+     "Europe": 5679.89,
+     "Asia Pacific": 4921.84,
+     "Latin America": 2445.32,
+     "Middle East & Africa": 1868.37
+    },
+    {
+     "x": "2025-04-21",
+     "North America": 8817.21,
+     "Europe": 7817.98,
+     "Asia Pacific": 4922.35,
+     "Latin America": 1560.68,
+     "Middle East & Africa": 1393.53
+    },
+    {
+     "x": "2025-04-28",
+     "North America": 12287.02,
+     "Europe": 10032.18,
+     "Asia Pacific": 5120.62,
+     "Latin America": 2884.74,
+     "Middle East & Africa": 1068.3
+    },
+    {
+     "x": "2025-05-05",
+     "North America": 9795.45,
+     "Europe": 6033.59,
+     "Asia Pacific": 9542.91,
+     "Latin America": 2544.41,
+     "Middle East & Africa": 4452.92
+    },
+    {
+     "x": "2025-05-12",
+     "North America": 12992.83,
+     "Europe": 7189.28,
+     "Asia Pacific": 8092.75,
+     "Latin America": 1814.02,
+     "Middle East & Africa": 3159.6
+    },
+    {
+     "x": "2025-05-19",
+     "North America": 11967.13,
+     "Europe": 6214.85,
+     "Asia Pacific": 7198.66,
+     "Latin America": 2666.13,
+     "Middle East & Africa": 2210.03
+    },
+    {
+     "x": "2025-05-26",
+     "North America": 9300.57,
+     "Europe": 7812.81,
+     "Asia Pacific": 7647.36,
+     "Latin America": 827.17,
+     "Middle East & Africa": 3280.11
+    },
+    {
+     "x": "2025-06-02",
+     "North America": 12204.47,
+     "Europe": 7681.61,
+     "Asia Pacific": 7786.04,
+     "Latin America": 2763.94,
+     "Middle East & Africa": 1988.95
+    },
+    {
+     "x": "2025-06-09",
+     "North America": 13607.14,
+     "Europe": 9919.53,
+     "Asia Pacific": 6841.8,
+     "Latin America": 4283.3,
+     "Middle East & Africa": 2851.42
+    },
+    {
+     "x": "2025-06-16",
+     "North America": 14097.39,
+     "Europe": 10118.24,
+     "Asia Pacific": 5007.4,
+     "Latin America": 4725.27,
+     "Middle East & Africa": 943.55
+    },
+    {
+     "x": "2025-06-23",
+     "North America": 9520.75,
+     "Europe": 7469.5,
+     "Asia Pacific": 7971.28,
+     "Latin America": 3779.74,
+     "Middle East & Africa": 6203
+    },
+    {
+     "x": "2025-06-30",
+     "North America": 9691.29,
+     "Europe": 10095.93,
+     "Asia Pacific": 7036.47,
+     "Latin America": 3640.4,
+     "Middle East & Africa": 2384.63
+    },
+    {
+     "x": "2025-07-07",
+     "North America": 9170.72,
+     "Europe": 7658.84,
+     "Asia Pacific": 3826.11,
+     "Latin America": 4672.81,
+     "Middle East & Africa": 3184.92
+    },
+    {
+     "x": "2025-07-14",
+     "North America": 9500.68,
+     "Europe": 12057.62,
+     "Asia Pacific": 5467.31,
+     "Latin America": 3548.89,
+     "Middle East & Africa": 1671.17
+    },
+    {
+     "x": "2025-07-21",
+     "North America": 13021.25,
+     "Europe": 6708.71,
+     "Asia Pacific": 10903.47,
+     "Latin America": 3749.79,
+     "Middle East & Africa": 3766.57
+    },
+    {
+     "x": "2025-07-28",
+     "North America": 14104.26,
+     "Europe": 12040.62,
+     "Asia Pacific": 7386.27,
+     "Latin America": 5129.31,
+     "Middle East & Africa": 944.57
+    },
+    {
+     "x": "2025-08-04",
+     "North America": 11013.32,
+     "Europe": 7573.89,
+     "Asia Pacific": 8000.06,
+     "Latin America": 2156.72,
+     "Middle East & Africa": 3223.16
+    },
+    {
+     "x": "2025-08-11",
+     "North America": 9973.57,
+     "Europe": 9743.19,
+     "Asia Pacific": 8866.46,
+     "Latin America": 2992.76,
+     "Middle East & Africa": 3152.26
+    },
+    {
+     "x": "2025-08-18",
+     "North America": 13171.46,
+     "Europe": 9499.51,
+     "Asia Pacific": 5433.93,
+     "Latin America": 3064.86,
+     "Middle East & Africa": 2229.84
+    },
+    {
+     "x": "2025-08-25",
+     "North America": 13229.56,
+     "Europe": 8228.86,
+     "Asia Pacific": 7573.72,
+     "Latin America": 1861.44,
+     "Middle East & Africa": 5495.89
+    },
+    {
+     "x": "2025-09-01",
+     "North America": 16004.53,
+     "Europe": 9512.23,
+     "Asia Pacific": 7421.58,
+     "Latin America": 4386.36,
+     "Middle East & Africa": 3255.5
+    },
+    {
+     "x": "2025-09-08",
+     "North America": 12062.6,
+     "Europe": 7826.85,
+     "Asia Pacific": 5590.44,
+     "Latin America": 3858.12,
+     "Middle East & Africa": 2092.85
+    },
+    {
+     "x": "2025-09-15",
+     "North America": 14628.71,
+     "Europe": 8912.64,
+     "Asia Pacific": 7788.35,
+     "Latin America": 3970.68,
+     "Middle East & Africa": 3576.23
+    },
+    {
+     "x": "2025-09-22",
+     "North America": 13142.34,
+     "Europe": 10042.9,
+     "Asia Pacific": 7386.68,
+     "Latin America": 2389.77,
+     "Middle East & Africa": 3890.36
+    },
+    {
+     "x": "2025-09-29",
+     "North America": 9442.89,
+     "Europe": 11319.06,
+     "Asia Pacific": 6769.95,
+     "Latin America": 3774.34,
+     "Middle East & Africa": 3055.32
+    },
+    {
+     "x": "2025-10-06",
+     "North America": 11508.67,
+     "Europe": 9260.78,
+     "Asia Pacific": 4841.82,
+     "Latin America": 4039.7,
+     "Middle East & Africa": 3246.82
+    },
+    {
+     "x": "2025-10-13",
+     "North America": 12745.81,
+     "Europe": 12611.64,
+     "Asia Pacific": 6232.86,
+     "Latin America": 1925.9,
+     "Middle East & Africa": 3309.91
+    },
+    {
+     "x": "2025-10-20",
+     "North America": 11214.42,
+     "Europe": 6528.94,
+     "Asia Pacific": 7109.97,
+     "Latin America": 2512.7,
+     "Middle East & Africa": 4238.86
+    },
+    {
+     "x": "2025-10-27",
+     "North America": 12012.73,
+     "Europe": 10635.61,
+     "Asia Pacific": 8028.96,
+     "Latin America": 2091.65,
+     "Middle East & Africa": 1976.79
+    },
+    {
+     "x": "2025-11-03",
+     "North America": 15194.49,
+     "Europe": 7896.07,
+     "Asia Pacific": 6992.46,
+     "Latin America": 4330.59,
+     "Middle East & Africa": 2448.85
+    },
+    {
+     "x": "2025-11-10",
+     "North America": 16681.85,
+     "Europe": 10748.59,
+     "Asia Pacific": 5833.17,
+     "Latin America": 5291.28,
+     "Middle East & Africa": 2789.42
+    },
+    {
+     "x": "2025-11-17",
+     "North America": 12125.27,
+     "Europe": 10571.03,
+     "Asia Pacific": 8186.74,
+     "Latin America": 4003.45,
+     "Middle East & Africa": 2750.97
+    },
+    {
+     "x": "2025-11-24",
+     "North America": 16896.4,
+     "Europe": 12777.23,
+     "Asia Pacific": 11126.29,
+     "Latin America": 4206,
+     "Middle East & Africa": 2166.44
+    },
+    {
+     "x": "2025-12-01",
+     "North America": 13702.5,
+     "Europe": 12734.22,
+     "Asia Pacific": 8063.61,
+     "Latin America": 2431.63,
+     "Middle East & Africa": 3645
+    },
+    {
+     "x": "2025-12-08",
+     "North America": 15524.92,
+     "Europe": 9311.6,
+     "Asia Pacific": 7086.56,
+     "Latin America": 3625.22,
+     "Middle East & Africa": 2867.63
+    },
+    {
+     "x": "2025-12-15",
+     "North America": 15454.83,
+     "Europe": 11310.6,
+     "Asia Pacific": 7759.65,
+     "Latin America": 4694.99,
+     "Middle East & Africa": 3890.34
+    },
+    {
+     "x": "2025-12-22",
+     "North America": 11701.25,
+     "Europe": 16470.8,
+     "Asia Pacific": 9210,
+     "Latin America": 1874.4,
+     "Middle East & Africa": 3578.03
+    },
+    {
+     "x": "2025-12-29",
+     "North America": 5818.39,
+     "Europe": 5821.74,
+     "Asia Pacific": 4390.16,
+     "Latin America": 2804.37,
+     "Middle East & Africa": 2599.23
+    }
+   ],
+   "format": "currency"
+  },
+  {
+   "widgetId": "w6",
+   "series": [
+    "Returning",
+    "New"
+   ],
+   "points": [
+    {
+     "x": "Web",
+     "Returning": 3568,
+     "New": 2238
+    },
+    {
+     "x": "Mobile app",
+     "Returning": 2609,
+     "New": 1670
+    },
+    {
+     "x": "Marketplace",
+     "Returning": 900,
+     "New": 529
+    },
+    {
+     "x": "Retail partner",
+     "Returning": 465,
+     "New": 274
+    }
+   ],
+   "format": "number"
+  },
+  {
+   "widgetId": "w7",
+   "series": [
+    "value"
+   ],
+   "points": [
+    {
+     "x": "Electronics",
+     "value": 184.5502
+    },
+    {
+     "x": "Sports & Outdoors",
+     "value": 78.6925
+    },
+    {
+     "x": "Home & Kitchen",
+     "value": 66.5131
+    },
+    {
+     "x": "Apparel",
+     "value": 47.1377
+    },
+    {
+     "x": "Toys",
+     "value": 36.8875
+    },
+    {
+     "x": "Beauty",
+     "value": 29.7745
+    }
+   ],
+   "format": "currency"
+  },
+  {
+   "widgetId": "w8",
+   "series": [
+    "value"
+   ],
+   "points": [
+    {
+     "x": "Asia Pacific",
+     "value": 5
+    },
+    {
+     "x": "North America",
+     "value": 5
+    },
+    {
+     "x": "Other",
+     "value": 5
+    }
+   ],
+   "format": "number"
+  },
+  {
+   "widgetId": "w9",
+   "series": [
+    "value"
+   ],
+   "points": [
+    {
+     "x": "Web",
+     "value": 5806
+    },
+    {
+     "x": "Mobile app",
+     "value": 4279
+    },
+    {
+     "x": "Marketplace",
+     "value": 1429
+    },
+    {
+     "x": "Retail partner",
+     "value": 739
+    }
+   ],
+   "format": "number"
+  },
+  {
+   "widgetId": "w10",
+   "series": [
+    "value"
+   ],
+   "points": [
+    {
+     "x": "2025-01-01",
+     "value": 0
+    },
+    {
+     "x": "2025-01-02",
+     "value": 0
+    },
+    {
+     "x": "2025-01-03",
+     "value": 0
+    },
+    {
+     "x": "2025-01-04",
+     "value": 0
+    },
+    {
+     "x": "2025-01-05",
+     "value": 0
+    },
+    {
+     "x": "2025-01-06",
+     "value": 0
+    },
+    {
+     "x": "2025-01-07",
+     "value": 0
+    },
+    {
+     "x": "2025-01-08",
+     "value": 0
+    },
+    {
+     "x": "2025-01-09",
+     "value": 0
+    },
+    {
+     "x": "2025-01-10",
+     "value": 0
+    },
+    {
+     "x": "2025-01-11",
+     "value": 0
+    },
+    {
+     "x": "2025-01-12",
+     "value": 0
+    },
+    {
+     "x": "2025-01-13",
+     "value": 0
+    },
+    {
+     "x": "2025-01-14",
+     "value": 0
+    },
+    {
+     "x": "2025-01-15",
+     "value": 0
+    },
+    {
+     "x": "2025-01-16",
+     "value": 0
+    },
+    {
+     "x": "2025-01-17",
+     "value": 0
+    },
+    {
+     "x": "2025-01-18",
+     "value": 0
+    },
+    {
+     "x": "2025-01-19",
+     "value": 0
+    },
+    {
+     "x": "2025-01-20",
+     "value": 0
+    },
+    {
+     "x": "2025-01-21",
+     "value": 0
+    },
+    {
+     "x": "2025-01-22",
+     "value": 0
+    },
+    {
+     "x": "2025-01-23",
+     "value": 0
+    },
+    {
+     "x": "2025-01-24",
+     "value": 0
+    },
+    {
+     "x": "2025-01-25",
+     "value": 0
+    },
+    {
+     "x": "2025-01-26",
+     "value": 0
+    },
+    {
+     "x": "2025-01-27",
+     "value": 0
+    },
+    {
+     "x": "2025-01-28",
+     "value": 0
+    },
+    {
+     "x": "2025-01-29",
+     "value": 0
+    },
+    {
+     "x": "2025-01-30",
+     "value": 0
+    },
+    {
+     "x": "2025-01-31",
+     "value": 0
+    },
+    {
+     "x": "2025-02-01",
+     "value": 0
+    },
+    {
+     "x": "2025-02-02",
+     "value": 0
+    },
+    {
+     "x": "2025-02-03",
+     "value": 0
+    },
+    {
+     "x": "2025-02-04",
+     "value": 0
+    },
+    {
+     "x": "2025-02-05",
+     "value": 0
+    },
+    {
+     "x": "2025-02-06",
+     "value": 0
+    },
+    {
+     "x": "2025-02-07",
+     "value": 0
+    },
+    {
+     "x": "2025-02-08",
+     "value": 0
+    },
+    {
+     "x": "2025-02-09",
+     "value": 0
+    },
+    {
+     "x": "2025-02-10",
+     "value": 0
+    },
+    {
+     "x": "2025-02-11",
+     "value": 0
+    },
+    {
+     "x": "2025-02-12",
+     "value": 0
+    },
+    {
+     "x": "2025-02-13",
+     "value": 0
+    },
+    {
+     "x": "2025-02-14",
+     "value": 0
+    },
+    {
+     "x": "2025-02-15",
+     "value": 0
+    },
+    {
+     "x": "2025-02-16",
+     "value": 0
+    },
+    {
+     "x": "2025-02-17",
+     "value": 0
+    },
+    {
+     "x": "2025-02-18",
+     "value": 0
+    },
+    {
+     "x": "2025-02-19",
+     "value": 0
+    },
+    {
+     "x": "2025-02-20",
+     "value": 0
+    },
+    {
+     "x": "2025-02-21",
+     "value": 0
+    },
+    {
+     "x": "2025-02-22",
+     "value": 0
+    },
+    {
+     "x": "2025-02-23",
+     "value": 0
+    },
+    {
+     "x": "2025-02-24",
+     "value": 0
+    },
+    {
+     "x": "2025-02-25",
+     "value": 0
+    },
+    {
+     "x": "2025-02-26",
+     "value": 0
+    },
+    {
+     "x": "2025-02-27",
+     "value": 0
+    },
+    {
+     "x": "2025-02-28",
+     "value": 0
+    },
+    {
+     "x": "2025-03-01",
+     "value": 0
+    },
+    {
+     "x": "2025-03-02",
+     "value": 0
+    },
+    {
+     "x": "2025-03-03",
+     "value": 0
+    },
+    {
+     "x": "2025-03-04",
+     "value": 0
+    },
+    {
+     "x": "2025-03-05",
+     "value": 0
+    },
+    {
+     "x": "2025-03-06",
+     "value": 0
+    },
+    {
+     "x": "2025-03-07",
+     "value": 0
+    },
+    {
+     "x": "2025-03-08",
+     "value": 0
+    },
+    {
+     "x": "2025-03-09",
+     "value": 0
+    },
+    {
+     "x": "2025-03-10",
+     "value": 0
+    },
+    {
+     "x": "2025-03-11",
+     "value": 0
+    },
+    {
+     "x": "2025-03-12",
+     "value": 0
+    },
+    {
+     "x": "2025-03-13",
+     "value": 0
+    },
+    {
+     "x": "2025-03-14",
+     "value": 0
+    },
+    {
+     "x": "2025-03-15",
+     "value": 0
+    },
+    {
+     "x": "2025-03-16",
+     "value": 0
+    },
+    {
+     "x": "2025-03-17",
+     "value": 0
+    },
+    {
+     "x": "2025-03-18",
+     "value": 0
+    },
+    {
+     "x": "2025-03-19",
+     "value": 0
+    },
+    {
+     "x": "2025-03-20",
+     "value": 0
+    },
+    {
+     "x": "2025-03-21",
+     "value": 0
+    },
+    {
+     "x": "2025-03-22",
+     "value": 0
+    },
+    {
+     "x": "2025-03-23",
+     "value": 0
+    },
+    {
+     "x": "2025-03-24",
+     "value": 0
+    },
+    {
+     "x": "2025-03-25",
+     "value": 0
+    },
+    {
+     "x": "2025-03-26",
+     "value": 0
+    },
+    {
+     "x": "2025-03-27",
+     "value": 0
+    },
+    {
+     "x": "2025-03-28",
+     "value": 0
+    },
+    {
+     "x": "2025-03-29",
+     "value": 0
+    },
+    {
+     "x": "2025-03-30",
+     "value": 0
+    },
+    {
+     "x": "2025-03-31",
+     "value": 0
+    },
+    {
+     "x": "2025-04-01",
+     "value": 0
+    },
+    {
+     "x": "2025-04-02",
+     "value": 0
+    },
+    {
+     "x": "2025-04-03",
+     "value": 0
+    },
+    {
+     "x": "2025-04-04",
+     "value": 0
+    },
+    {
+     "x": "2025-04-05",
+     "value": 0
+    },
+    {
+     "x": "2025-04-06",
+     "value": 0
+    },
+    {
+     "x": "2025-04-07",
+     "value": 0
+    },
+    {
+     "x": "2025-04-08",
+     "value": 0
+    },
+    {
+     "x": "2025-04-09",
+     "value": 0
+    },
+    {
+     "x": "2025-04-10",
+     "value": 0
+    },
+    {
+     "x": "2025-04-11",
+     "value": 0
+    },
+    {
+     "x": "2025-04-12",
+     "value": 0
+    },
+    {
+     "x": "2025-04-13",
+     "value": 0
+    },
+    {
+     "x": "2025-04-14",
+     "value": 0
+    },
+    {
+     "x": "2025-04-15",
+     "value": 0
+    },
+    {
+     "x": "2025-04-16",
+     "value": 0
+    },
+    {
+     "x": "2025-04-17",
+     "value": 0
+    },
+    {
+     "x": "2025-04-18",
+     "value": 0
+    },
+    {
+     "x": "2025-04-19",
+     "value": 0
+    },
+    {
+     "x": "2025-04-20",
+     "value": 0
+    },
+    {
+     "x": "2025-04-21",
+     "value": 0
+    },
+    {
+     "x": "2025-04-22",
+     "value": 0
+    },
+    {
+     "x": "2025-04-23",
+     "value": 0
+    },
+    {
+     "x": "2025-04-24",
+     "value": 0
+    },
+    {
+     "x": "2025-04-25",
+     "value": 0
+    },
+    {
+     "x": "2025-04-26",
+     "value": 0
+    },
+    {
+     "x": "2025-04-27",
+     "value": 0
+    },
+    {
+     "x": "2025-04-28",
+     "value": 0
+    },
+    {
+     "x": "2025-04-29",
+     "value": 0
+    },
+    {
+     "x": "2025-04-30",
+     "value": 0
+    },
+    {
+     "x": "2025-05-01",
+     "value": 0
+    },
+    {
+     "x": "2025-05-02",
+     "value": 0
+    },
+    {
+     "x": "2025-05-03",
+     "value": 0
+    },
+    {
+     "x": "2025-05-04",
+     "value": 0
+    },
+    {
+     "x": "2025-05-05",
+     "value": 0
+    },
+    {
+     "x": "2025-05-06",
+     "value": 0
+    },
+    {
+     "x": "2025-05-07",
+     "value": 0
+    },
+    {
+     "x": "2025-05-08",
+     "value": 0
+    },
+    {
+     "x": "2025-05-09",
+     "value": 0
+    },
+    {
+     "x": "2025-05-10",
+     "value": 0
+    },
+    {
+     "x": "2025-05-11",
+     "value": 0
+    },
+    {
+     "x": "2025-05-12",
+     "value": 0
+    },
+    {
+     "x": "2025-05-13",
+     "value": 0
+    },
+    {
+     "x": "2025-05-14",
+     "value": 0
+    },
+    {
+     "x": "2025-05-15",
+     "value": 0
+    },
+    {
+     "x": "2025-05-16",
+     "value": 0
+    },
+    {
+     "x": "2025-05-17",
+     "value": 0
+    },
+    {
+     "x": "2025-05-18",
+     "value": 0
+    },
+    {
+     "x": "2025-05-19",
+     "value": 0
+    },
+    {
+     "x": "2025-05-20",
+     "value": 0
+    },
+    {
+     "x": "2025-05-21",
+     "value": 0
+    },
+    {
+     "x": "2025-05-22",
+     "value": 0
+    },
+    {
+     "x": "2025-05-23",
+     "value": 0
+    },
+    {
+     "x": "2025-05-24",
+     "value": 0
+    },
+    {
+     "x": "2025-05-25",
+     "value": 0
+    },
+    {
+     "x": "2025-05-26",
+     "value": 0
+    },
+    {
+     "x": "2025-05-27",
+     "value": 0
+    },
+    {
+     "x": "2025-05-28",
+     "value": 0
+    },
+    {
+     "x": "2025-05-29",
+     "value": 0
+    },
+    {
+     "x": "2025-05-30",
+     "value": 0
+    },
+    {
+     "x": "2025-05-31",
+     "value": 0
+    },
+    {
+     "x": "2025-06-01",
+     "value": 0
+    },
+    {
+     "x": "2025-06-02",
+     "value": 0
+    },
+    {
+     "x": "2025-06-03",
+     "value": 0
+    },
+    {
+     "x": "2025-06-04",
+     "value": 0
+    },
+    {
+     "x": "2025-06-05",
+     "value": 0
+    },
+    {
+     "x": "2025-06-06",
+     "value": 0
+    },
+    {
+     "x": "2025-06-07",
+     "value": 0
+    },
+    {
+     "x": "2025-06-08",
+     "value": 0
+    },
+    {
+     "x": "2025-06-09",
+     "value": 0
+    },
+    {
+     "x": "2025-06-10",
+     "value": 0
+    },
+    {
+     "x": "2025-06-11",
+     "value": 0
+    },
+    {
+     "x": "2025-06-12",
+     "value": 0
+    },
+    {
+     "x": "2025-06-13",
+     "value": 0
+    },
+    {
+     "x": "2025-06-14",
+     "value": 0
+    },
+    {
+     "x": "2025-06-15",
+     "value": 0
+    },
+    {
+     "x": "2025-06-16",
+     "value": 0
+    },
+    {
+     "x": "2025-06-17",
+     "value": 0
+    },
+    {
+     "x": "2025-06-18",
+     "value": 0
+    },
+    {
+     "x": "2025-06-19",
+     "value": 0
+    },
+    {
+     "x": "2025-06-20",
+     "value": 0
+    },
+    {
+     "x": "2025-06-21",
+     "value": 0
+    },
+    {
+     "x": "2025-06-22",
+     "value": 0
+    },
+    {
+     "x": "2025-06-23",
+     "value": 0
+    },
+    {
+     "x": "2025-06-24",
+     "value": 0
+    },
+    {
+     "x": "2025-06-25",
+     "value": 0
+    },
+    {
+     "x": "2025-06-26",
+     "value": 0
+    },
+    {
+     "x": "2025-06-27",
+     "value": 0
+    },
+    {
+     "x": "2025-06-28",
+     "value": 0
+    },
+    {
+     "x": "2025-06-29",
+     "value": 0
+    },
+    {
+     "x": "2025-06-30",
+     "value": 0
+    },
+    {
+     "x": "2025-07-01",
+     "value": 0
+    },
+    {
+     "x": "2025-07-02",
+     "value": 0
+    },
+    {
+     "x": "2025-07-03",
+     "value": 0
+    },
+    {
+     "x": "2025-07-04",
+     "value": 0
+    },
+    {
+     "x": "2025-07-05",
+     "value": 0
+    },
+    {
+     "x": "2025-07-06",
+     "value": 0
+    },
+    {
+     "x": "2025-07-07",
+     "value": 0
+    },
+    {
+     "x": "2025-07-08",
+     "value": 0
+    },
+    {
+     "x": "2025-07-09",
+     "value": 0
+    },
+    {
+     "x": "2025-07-10",
+     "value": 0
+    },
+    {
+     "x": "2025-07-11",
+     "value": 0
+    },
+    {
+     "x": "2025-07-12",
+     "value": 0
+    },
+    {
+     "x": "2025-07-13",
+     "value": 0
+    },
+    {
+     "x": "2025-07-14",
+     "value": 0
+    },
+    {
+     "x": "2025-07-15",
+     "value": 0
+    },
+    {
+     "x": "2025-07-16",
+     "value": 0
+    },
+    {
+     "x": "2025-07-17",
+     "value": 0
+    },
+    {
+     "x": "2025-07-18",
+     "value": 0
+    },
+    {
+     "x": "2025-07-19",
+     "value": 0
+    },
+    {
+     "x": "2025-07-20",
+     "value": 0
+    },
+    {
+     "x": "2025-07-21",
+     "value": 0
+    },
+    {
+     "x": "2025-07-22",
+     "value": 0
+    },
+    {
+     "x": "2025-07-23",
+     "value": 0
+    },
+    {
+     "x": "2025-07-24",
+     "value": 0
+    },
+    {
+     "x": "2025-07-25",
+     "value": 0
+    },
+    {
+     "x": "2025-07-26",
+     "value": 0
+    },
+    {
+     "x": "2025-07-27",
+     "value": 0
+    },
+    {
+     "x": "2025-07-28",
+     "value": 0
+    },
+    {
+     "x": "2025-07-29",
+     "value": 0
+    },
+    {
+     "x": "2025-07-30",
+     "value": 0
+    },
+    {
+     "x": "2025-07-31",
+     "value": 0
+    },
+    {
+     "x": "2025-08-01",
+     "value": 0
+    },
+    {
+     "x": "2025-08-02",
+     "value": 0
+    },
+    {
+     "x": "2025-08-03",
+     "value": 0
+    },
+    {
+     "x": "2025-08-04",
+     "value": 0
+    },
+    {
+     "x": "2025-08-05",
+     "value": 0
+    },
+    {
+     "x": "2025-08-06",
+     "value": 0
+    },
+    {
+     "x": "2025-08-07",
+     "value": 0
+    },
+    {
+     "x": "2025-08-08",
+     "value": 0
+    },
+    {
+     "x": "2025-08-09",
+     "value": 0
+    },
+    {
+     "x": "2025-08-10",
+     "value": 0
+    },
+    {
+     "x": "2025-08-11",
+     "value": 0
+    },
+    {
+     "x": "2025-08-12",
+     "value": 0
+    },
+    {
+     "x": "2025-08-13",
+     "value": 0
+    },
+    {
+     "x": "2025-08-14",
+     "value": 0
+    },
+    {
+     "x": "2025-08-15",
+     "value": 0
+    },
+    {
+     "x": "2025-08-16",
+     "value": 0
+    },
+    {
+     "x": "2025-08-17",
+     "value": 0
+    },
+    {
+     "x": "2025-08-18",
+     "value": 0
+    },
+    {
+     "x": "2025-08-19",
+     "value": 0
+    },
+    {
+     "x": "2025-08-20",
+     "value": 0
+    },
+    {
+     "x": "2025-08-21",
+     "value": 0
+    },
+    {
+     "x": "2025-08-22",
+     "value": 0
+    },
+    {
+     "x": "2025-08-23",
+     "value": 0
+    },
+    {
+     "x": "2025-08-24",
+     "value": 0
+    },
+    {
+     "x": "2025-08-25",
+     "value": 0
+    },
+    {
+     "x": "2025-08-26",
+     "value": 0
+    },
+    {
+     "x": "2025-08-27",
+     "value": 0
+    },
+    {
+     "x": "2025-08-28",
+     "value": 0
+    },
+    {
+     "x": "2025-08-29",
+     "value": 0
+    },
+    {
+     "x": "2025-08-30",
+     "value": 0
+    },
+    {
+     "x": "2025-08-31",
+     "value": 0
+    },
+    {
+     "x": "2025-09-01",
+     "value": 0
+    },
+    {
+     "x": "2025-09-02",
+     "value": 0
+    },
+    {
+     "x": "2025-09-03",
+     "value": 0
+    },
+    {
+     "x": "2025-09-04",
+     "value": 0
+    },
+    {
+     "x": "2025-09-05",
+     "value": 0
+    },
+    {
+     "x": "2025-09-06",
+     "value": 0
+    },
+    {
+     "x": "2025-09-07",
+     "value": 0
+    },
+    {
+     "x": "2025-09-08",
+     "value": 0
+    },
+    {
+     "x": "2025-09-09",
+     "value": 0
+    },
+    {
+     "x": "2025-09-10",
+     "value": 0
+    },
+    {
+     "x": "2025-09-11",
+     "value": 0
+    },
+    {
+     "x": "2025-09-12",
+     "value": 0
+    },
+    {
+     "x": "2025-09-13",
+     "value": 0
+    },
+    {
+     "x": "2025-09-14",
+     "value": 0
+    },
+    {
+     "x": "2025-09-15",
+     "value": 0
+    },
+    {
+     "x": "2025-09-16",
+     "value": 0
+    },
+    {
+     "x": "2025-09-17",
+     "value": 0
+    },
+    {
+     "x": "2025-09-18",
+     "value": 0
+    },
+    {
+     "x": "2025-09-19",
+     "value": 0
+    },
+    {
+     "x": "2025-09-20",
+     "value": 0
+    },
+    {
+     "x": "2025-09-21",
+     "value": 0
+    },
+    {
+     "x": "2025-09-22",
+     "value": 0
+    },
+    {
+     "x": "2025-09-23",
+     "value": 0
+    },
+    {
+     "x": "2025-09-24",
+     "value": 0
+    },
+    {
+     "x": "2025-09-25",
+     "value": 0
+    },
+    {
+     "x": "2025-09-26",
+     "value": 0
+    },
+    {
+     "x": "2025-09-27",
+     "value": 0
+    },
+    {
+     "x": "2025-09-28",
+     "value": 0
+    },
+    {
+     "x": "2025-09-29",
+     "value": 0
+    },
+    {
+     "x": "2025-09-30",
+     "value": 0
+    },
+    {
+     "x": "2025-10-01",
+     "value": 0
+    },
+    {
+     "x": "2025-10-02",
+     "value": 0
+    },
+    {
+     "x": "2025-10-03",
+     "value": 0
+    },
+    {
+     "x": "2025-10-04",
+     "value": 0
+    },
+    {
+     "x": "2025-10-05",
+     "value": 0
+    },
+    {
+     "x": "2025-10-06",
+     "value": 0
+    },
+    {
+     "x": "2025-10-07",
+     "value": 0
+    },
+    {
+     "x": "2025-10-08",
+     "value": 0
+    },
+    {
+     "x": "2025-10-09",
+     "value": 0
+    },
+    {
+     "x": "2025-10-10",
+     "value": 0
+    },
+    {
+     "x": "2025-10-11",
+     "value": 0
+    },
+    {
+     "x": "2025-10-12",
+     "value": 0
+    },
+    {
+     "x": "2025-10-13",
+     "value": 0
+    },
+    {
+     "x": "2025-10-14",
+     "value": 0
+    },
+    {
+     "x": "2025-10-15",
+     "value": 0
+    },
+    {
+     "x": "2025-10-16",
+     "value": 0
+    },
+    {
+     "x": "2025-10-17",
+     "value": 0
+    },
+    {
+     "x": "2025-10-18",
+     "value": 0
+    },
+    {
+     "x": "2025-10-19",
+     "value": 0
+    },
+    {
+     "x": "2025-10-20",
+     "value": 0
+    },
+    {
+     "x": "2025-10-21",
+     "value": 0
+    },
+    {
+     "x": "2025-10-22",
+     "value": 0
+    },
+    {
+     "x": "2025-10-23",
+     "value": 0
+    },
+    {
+     "x": "2025-10-24",
+     "value": 0
+    },
+    {
+     "x": "2025-10-25",
+     "value": 0
+    },
+    {
+     "x": "2025-10-26",
+     "value": 0
+    },
+    {
+     "x": "2025-10-27",
+     "value": 0
+    },
+    {
+     "x": "2025-10-28",
+     "value": 0
+    },
+    {
+     "x": "2025-10-29",
+     "value": 0
+    },
+    {
+     "x": "2025-10-30",
+     "value": 0
+    },
+    {
+     "x": "2025-10-31",
+     "value": 0
+    },
+    {
+     "x": "2025-11-01",
+     "value": 0
+    },
+    {
+     "x": "2025-11-02",
+     "value": 0
+    },
+    {
+     "x": "2025-11-03",
+     "value": 0
+    },
+    {
+     "x": "2025-11-04",
+     "value": 0
+    },
+    {
+     "x": "2025-11-05",
+     "value": 0
+    },
+    {
+     "x": "2025-11-06",
+     "value": 0
+    },
+    {
+     "x": "2025-11-07",
+     "value": 0
+    },
+    {
+     "x": "2025-11-08",
+     "value": 0
+    },
+    {
+     "x": "2025-11-09",
+     "value": 0
+    },
+    {
+     "x": "2025-11-10",
+     "value": 0
+    },
+    {
+     "x": "2025-11-11",
+     "value": 0
+    },
+    {
+     "x": "2025-11-12",
+     "value": 0
+    },
+    {
+     "x": "2025-11-13",
+     "value": 0
+    },
+    {
+     "x": "2025-11-14",
+     "value": 0
+    },
+    {
+     "x": "2025-11-15",
+     "value": 0
+    },
+    {
+     "x": "2025-11-16",
+     "value": 0
+    },
+    {
+     "x": "2025-11-17",
+     "value": 0
+    },
+    {
+     "x": "2025-11-18",
+     "value": 0
+    },
+    {
+     "x": "2025-11-19",
+     "value": 0
+    },
+    {
+     "x": "2025-11-20",
+     "value": 0
+    },
+    {
+     "x": "2025-11-21",
+     "value": 0
+    },
+    {
+     "x": "2025-11-22",
+     "value": 0
+    },
+    {
+     "x": "2025-11-23",
+     "value": 0
+    },
+    {
+     "x": "2025-11-24",
+     "value": 0
+    },
+    {
+     "x": "2025-11-25",
+     "value": 0
+    },
+    {
+     "x": "2025-11-26",
+     "value": 0
+    },
+    {
+     "x": "2025-11-27",
+     "value": 0
+    },
+    {
+     "x": "2025-11-28",
+     "value": 20
+    },
+    {
+     "x": "2025-11-29",
+     "value": 0
+    },
+    {
+     "x": "2025-11-30",
+     "value": 0
+    },
+    {
+     "x": "2025-12-01",
+     "value": 0
+    },
+    {
+     "x": "2025-12-02",
+     "value": 0
+    },
+    {
+     "x": "2025-12-03",
+     "value": 0
+    },
+    {
+     "x": "2025-12-04",
+     "value": 0
+    },
+    {
+     "x": "2025-12-05",
+     "value": 0
+    },
+    {
+     "x": "2025-12-06",
+     "value": 0
+    },
+    {
+     "x": "2025-12-07",
+     "value": 0
+    },
+    {
+     "x": "2025-12-08",
+     "value": 0
+    },
+    {
+     "x": "2025-12-09",
+     "value": 0
+    },
+    {
+     "x": "2025-12-10",
+     "value": 0
+    },
+    {
+     "x": "2025-12-11",
+     "value": 0
+    },
+    {
+     "x": "2025-12-12",
+     "value": 0
+    },
+    {
+     "x": "2025-12-13",
+     "value": 0
+    },
+    {
+     "x": "2025-12-14",
+     "value": 0
+    },
+    {
+     "x": "2025-12-15",
+     "value": 0
+    },
+    {
+     "x": "2025-12-16",
+     "value": 0
+    },
+    {
+     "x": "2025-12-17",
+     "value": 0
+    },
+    {
+     "x": "2025-12-18",
+     "value": 0
+    },
+    {
+     "x": "2025-12-19",
+     "value": 0
+    },
+    {
+     "x": "2025-12-20",
+     "value": 0
+    },
+    {
+     "x": "2025-12-21",
+     "value": 0
+    },
+    {
+     "x": "2025-12-22",
+     "value": 0
+    },
+    {
+     "x": "2025-12-23",
+     "value": 0
+    },
+    {
+     "x": "2025-12-24",
+     "value": 0
+    },
+    {
+     "x": "2025-12-25",
+     "value": 0
+    },
+    {
+     "x": "2025-12-26",
+     "value": 0
+    },
+    {
+     "x": "2025-12-27",
+     "value": 0
+    },
+    {
+     "x": "2025-12-28",
+     "value": 0
+    },
+    {
+     "x": "2025-12-29",
+     "value": 0
+    },
+    {
+     "x": "2025-12-30",
+     "value": 0
+    },
+    {
+     "x": "2025-12-31",
+     "value": 0
+    }
+   ],
+   "format": "percent"
+  },
+  {
+   "widgetId": "w11",
+   "series": [
+    "value"
+   ],
+   "points": [
+    {
+     "x": 1,
+     "x2": 2,
+     "value": 6701
+    },
+    {
+     "x": 2,
+     "x2": 3,
+     "value": 3127
+    },
+    {
+     "x": 3,
+     "x2": 4,
+     "value": 1367
+    },
+    {
+     "x": 4,
+     "x2": 5,
+     "value": 705
+    },
+    {
+     "x": 5,
+     "x2": 6,
+     "value": 353
+    }
+   ],
+   "format": "number",
+   "xFormat": "number"
+  }
+ ],
+ "resultsFiltered": [
+  {
+   "widgetId": "w0",
+   "series": [
+    "value"
+   ],
+   "points": [
+    {
+     "x": "2025-03-01",
+     "value": 86312.06
+    },
+    {
+     "x": "2025-04-01",
+     "value": 69210.95
+    },
+    {
+     "x": "2025-05-01",
+     "value": 82635.84
+    }
+   ],
+   "format": "currency"
+  },
+  {
+   "widgetId": "w1",
+   "series": [
+    "value"
+   ],
+   "points": [
+    {
+     "x": "North America",
+     "value": 136652.08
+    },
+    {
+     "x": "Europe",
+     "value": 101506.77
+    }
+   ],
+   "format": "currency"
+  },
+  {
+   "widgetId": "w2",
+   "series": [
+    "value"
+   ],
+   "points": [
+    {
+     "x": "Electronics",
+     "value": 110180.27
+    },
+    {
+     "x": "Home & Kitchen",
+     "value": 48765.29
+    },
+    {
+     "x": "Apparel",
+     "value": 28698.29
+    },
+    {
+     "x": "Sports & Outdoors",
+     "value": 28383.73
+    },
+    {
+     "x": "Beauty",
+     "value": 12405.17
+    },
+    {
+     "x": "Toys",
+     "value": 9726.1
+    }
+   ],
+   "format": "currency"
+  },
+  {
+   "widgetId": "w3",
+   "series": [
+    "value"
+   ],
+   "points": [
+    {
+     "x": "Web",
+     "value": 113563.78
+    },
+    {
+     "x": "Mobile app",
+     "value": 83746.43
+    },
+    {
+     "x": "Marketplace",
+     "value": 25949.83
+    },
+    {
+     "x": "Retail partner",
+     "value": 14898.81
+    }
+   ],
+   "format": "currency"
+  },
+  {
+   "widgetId": "w4",
+   "series": [
+    "value"
+   ],
+   "points": [
+    {
+     "x": 13.57,
+     "x2": 85.82,
+     "value": 888
+    },
+    {
+     "x": 85.82,
+     "x2": 158.06,
+     "value": 416
+    },
+    {
+     "x": 158.06,
+     "x2": 230.31,
+     "value": 237
+    },
+    {
+     "x": 230.31,
+     "x2": 302.55,
+     "value": 106
+    },
+    {
+     "x": 302.55,
+     "x2": 374.8,
+     "value": 53
+    },
+    {
+     "x": 374.8,
+     "x2": 447.04,
+     "value": 35
+    },
+    {
+     "x": 447.04,
+     "x2": 519.29,
+     "value": 22
+    },
+    {
+     "x": 519.29,
+     "x2": 591.53,
+     "value": 8
+    },
+    {
+     "x": 591.53,
+     "x2": 663.78,
+     "value": 7
+    },
+    {
+     "x": 663.78,
+     "x2": 736.03,
+     "value": 8
+    },
+    {
+     "x": 736.03,
+     "x2": 808.27,
+     "value": 6
+    },
+    {
+     "x": 808.27,
+     "x2": 880.52,
+     "value": 2
+    },
+    {
+     "x": 880.52,
+     "x2": 952.76,
+     "value": 2
+    },
+    {
+     "x": 952.76,
+     "x2": 1025.01,
+     "value": 1
+    },
+    {
+     "x": 1025.01,
+     "x2": 1097.25,
+     "value": 2
+    },
+    {
+     "x": 1097.25,
+     "x2": 1169.5,
+     "value": 0
+    },
+    {
+     "x": 1169.5,
+     "x2": 1241.74,
+     "value": 1
+    },
+    {
+     "x": 1241.74,
+     "x2": 1313.99,
+     "value": 0
+    },
+    {
+     "x": 1313.99,
+     "x2": 1386.23,
+     "value": 0
+    },
+    {
+     "x": 1386.23,
+     "x2": 1458.48,
+     "value": 1
+    }
+   ],
+   "format": "number",
+   "xFormat": "currency"
+  },
+  {
+   "widgetId": "w5",
+   "series": [
+    "North America",
+    "Europe"
+   ],
+   "points": [
+    {
+     "x": "2025-02-24",
+     "North America": 6075.06,
+     "Europe": 1631.16
+    },
+    {
+     "x": "2025-03-03",
+     "North America": 10598.8,
+     "Europe": 8931.02
+    },
+    {
+     "x": "2025-03-10",
+     "North America": 10952.32,
+     "Europe": 9695.83
+    },
+    {
+     "x": "2025-03-17",
+     "North America": 8218.64,
+     "Europe": 7505.79
+    },
+    {
+     "x": "2025-03-24",
+     "North America": 9929.49,
+     "Europe": 9232.35
+    },
+    {
+     "x": "2025-03-31",
+     "North America": 8862.09,
+     "Europe": 7261.73
+    },
+    {
+     "x": "2025-04-07",
+     "North America": 10095.79,
+     "Europe": 7407.39
+    },
+    {
+     "x": "2025-04-14",
+     "North America": 9056.28,
+     "Europe": 5679.89
+    },
+    {
+     "x": "2025-04-21",
+     "North America": 8817.21,
+     "Europe": 7817.98
+    },
+    {
+     "x": "2025-04-28",
+     "North America": 12287.02,
+     "Europe": 10032.18
+    },
+    {
+     "x": "2025-05-05",
+     "North America": 9795.45,
+     "Europe": 6033.59
+    },
+    {
+     "x": "2025-05-12",
+     "North America": 12992.83,
+     "Europe": 7189.28
+    },
+    {
+     "x": "2025-05-19",
+     "North America": 11967.13,
+     "Europe": 6214.85
+    },
+    {
+     "x": "2025-05-26",
+     "North America": 7003.97,
+     "Europe": 6873.73
+    }
+   ],
+   "format": "currency"
+  },
+  {
+   "widgetId": "w6",
+   "series": [
+    "Returning",
+    "New"
+   ],
+   "points": [
+    {
+     "x": "Web",
+     "Returning": 529,
+     "New": 305
+    },
+    {
+     "x": "Mobile app",
+     "Returning": 379,
+     "New": 265
+    },
+    {
+     "x": "Marketplace",
+     "Returning": 142,
+     "New": 67
+    },
+    {
+     "x": "Retail partner",
+     "Returning": 70,
+     "New": 38
+    }
+   ],
+   "format": "number"
+  },
+  {
+   "widgetId": "w7",
+   "series": [
+    "value"
+   ],
+   "points": [
+    {
+     "x": "Electronics",
+     "value": 162.4418
+    },
+    {
+     "x": "Sports & Outdoors",
+     "value": 80.2441
+    },
+    {
+     "x": "Home & Kitchen",
+     "value": 67.3504
+    },
+    {
+     "x": "Apparel",
+     "value": 48.1651
+    },
+    {
+     "x": "Toys",
+     "value": 36.6884
+    },
+    {
+     "x": "Beauty",
+     "value": 30.2008
+    }
+   ],
+   "format": "currency"
+  },
+  {
+   "widgetId": "w8",
+   "series": [
+    "value"
+   ],
+   "points": [
+    {
+     "x": "North America",
+     "value": 5
+    },
+    {
+     "x": "Europe",
+     "value": 5
+    }
+   ],
+   "format": "number"
+  },
+  {
+   "widgetId": "w9",
+   "series": [
+    "value"
+   ],
+   "points": [
+    {
+     "x": "Web",
+     "value": 834
+    },
+    {
+     "x": "Mobile app",
+     "value": 644
+    },
+    {
+     "x": "Marketplace",
+     "value": 209
+    },
+    {
+     "x": "Retail partner",
+     "value": 108
+    }
+   ],
+   "format": "number"
+  },
+  {
+   "widgetId": "w10",
+   "series": [
+    "value"
+   ],
+   "points": [
+    {
+     "x": "2025-03-01",
+     "value": 0
+    },
+    {
+     "x": "2025-03-02",
+     "value": 0
+    },
+    {
+     "x": "2025-03-03",
+     "value": 0
+    },
+    {
+     "x": "2025-03-04",
+     "value": 0
+    },
+    {
+     "x": "2025-03-05",
+     "value": 0
+    },
+    {
+     "x": "2025-03-06",
+     "value": 0
+    },
+    {
+     "x": "2025-03-07",
+     "value": 0
+    },
+    {
+     "x": "2025-03-08",
+     "value": 0
+    },
+    {
+     "x": "2025-03-09",
+     "value": 0
+    },
+    {
+     "x": "2025-03-10",
+     "value": 0
+    },
+    {
+     "x": "2025-03-11",
+     "value": 0
+    },
+    {
+     "x": "2025-03-12",
+     "value": 0
+    },
+    {
+     "x": "2025-03-13",
+     "value": 0
+    },
+    {
+     "x": "2025-03-14",
+     "value": 0
+    },
+    {
+     "x": "2025-03-15",
+     "value": 0
+    },
+    {
+     "x": "2025-03-16",
+     "value": 0
+    },
+    {
+     "x": "2025-03-17",
+     "value": 0
+    },
+    {
+     "x": "2025-03-18",
+     "value": 0
+    },
+    {
+     "x": "2025-03-19",
+     "value": 0
+    },
+    {
+     "x": "2025-03-20",
+     "value": 0
+    },
+    {
+     "x": "2025-03-21",
+     "value": 0
+    },
+    {
+     "x": "2025-03-22",
+     "value": 0
+    },
+    {
+     "x": "2025-03-23",
+     "value": 0
+    },
+    {
+     "x": "2025-03-24",
+     "value": 0
+    },
+    {
+     "x": "2025-03-25",
+     "value": 0
+    },
+    {
+     "x": "2025-03-26",
+     "value": 0
+    },
+    {
+     "x": "2025-03-27",
+     "value": 0
+    },
+    {
+     "x": "2025-03-28",
+     "value": 0
+    },
+    {
+     "x": "2025-03-29",
+     "value": 0
+    },
+    {
+     "x": "2025-03-30",
+     "value": 0
+    },
+    {
+     "x": "2025-03-31",
+     "value": 0
+    },
+    {
+     "x": "2025-04-01",
+     "value": 0
+    },
+    {
+     "x": "2025-04-02",
+     "value": 0
+    },
+    {
+     "x": "2025-04-03",
+     "value": 0
+    },
+    {
+     "x": "2025-04-04",
+     "value": 0
+    },
+    {
+     "x": "2025-04-05",
+     "value": 0
+    },
+    {
+     "x": "2025-04-06",
+     "value": 0
+    },
+    {
+     "x": "2025-04-07",
+     "value": 0
+    },
+    {
+     "x": "2025-04-08",
+     "value": 0
+    },
+    {
+     "x": "2025-04-09",
+     "value": 0
+    },
+    {
+     "x": "2025-04-10",
+     "value": 0
+    },
+    {
+     "x": "2025-04-11",
+     "value": 0
+    },
+    {
+     "x": "2025-04-12",
+     "value": 0
+    },
+    {
+     "x": "2025-04-13",
+     "value": 0
+    },
+    {
+     "x": "2025-04-14",
+     "value": 0
+    },
+    {
+     "x": "2025-04-15",
+     "value": 0
+    },
+    {
+     "x": "2025-04-16",
+     "value": 0
+    },
+    {
+     "x": "2025-04-17",
+     "value": 0
+    },
+    {
+     "x": "2025-04-18",
+     "value": 0
+    },
+    {
+     "x": "2025-04-19",
+     "value": 0
+    },
+    {
+     "x": "2025-04-20",
+     "value": 0
+    },
+    {
+     "x": "2025-04-21",
+     "value": 0
+    },
+    {
+     "x": "2025-04-22",
+     "value": 0
+    },
+    {
+     "x": "2025-04-23",
+     "value": 0
+    },
+    {
+     "x": "2025-04-24",
+     "value": 0
+    },
+    {
+     "x": "2025-04-25",
+     "value": 0
+    },
+    {
+     "x": "2025-04-26",
+     "value": 0
+    },
+    {
+     "x": "2025-04-27",
+     "value": 0
+    },
+    {
+     "x": "2025-04-28",
+     "value": 0
+    },
+    {
+     "x": "2025-04-29",
+     "value": 0
+    },
+    {
+     "x": "2025-04-30",
+     "value": 0
+    },
+    {
+     "x": "2025-05-01",
+     "value": 0
+    },
+    {
+     "x": "2025-05-02",
+     "value": 0
+    },
+    {
+     "x": "2025-05-03",
+     "value": 0
+    },
+    {
+     "x": "2025-05-04",
+     "value": 0
+    },
+    {
+     "x": "2025-05-05",
+     "value": 0
+    },
+    {
+     "x": "2025-05-06",
+     "value": 0
+    },
+    {
+     "x": "2025-05-07",
+     "value": 0
+    },
+    {
+     "x": "2025-05-08",
+     "value": 0
+    },
+    {
+     "x": "2025-05-09",
+     "value": 0
+    },
+    {
+     "x": "2025-05-10",
+     "value": 0
+    },
+    {
+     "x": "2025-05-11",
+     "value": 0
+    },
+    {
+     "x": "2025-05-12",
+     "value": 0
+    },
+    {
+     "x": "2025-05-13",
+     "value": 0
+    },
+    {
+     "x": "2025-05-14",
+     "value": 0
+    },
+    {
+     "x": "2025-05-15",
+     "value": 0
+    },
+    {
+     "x": "2025-05-16",
+     "value": 0
+    },
+    {
+     "x": "2025-05-17",
+     "value": 0
+    },
+    {
+     "x": "2025-05-18",
+     "value": 0
+    },
+    {
+     "x": "2025-05-19",
+     "value": 0
+    },
+    {
+     "x": "2025-05-20",
+     "value": 0
+    },
+    {
+     "x": "2025-05-21",
+     "value": 0
+    },
+    {
+     "x": "2025-05-22",
+     "value": 0
+    },
+    {
+     "x": "2025-05-23",
+     "value": 0
+    },
+    {
+     "x": "2025-05-24",
+     "value": 0
+    },
+    {
+     "x": "2025-05-25",
+     "value": 0
+    },
+    {
+     "x": "2025-05-26",
+     "value": 0
+    },
+    {
+     "x": "2025-05-27",
+     "value": 0
+    },
+    {
+     "x": "2025-05-28",
+     "value": 0
+    },
+    {
+     "x": "2025-05-29",
+     "value": 0
+    },
+    {
+     "x": "2025-05-30",
+     "value": 0
+    },
+    {
+     "x": "2025-05-31",
+     "value": 0
+    }
+   ],
+   "format": "percent"
+  },
+  {
+   "widgetId": "w11",
+   "series": [
+    "value"
+   ],
+   "points": [
+    {
+     "x": 1,
+     "x2": 2,
+     "value": 975
+    },
+    {
+     "x": 2,
+     "x2": 3,
+     "value": 478
+    },
+    {
+     "x": 3,
+     "x2": 4,
+     "value": 196
+    },
+    {
+     "x": 4,
+     "x2": 5,
+     "value": 96
+    },
+    {
+     "x": 5,
+     "x2": 6,
+     "value": 50
+    }
+   ],
+   "format": "number",
+   "xFormat": "number"
+  }
+ ],
+ "specs": [
+  {
+   "chartType": "line",
+   "title": "Total revenue by month",
+   "x": "order_date",
+   "y": "revenue",
+   "aggregation": "sum",
+   "timeGrain": "month"
+  },
+  {
+   "chartType": "bar",
+   "title": "Total revenue by region",
+   "x": "region",
+   "y": "revenue",
+   "aggregation": "sum",
+   "limit": 8
+  },
+  {
+   "chartType": "bar",
+   "title": "Total revenue by category",
+   "x": "category",
+   "y": "revenue",
+   "aggregation": "sum",
+   "limit": 8
+  },
+  {
+   "chartType": "donut",
+   "title": "Share of revenue by channel",
+   "x": "channel",
+   "y": "revenue",
+   "aggregation": "sum",
+   "limit": 6
+  },
+  {
+   "chartType": "histogram",
+   "title": "Distribution of revenue",
+   "x": "revenue",
+   "aggregation": "count"
+  },
+  {
+   "chartType": "line",
+   "title": "Revenue by region",
+   "x": "order_date",
+   "y": "revenue",
+   "aggregation": "sum",
+   "split": "region",
+   "timeGrain": "week"
+  },
+  {
+   "chartType": "bar",
+   "title": "Orders by channel",
+   "x": "channel",
+   "aggregation": "count",
+   "split": "customer_type"
+  },
+  {
+   "chartType": "bar",
+   "title": "Avg price",
+   "x": "category",
+   "y": "unit_price",
+   "aggregation": "avg"
+  },
+  {
+   "chartType": "bar",
+   "title": "Max qty",
+   "x": "region",
+   "y": "quantity",
+   "aggregation": "max",
+   "limit": 3
+  },
+  {
+   "chartType": "donut",
+   "title": "Distinct orders",
+   "x": "channel",
+   "y": "order_id",
+   "aggregation": "count_distinct"
+  },
+  {
+   "chartType": "area",
+   "title": "Min discount by day",
+   "x": "order_date",
+   "y": "discount_pct",
+   "aggregation": "min",
+   "timeGrain": "day"
+  },
+  {
+   "chartType": "histogram",
+   "title": "Quantity",
+   "x": "quantity",
+   "aggregation": "count"
+  }
+ ],
+ "rowsPage": {
+  "sort": "revenue:desc",
+  "total": 1795,
+  "rows": [
+   {
+    "order_id": "ORD-002095",
+    "order_date": "2025-03-10",
+    "region": "North America",
+    "category": "Electronics",
+    "channel": "Web",
+    "customer_type": "New",
+    "quantity": 4,
+    "unit_price": 383.81,
+    "discount_pct": 5,
+    "revenue": 1458.48
+   },
+   {
+    "order_id": "ORD-004500",
+    "order_date": "2025-05-25",
+    "region": "North America",
+    "category": "Electronics",
+    "channel": "Web",
+    "customer_type": "Returning",
+    "quantity": 3,
+    "unit_price": 413.1,
+    "discount_pct": 0,
+    "revenue": 1239.3
+   },
+   {
+    "order_id": "ORD-003784",
+    "order_date": "2025-05-04",
+    "region": "North America",
+    "category": "Electronics",
+    "channel": "Web",
+    "customer_type": "Returning",
+    "quantity": 3,
+    "unit_price": 357.64,
+    "discount_pct": 0,
+    "revenue": 1072.92
+   },
+   {
+    "order_id": "ORD-002604",
+    "order_date": "2025-03-27",
+    "region": "North America",
+    "category": "Electronics",
+    "channel": "Retail partner",
+    "customer_type": "Returning",
+    "quantity": 5,
+    "unit_price": 205.33,
+    "discount_pct": 0,
+    "revenue": 1026.65
+   },
+   {
+    "order_id": "ORD-002267",
+    "order_date": "2025-03-15",
+    "region": "Europe",
+    "category": "Electronics",
+    "channel": "Web",
+    "customer_type": "Returning",
+    "quantity": 5,
+    "unit_price": 216.7,
+    "discount_pct": 10,
+    "revenue": 975.15
+   },
+   {
+    "order_id": "ORD-004522",
+    "order_date": "2025-05-27",
+    "region": "North America",
+    "category": "Electronics",
+    "channel": "Web",
+    "customer_type": "New",
+    "quantity": 4,
+    "unit_price": 231.48,
+    "discount_pct": 0,
+    "revenue": 925.92
+   },
+   {
+    "order_id": "ORD-004385",
+    "order_date": "2025-05-22",
+    "region": "North America",
+    "category": "Electronics",
+    "channel": "Web",
+    "customer_type": "Returning",
+    "quantity": 3,
+    "unit_price": 321.73,
+    "discount_pct": 5,
+    "revenue": 916.93
+   },
+   {
+    "order_id": "ORD-003728",
+    "order_date": "2025-05-02",
+    "region": "North America",
+    "category": "Electronics",
+    "channel": "Retail partner",
+    "customer_type": "Returning",
+    "quantity": 5,
+    "unit_price": 183.1,
+    "discount_pct": 5,
+    "revenue": 869.72
+   },
+   {
+    "order_id": "ORD-002715",
+    "order_date": "2025-03-31",
+    "region": "Europe",
+    "category": "Electronics",
+    "channel": "Mobile app",
+    "customer_type": "New",
+    "quantity": 3,
+    "unit_price": 280.55,
+    "discount_pct": 0,
+    "revenue": 841.65
+   },
+   {
+    "order_id": "ORD-001824",
+    "order_date": "2025-03-01",
+    "region": "North America",
+    "category": "Electronics",
+    "channel": "Marketplace",
+    "customer_type": "Returning",
+    "quantity": 4,
+    "unit_price": 197.58,
+    "discount_pct": 0,
+    "revenue": 790.32
+   },
+   {
+    "order_id": "ORD-004253",
+    "order_date": "2025-05-18",
+    "region": "Europe",
+    "category": "Electronics",
+    "channel": "Marketplace",
+    "customer_type": "New",
+    "quantity": 5,
+    "unit_price": 156.97,
+    "discount_pct": 0,
+    "revenue": 784.85
+   },
+   {
+    "order_id": "ORD-002587",
+    "order_date": "2025-03-26",
+    "region": "North America",
+    "category": "Electronics",
+    "channel": "Mobile app",
+    "customer_type": "New",
+    "quantity": 2,
+    "unit_price": 391.92,
+    "discount_pct": 0,
+    "revenue": 783.84
+   },
+   {
+    "order_id": "ORD-004330",
+    "order_date": "2025-05-20",
+    "region": "North America",
+    "category": "Electronics",
+    "channel": "Web",
+    "customer_type": "New",
+    "quantity": 3,
+    "unit_price": 256.26,
+    "discount_pct": 0,
+    "revenue": 768.78
+   },
+   {
+    "order_id": "ORD-003791",
+    "order_date": "2025-05-04",
+    "region": "Europe",
+    "category": "Electronics",
+    "channel": "Mobile app",
+    "customer_type": "Returning",
+    "quantity": 2,
+    "unit_price": 371.6,
+    "discount_pct": 0,
+    "revenue": 743.2
+   },
+   {
+    "order_id": "ORD-004264",
+    "order_date": "2025-05-18",
+    "region": "North America",
+    "category": "Electronics",
+    "channel": "Web",
+    "customer_type": "Returning",
+    "quantity": 5,
+    "unit_price": 155.23,
+    "discount_pct": 5,
+    "revenue": 737.34
+   },
+   {
+    "order_id": "ORD-004277",
+    "order_date": "2025-05-19",
+    "region": "Europe",
+    "category": "Electronics",
+    "channel": "Retail partner",
+    "customer_type": "Returning",
+    "quantity": 4,
+    "unit_price": 179.75,
+    "discount_pct": 0,
+    "revenue": 719
+   },
+   {
+    "order_id": "ORD-001820",
+    "order_date": "2025-03-01",
+    "region": "North America",
+    "category": "Electronics",
+    "channel": "Web",
+    "customer_type": "New",
+    "quantity": 4,
+    "unit_price": 189.08,
+    "discount_pct": 5,
+    "revenue": 718.5
+   },
+   {
+    "order_id": "ORD-003955",
+    "order_date": "2025-05-09",
+    "region": "North America",
+    "category": "Electronics",
+    "channel": "Retail partner",
+    "customer_type": "Returning",
+    "quantity": 2,
+    "unit_price": 374.71,
+    "discount_pct": 5,
+    "revenue": 711.95
+   },
+   {
+    "order_id": "ORD-003985",
+    "order_date": "2025-05-10",
+    "region": "Europe",
+    "category": "Electronics",
+    "channel": "Marketplace",
+    "customer_type": "Returning",
+    "quantity": 3,
+    "unit_price": 233.59,
+    "discount_pct": 0,
+    "revenue": 700.77
+   },
+   {
+    "order_id": "ORD-004070",
+    "order_date": "2025-05-12",
+    "region": "Europe",
+    "category": "Electronics",
+    "channel": "Marketplace",
+    "customer_type": "Returning",
+    "quantity": 4,
+    "unit_price": 182.29,
+    "discount_pct": 5,
+    "revenue": 692.7
+   },
+   {
+    "order_id": "ORD-002087",
+    "order_date": "2025-03-09",
+    "region": "North America",
+    "category": "Electronics",
+    "channel": "Web",
+    "customer_type": "Returning",
+    "quantity": 4,
+    "unit_price": 172.67,
+    "discount_pct": 0,
+    "revenue": 690.68
+   },
+   {
+    "order_id": "ORD-004130",
+    "order_date": "2025-05-15",
+    "region": "North America",
+    "category": "Electronics",
+    "channel": "Mobile app",
+    "customer_type": "Returning",
+    "quantity": 2,
+    "unit_price": 354.64,
+    "discount_pct": 5,
+    "revenue": 673.82
+   },
+   {
+    "order_id": "ORD-004098",
+    "order_date": "2025-05-14",
+    "region": "North America",
+    "category": "Electronics",
+    "channel": "Mobile app",
+    "customer_type": "Returning",
+    "quantity": 3,
+    "unit_price": 234.79,
+    "discount_pct": 5,
+    "revenue": 669.15
+   },
+   {
+    "order_id": "ORD-002559",
+    "order_date": "2025-03-25",
+    "region": "North America",
+    "category": "Electronics",
+    "channel": "Web",
+    "customer_type": "Returning",
+    "quantity": 4,
+    "unit_price": 163.29,
+    "discount_pct": 0,
+    "revenue": 653.16
+   },
+   {
+    "order_id": "ORD-002017",
+    "order_date": "2025-03-07",
+    "region": "Europe",
+    "category": "Electronics",
+    "channel": "Web",
+    "customer_type": "Returning",
+    "quantity": 3,
+    "unit_price": 247.75,
+    "discount_pct": 15,
+    "revenue": 631.76
+   }
+  ]
+ },
+ "insight": {
+  "datasetId": "x",
+  "summary": "Total revenue spiked to {{f5}} on Nov 28, far above the usual level, with Electronics (category) accounting for {{f6}} of the jump. Total revenue fell {{f2}} in April 2025, driven mostly by Electronics (category), which moved {{f3}} and accounts for {{f4}} of the change. Across the whole dataset, total revenue is {{f1}}.",
+  "findings": [
+   "North America is the largest region, with {{f7}} of revenue."
+  ],
+  "nextQuestions": [
+   "What changed for Electronics in April 2025?",
+   "Is the drop in April 2025 a one-off or the start of a trend?",
+   "What happened to Electronics on Nov 28?"
+  ],
+  "facts": [
+   {
+    "id": "f1",
+    "kind": "total",
+    "label": "Total revenue",
+    "value": 1769540.66,
+    "format": "currency"
+   },
+   {
+    "id": "f2",
+    "kind": "change",
+    "label": "Total revenue change in April 2025",
+    "value": -0.2206,
+    "format": "change",
+    "ref": {
+     "widgetId": "auto:0",
+     "x": "2025-04-01"
+    }
+   },
+   {
+    "id": "f3",
+    "kind": "contributor",
+    "label": "Electronics total revenue change in April 2025",
+    "value": -0.4218,
+    "format": "change",
+    "ref": {
+     "widgetId": "auto:2",
+     "x": "Electronics"
+    }
+   },
+   {
+    "id": "f4",
+    "kind": "contributor",
+    "label": "Electronics share of the drop",
+    "value": 100,
+    "format": "percent"
+   },
+   {
+    "id": "f5",
+    "kind": "anomaly",
+    "label": "Total revenue on Nov 28",
+    "value": 18084.77,
+    "format": "currency",
+    "ref": {
+     "widgetId": "auto:0",
+     "x": "2025-11-01"
+    }
+   },
+   {
+    "id": "f6",
+    "kind": "contributor",
+    "label": "Electronics share of the spike on Nov 28",
+    "value": 65.3,
+    "format": "percent",
+    "ref": {
+     "widgetId": "auto:2",
+     "x": "Electronics"
+    }
+   },
+   {
+    "id": "f7",
+    "kind": "total",
+    "label": "North America share of revenue",
+    "value": 34.7,
+    "format": "percent",
+    "ref": {
+     "widgetId": "auto:1",
+     "x": "North America"
+    }
+   }
+  ],
+  "anomalies": [
+   {
+    "id": "a1",
+    "factId": "f5",
+    "column": "revenue",
+    "at": "2025-11-28",
+    "zScore": 9.1,
+    "direction": "spike",
+    "description": "Unusually high total revenue on Nov 28."
+   }
+  ],
+  "provider": "mock",
+  "model": "template-v1"
+ }
+}

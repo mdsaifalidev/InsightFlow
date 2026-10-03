@@ -1,0 +1,627 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+@source "../../../apps/**/*.{ts,tsx}";
+@source "../../../components/**/*.{ts,tsx}";
+@source "../**/*.{ts,tsx}";
+
+@theme inline {
+  --font-sans: var(--font-sans);
+  --font-serif: var(--font-serif);
+  /* System stack, deliberately: the raw-CSV pane should look like the file does
+     in the reader's own editor, and a webfont here would preload against the
+     hero image. It must never reach a surface `pnpm --filter web shots`
+     captures, or the PNGs stop being reproducible across machines. */
+  --font-mono: var(--font-mono);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-6: var(--chart-6);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-signal: var(--signal);
+  --color-signal-foreground: var(--signal-foreground);
+  --color-up: var(--up);
+  --color-down: var(--down);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-foreground: var(--foreground);
+  --color-background: var(--background);
+  --color-surface-ink: var(--surface-ink);
+  --color-surface-sunk: var(--surface-sunk);
+  --color-surface-canvas: var(--surface-canvas);
+  --color-surface-panel: var(--surface-panel);
+  --color-surface-raised: var(--surface-raised);
+  --color-surface-overlay: var(--surface-overlay);
+  --color-border-soft: var(--border-soft);
+  --color-border-strong: var(--border-strong);
+
+  --shadow-e1: var(--elev-1);
+  --shadow-e2: var(--elev-2);
+  --shadow-e3: var(--elev-3);
+  --shadow-e4: var(--elev-4);
+
+  /*
+   * Type scale. Two rules the old page broke: tracking ramps NEGATIVELY with
+   * size and relaxes through zero at body, then goes POSITIVE for the eyebrow
+   * (-0.014 -> 0 -> +0.12em); and line-height collapses as size grows. The
+   * serif display sits at -0.014em, roughly a third of what a geometric sans
+   * wants -- Newsreader at -0.035em collides its own serifs.
+   *
+   * `display-*` are the marketing voice. The app keeps the sans steps, so the
+   * serif is opt-in per element and no product screenshot moves because of it.
+   */
+  --text-display-xl: clamp(2.75rem, 1.55rem + 4.3vw, 4.5rem);
+  --text-display-xl--line-height: 1.02;
+  --text-display-xl--letter-spacing: -0.014em;
+  --text-display-xl--font-weight: 400;
+
+  --text-display-lg: clamp(2rem, 1.3rem + 2.6vw, 3rem);
+  --text-display-lg--line-height: 1.08;
+  --text-display-lg--letter-spacing: -0.012em;
+  --text-display-lg--font-weight: 400;
+
+  --text-display-md: clamp(1.625rem, 1.25rem + 1.3vw, 2.25rem);
+  --text-display-md--line-height: 1.2;
+  --text-display-md--letter-spacing: -0.01em;
+  --text-display-md--font-weight: 400;
+
+  --text-headline: 1.375rem;
+  --text-headline--line-height: 1.25;
+  --text-headline--letter-spacing: -0.008em;
+  --text-headline--font-weight: 600;
+
+  --text-card-title: 1rem;
+  --text-card-title--line-height: 1.4;
+  --text-card-title--letter-spacing: -0.004em;
+  --text-card-title--font-weight: 600;
+
+  --text-subhead: clamp(1.0625rem, 1rem + 0.3vw, 1.25rem);
+  --text-subhead--line-height: 1.5;
+  --text-subhead--letter-spacing: -0.002em;
+
+  --text-body-lg: 1.0625rem;
+  --text-body-lg--line-height: 1.6;
+
+  --text-body: 0.9375rem;
+  --text-body--line-height: 1.6;
+
+  --text-body-sm: 0.8125rem;
+  --text-body-sm--line-height: 1.55;
+  --text-body-sm--letter-spacing: 0.002em;
+
+  /*
+   * Product steps (Phase 6d). The app is compact: 14px body, a 20px page
+   * title, and section titles that sit at body size and lean on weight rather
+   * than size. Labels are sentence case -- the old all-caps eyebrow with
+   * +0.12em tracking was the loudest "template" tell on every screen.
+   */
+  --text-title: 1.25rem;
+  --text-title--line-height: 1.3;
+  --text-title--letter-spacing: -0.01em;
+  --text-title--font-weight: 600;
+
+  --text-section: 0.875rem;
+  --text-section--line-height: 1.4;
+  --text-section--letter-spacing: -0.002em;
+  --text-section--font-weight: 600;
+
+  --text-label: 0.75rem;
+  --text-label--line-height: 1.35;
+  --text-label--letter-spacing: 0.005em;
+  --text-label--font-weight: 500;
+
+  /* Sentence case now; tracking for caps no longer applies. */
+  --text-eyebrow: 0.8125rem;
+  --text-eyebrow--line-height: 1.3;
+  --text-eyebrow--letter-spacing: 0.005em;
+  --text-eyebrow--font-weight: 600;
+
+  --text-caption: 0.75rem;
+  --text-caption--line-height: 1.45;
+  --text-caption--letter-spacing: 0.004em;
+
+  /* Measured numbers. The old page rendered `12.5s` at the same size as the
+     heading above it; these sit a full step clear of display-lg, and the
+     sans/serif split makes the hierarchy read even where sizes are close. */
+  --text-data-xl: clamp(2.25rem, 1.6rem + 2.4vw, 3.25rem);
+  --text-data-xl--line-height: 1;
+  --text-data-xl--letter-spacing: -0.02em;
+  --text-data-xl--font-weight: 600;
+
+  --text-data-lg: 1.75rem;
+  --text-data-lg--line-height: 1.1;
+  --text-data-lg--letter-spacing: -0.016em;
+  --text-data-lg--font-weight: 600;
+
+  --text-mono-sm: 0.75rem;
+  --text-mono-sm--line-height: 1.55;
+
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+/*
+ * InsightFlow theme (Phase 6d): chrome is ink, data is colour, amber means
+ * "computed". Every piece of chrome is neutral graphite; the one chromatic
+ * accent is a deep Prussian blue, spent only on interaction (primary action,
+ * active nav marker, focus ring). The categorical palette belongs to the
+ * charts. Amber --signal is the only warm hue in the product and marks exactly
+ * two things: numbers the engine computed (FactMark) and anomalies it found --
+ * ADR-010 made visible. up/down encode deltas.
+ */
+:root {
+  --radius: 0.5rem;
+
+  /*
+   * Surface ladder. Steps move 2-6 RGB points, not 20 -- that cadence is what
+   * reads as light hitting a surface rather than a grey ramp. Light depth runs
+   * the OPPOSITE way from dark (raised means whiter, sunk means greyer), which
+   * is why these are tokens and not literals.
+   *
+   * Colour tokens rather than Linear's `linear-gradient(#fff05,#fff05), var(--panel)`
+   * overlay: an overlay is a background-image, so it composes only where the
+   * consumer sets `background`. Half this codebase reads surfaces as COLOURS --
+   * ChartContainer resolves var(--card) for tooltip fills, table-view.tsx
+   * interpolates a token into a box-shadow, and the marketing Band re-points
+   * --card for its descendants. An overlay can do none of that.
+   *
+   * --surface-ink is identical in both themes: it is the forced-dark band.
+   * It sits a little below the ladder's own step (0.036 in OKLab L down to
+   * --surface-canvas, where the other rungs move ~0.026) on purpose: it is
+   * the page's floor, not a rung, and in dark mode that extra depth is what
+   * lets an ink band read as a different surface rather than a shadow. The
+   * rungs above it cannot absorb the difference -- --surface-panel and
+   * --surface-raised are the validated chart surfaces.
+   */
+  --surface-ink: #0a0c10;
+  --surface-sunk: #edeff3;
+  --surface-canvas: #f6f7f9;
+  --surface-panel: #fbfbfc;
+  --surface-raised: #ffffff;
+  --surface-overlay: #ffffff;
+
+  /* Translucent borders for known backdrops. --border itself stays opaque: the
+     base layer applies it to EVERY element, and translucency there compounds
+     wherever borders stack (the KPI hairline grid, the table header shadow). */
+  --border-soft: rgba(22, 26, 34, 0.08);
+  --border-strong: rgba(22, 26, 34, 0.15);
+
+  /*
+   * Elevation. 4-5 layers at low alpha, plus the edge treatment that is the
+   * actual "premium" cue. On a GREY canvas (#f6f7f9) a white card genuinely is
+   * lighter than what it sits on, so the top light-catch is real here too -- it
+   * just needs a full-strength white hairline instead of a 4% one. The falloff
+   * is tinted with the ink hue (#161a22), never black: pure-black shadows on a
+   * cool grey canvas are the loudest "default template" tell in light UI.
+   */
+  --elev-1:
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.9),
+    inset 0 0 0 1px rgba(22, 26, 34, 0.04),
+    0 1px 1px -0.5px rgba(22, 26, 34, 0.06),
+    0 2px 4px -1px rgba(22, 26, 34, 0.06);
+  --elev-2:
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.9),
+    inset 0 0 0 1px rgba(22, 26, 34, 0.05),
+    0 1px 2px -0.5px rgba(22, 26, 34, 0.07),
+    0 4px 8px -2px rgba(22, 26, 34, 0.07),
+    0 10px 20px -6px rgba(22, 26, 34, 0.06);
+  --elev-3:
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.9),
+    inset 0 0 0 1px rgba(22, 26, 34, 0.06),
+    0 1px 2px -0.5px rgba(22, 26, 34, 0.08),
+    0 6px 14px -3px rgba(22, 26, 34, 0.09),
+    0 18px 36px -12px rgba(22, 26, 34, 0.1);
+  --elev-4:
+    inset 0 0 0 1px rgba(22, 26, 34, 0.07),
+    0 2px 4px -1px rgba(22, 26, 34, 0.09),
+    0 12px 28px -6px rgba(22, 26, 34, 0.12),
+    0 32px 64px -20px rgba(22, 26, 34, 0.14);
+
+  --font-mono:
+    ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, "Liberation Mono",
+    monospace;
+
+  --background: var(--surface-canvas);
+  --foreground: #161a22;
+  --card: var(--surface-raised);
+  --card-foreground: #161a22;
+  --popover: #ffffff;
+  --popover-foreground: #161a22;
+  --primary: #2741a6;
+  --primary-foreground: #ffffff;
+  --secondary: #eceef2;
+  --secondary-foreground: #161a22;
+  --muted: #eef0f3;
+  --muted-foreground: #5d6472;
+  --accent: #eceef2;
+  --accent-foreground: #161a22;
+  --destructive: #b3261e;
+  --border: #e2e5ea;
+  --input: #d5d9e0;
+  --ring: #2741a6;
+
+  --signal: #c98a04;
+  --signal-foreground: #2b1d00;
+  --up: #1e7a4f;
+  --down: #b3261e;
+
+  /* Categorical series, fixed order. Validated with the dataviz palette
+     checker on #ffffff (CVD ΔE ≥ 8 adjacent, normal-vision ≥ 15, ≥ 3:1):
+     worst adjacent #4a3aa7↔#ab42c6 ΔE 8.6 protan / 18.7 normal.
+
+     Amber is deliberately absent: it is reserved for --signal. That is not
+     only a naming rule — --signal is *drawn on the chart* (the anomaly
+     ReferenceLine stroke, and the point a FactMark highlights), so a series
+     hue has to stay separable from it the same way series stay separable
+     from each other. Slot 2 is magenta rather than the orange it used to be
+     for exactly that reason: #eb6834 sat at L 0.67 next to amber's L 0.66
+     and measured ΔE 1.6 (deutan) / 10.2 (normal) against it, so a
+     deuteranope read the anomaly marker as just another series. The warm
+     band has no room left — a search of hue 25–60 at usable chroma returns
+     zero colours clear of both amber and --down — so the slot leaves it.
+     Re-checked on every change: --chart-2 vs --signal is now 29.4 / 32.0.
+
+     --up/--down are not in this gate: they render only in the KPI strip,
+     never on a chart, and always beside a number and a comparison label. */
+  --chart-1: #00929d;
+  --chart-2: #ab42c6;
+  --chart-3: #4a3aa7;
+  --chart-4: #d55181;
+  --chart-5: #2a78d6;
+  --chart-6: #008300;
+
+  --sidebar: #f6f7f9;
+  --sidebar-foreground: #161a22;
+  --sidebar-primary: #2741a6;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #e9ebf0;
+  --sidebar-accent-foreground: #161a22;
+  --sidebar-border: #e2e5ea;
+  --sidebar-ring: #2741a6;
+}
+
+.dark {
+  --surface-ink: #0a0c10;
+  --surface-sunk: #0c0e12;
+  --surface-canvas: #111318;
+  --surface-panel: #16191f;
+  --surface-raised: #1a1d24;
+  --surface-overlay: #20242c;
+
+  --border-soft: rgba(255, 255, 255, 0.07);
+  --border-strong: rgba(255, 255, 255, 0.12);
+
+  /* On dark a shadow is nearly invisible and the EDGE does the work: a 3% ring
+     plus a 4.5% top-only stroke, which reads as a light source above the page.
+     The black layers still matter for lifting a panel off an ink band. */
+  --elev-1:
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.045),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.03),
+    0 1px 2px -1px rgba(0, 0, 0, 0.55), 0 2px 5px -2px rgba(0, 0, 0, 0.4);
+  --elev-2:
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.055),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.04),
+    0 1px 2px -1px rgba(0, 0, 0, 0.6), 0 6px 14px -4px rgba(0, 0, 0, 0.5),
+    0 12px 26px -10px rgba(0, 0, 0, 0.45);
+  --elev-3:
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.065),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.05),
+    0 2px 4px -1px rgba(0, 0, 0, 0.65), 0 10px 22px -6px rgba(0, 0, 0, 0.55),
+    0 24px 48px -16px rgba(0, 0, 0, 0.55);
+  --elev-4:
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.08),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.06),
+    0 2px 6px -1px rgba(0, 0, 0, 0.7), 0 16px 36px -8px rgba(0, 0, 0, 0.6),
+    0 48px 80px -28px rgba(0, 0, 0, 0.65);
+
+  --background: var(--surface-canvas);
+  --foreground: #e6e8ec;
+  --card: var(--surface-raised);
+  --card-foreground: #e6e8ec;
+  --popover: #20242c;
+  --popover-foreground: #e6e8ec;
+  --primary: #8ea2ff;
+  --primary-foreground: #0e1640;
+  --secondary: #22262e;
+  --secondary-foreground: #e6e8ec;
+  --muted: #1f2229;
+  --muted-foreground: #9aa1ad;
+  --accent: #252932;
+  --accent-foreground: #e6e8ec;
+  --destructive: #f2877e;
+  --border: #272b33;
+  --input: #30353f;
+  --ring: #8ea2ff;
+
+  --signal: #e8b23a;
+  --signal-foreground: #2b1d00;
+  --up: #5cc392;
+  --down: #f2877e;
+
+  /* Same hues re-stepped for the dark card surface, validated (Phase 6d
+     re-run) on #1a1d24 and #16191f: worst adjacent #9f41b7↔#1a9ea8 ΔE 11.5
+     deutan / 15.8 normal (#9085e9↔#9f41b7), all >= 3:1 contrast. Dark
+     never had the amber collision (its orange measured 16.9), but the slot
+     tracks light's hue so the palette stays one set re-stepped, not two. */
+  --chart-1: #1a9ea8;
+  --chart-2: #9f41b7;
+  --chart-3: #9085e9;
+  --chart-4: #d55181;
+  --chart-5: #3987e5;
+  --chart-6: #008300;
+
+  --sidebar: #111318;
+  --sidebar-foreground: #e6e8ec;
+  --sidebar-primary: #8ea2ff;
+  --sidebar-primary-foreground: #0e1640;
+  --sidebar-accent: #1f2229;
+  --sidebar-accent-foreground: #e6e8ec;
+  --sidebar-border: #23272e;
+  --sidebar-ring: #8ea2ff;
+}
+
+/*
+ * Marketing band tones (features/marketing/components/band.tsx).
+ *
+ * "Dark-first with a band rhythm" has a real tension: next-themes puts .dark on
+ * <html>, and the page has a working ThemeToggle. Two mechanisms cooperate, and
+ * neither works alone:
+ *
+ *   class="dark"  gives an ink band the correct TOKEN VALUES in either theme --
+ *                 verified in the browser: --signal resolves to the dark amber
+ *                 #e8b23a, --chart-1 to the dark-validated #1a9ea8, and
+ *                 AppFrame's dark:hidden / hidden dark:block swap picks the dark
+ *                 capture with no code change. Nested inside .dark it is a clean
+ *                 no-op. But that also means it gives NO contrast in dark theme.
+ *
+ *   data-tone     gives CONTRAST BETWEEN ADJACENT BANDS, in both themes, by
+ *                 re-pointing the surface tokens for everything inside.
+ *
+ * The doubled attribute selector is not a typo: it raises specificity to (0,2,0)
+ * so these beat `.dark` (0,1,0) on an ink band regardless of source order. With
+ * a single attribute the two tie and source order decides, which is a silent
+ * breakage waiting for the next refactor that moves a block.
+ *
+ * Two rules that come with this:
+ *   - Charts always sit on --card, never on a band background. The dark chart
+ *     palette was validated against #1a1d24 and #16191f (--surface-panel),
+ *     but --surface-ink (#0a0c10) is outside what the checker signed off.
+ *   - Never put a Band inside app/app/*. shots/capture.spec.ts never visits "/",
+ *     so it needs no changes -- but a Band in the product would make the light
+ *     capture project render forced-dark surfaces.
+ */
+[data-tone="ink"][data-tone] {
+  --background: var(--surface-ink);
+  --card: var(--surface-panel);
+  --popover: var(--surface-overlay);
+  --muted: var(--surface-panel);
+  --secondary: var(--surface-panel);
+  --border: var(--border-soft);
+  --input: var(--border-strong);
+}
+
+[data-tone="canvas"][data-tone] {
+  --background: var(--surface-canvas);
+  --card: var(--surface-raised);
+}
+
+[data-tone="panel"][data-tone] {
+  --background: var(--surface-panel);
+  --card: var(--surface-raised);
+  --border: var(--border-soft);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/*
+ * Hero entrance (apps/web/features/marketing/components/hero.tsx).
+ *
+ * CSS, not Motion, and deliberately so: Motion inlines its initial state into
+ * the server-rendered HTML, which would ship the hero at opacity:0, defer the
+ * largest-contentful paint until hydration, and leave the hero blank if the
+ * bundle never arrives. These run at first paint with no JavaScript, and the
+ * final state is the default — so if animations are unsupported or the page is
+ * scraped, the hero is simply there.
+ *
+ * The h1 and the product screenshot move with translateY ONLY. An opacity fade
+ * would disqualify them as LCP candidates until the fade began.
+ */
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes hero-rise {
+    from {
+      transform: translateY(1.25rem);
+    }
+  }
+
+  @keyframes hero-fade-rise {
+    from {
+      opacity: 0;
+      transform: translateY(0.75rem);
+    }
+  }
+
+  @keyframes hero-drift {
+    33% {
+      transform: translate3d(6%, -8%, 0) scale(1.08);
+    }
+    66% {
+      transform: translate3d(-5%, 6%, 0) scale(0.96);
+    }
+  }
+
+  /* Words of the headline; --i is the word index, set inline. */
+  .hero-word {
+    display: inline-block;
+    animation: hero-rise 0.75s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+    animation-delay: calc(var(--i) * 45ms);
+  }
+
+  .hero-enter {
+    animation: hero-fade-rise 0.6s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+    animation-delay: var(--enter-delay, 0ms);
+  }
+
+  /* Transform only: the image must stay paintable from the first frame. */
+  .hero-media {
+    animation: hero-rise 0.9s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+    animation-delay: 320ms;
+  }
+
+  .hero-blob {
+    animation: hero-drift 24s ease-in-out infinite alternate;
+  }
+
+  /*
+   * The marketing header, while the reader is at the top of the page.
+   *
+   * The header sits over the hero and both resolve --background to the same ink
+   * (#0a0c10), but the header carries it at 80% opacity, so it composites over
+   * what is BEHIND the header -- the layout's canvas, not the hero. In dark that
+   * is a shade off; in light it is 80% ink over paper, a visibly paler bar above
+   * the section it is meant to continue, and its border-b drew a second line
+   * under that. Matching the colours would not have fixed it, because the hero's
+   * glow was also clipped at the header line and stopped dead there.
+   *
+   * So at the top the header dissolves entirely, and the hero -- pulled up
+   * beneath it by openFlushBottom's -mt-14 -- paints the whole area, glow and
+   * all. Only a `from` keyframe is declared: the `to` is the element's own
+   * computed style, so this stays in step with whatever classes it carries.
+   *
+   * Scroll-driven so site-header.tsx stays a server component; a scroll listener
+   * would have made it a client one to change a background colour. With no
+   * support the header is simply always solid, which is the readable state.
+   */
+  @supports (animation-timeline: scroll()) {
+    @keyframes header-settle {
+      from {
+        background-color: transparent;
+        border-bottom-color: transparent;
+        -webkit-backdrop-filter: none;
+        backdrop-filter: none;
+      }
+    }
+
+    .site-header {
+      animation: header-settle linear both;
+      /* scroll(root), not scroll(). Bare scroll() means scroll(nearest), which
+         here resolved to an ancestor that never scrolls, so the timeline sat at
+         0% forever and `both` held the transparent `from` state at every scroll
+         position -- a permanently see-through header over light content. */
+      animation-timeline: scroll(root block);
+      animation-range: 0 5rem;
+    }
+  }
+
+  /*
+   * The hero's transformation device (features/marketing/hero-transform.tsx):
+   * the raw file on the left becomes the dashboard on the right as the reader
+   * scrolls it into view.
+   *
+   * CSS scroll-driven animation, not Motion, and the FINISHED composition is
+   * the default -- these keyframes only ever run backwards from it. That is
+   * what makes every degradation lossless:
+   *
+   *   - no JavaScript, so the hero rule holds (Motion would inline its initial
+   *     state into the SSR HTML and ship the pane at opacity 0);
+   *   - no `animation-timeline` support (Firefox, Safari) -> @supports never
+   *     matches -> the reader sees the finished side-by-side, which is still
+   *     the whole argument;
+   *   - reduced motion -> the enclosing @media excludes it -> same;
+   *   - under 64rem the panes stack, so "left becomes right" is not true and
+   *     the effect is simply not applied.
+   *
+   * Never use animation-timeline inside app/app/*: a scroll-timeline animation
+   * reports playState "running" with FINITE iterations, so animationsFinished()
+   * in shots/capture.spec.ts would wait for it forever.
+   */
+  @supports (animation-timeline: view()) {
+    @media (min-width: 64rem) {
+      @keyframes csv-recede {
+        from {
+          opacity: 1;
+        }
+        to {
+          opacity: 0.4;
+        }
+      }
+
+      @keyframes deck-arrive {
+        from {
+          clip-path: inset(0 100% 0 0);
+        }
+        to {
+          clip-path: inset(0 0 0 0);
+        }
+      }
+
+      @keyframes trace-draw {
+        from {
+          transform: scaleX(0);
+        }
+        to {
+          transform: scaleX(1);
+        }
+      }
+
+      .hero-transform {
+        view-timeline-name: --hero-stage;
+        view-timeline-axis: block;
+      }
+
+      .hero-csv {
+        animation: csv-recede linear both;
+        animation-timeline: --hero-stage;
+        animation-range: entry 30% entry 90%;
+      }
+
+      .hero-trace {
+        animation: trace-draw linear both;
+        animation-timeline: --hero-stage;
+        animation-range: entry 40% entry 80%;
+      }
+
+      .hero-deck {
+        animation: deck-arrive linear both;
+        animation-timeline: --hero-stage;
+        animation-range: entry 35% entry 95%;
+      }
+    }
+  }
+}
