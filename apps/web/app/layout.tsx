@@ -19,23 +19,78 @@ const fontSerif = Newsreader({
   style: ["normal", "italic"],
 })
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ||
+  (process.env.VERCEL_PROJECT_PRODUCTION_URL
+    ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+    : undefined) ||
+  (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : undefined) ||
+  "https://insight-flow-bice-seven.vercel.app"
+
 const description =
-  "Turn raw business data into interactive dashboards and grounded AI insights."
+  "Turn spreadsheets into interactive dashboards and grounded AI executive summaries. Upload CSV or Excel files with sub-second queries and automated anomaly detection."
 
 export const metadata: Metadata = {
-  // Absolute URLs for OpenGraph; set NEXT_PUBLIC_SITE_URL per deployment.
   metadataBase: new URL(siteUrl),
-  title: { default: "InsightFlow", template: "%s | InsightFlow" },
+  title: {
+    default: "InsightFlow — AI Business Analytics & Interactive Dashboards",
+    template: "%s | InsightFlow",
+  },
   description,
+  keywords: [
+    "AI analytics",
+    "business intelligence",
+    "interactive dashboard",
+    "CSV analytics",
+    "Excel visualization",
+    "anomaly detection",
+    "AI executive summary",
+    "data storytelling",
+    "Polars analytics",
+    "FastAPI analytics",
+    "InsightFlow",
+  ],
+  authors: [{ name: "InsightFlow", url: siteUrl }],
+  creator: "InsightFlow",
+  publisher: "InsightFlow",
+  category: "technology",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
   openGraph: {
     type: "website",
     siteName: "InsightFlow",
-    title: "InsightFlow",
+    title: "InsightFlow — AI Business Analytics & Interactive Dashboards",
     description,
-    url: "/",
+    url: siteUrl,
+    locale: "en_US",
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "InsightFlow — AI Business Analytics from Spreadsheets",
+      },
+    ],
   },
-  twitter: { card: "summary_large_image", title: "InsightFlow", description },
+  twitter: {
+    card: "summary_large_image",
+    title: "InsightFlow — AI Business Analytics & Interactive Dashboards",
+    description,
+    images: ["/opengraph-image"],
+    creator: "@insightflow",
+  },
+  alternates: {
+    canonical: "/",
+  },
   icons: {
     icon: [{ url: "/icon.svg", type: "image/svg+xml" }],
     apple: [{ url: "/icon.svg", type: "image/svg+xml" }],

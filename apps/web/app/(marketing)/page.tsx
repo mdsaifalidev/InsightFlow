@@ -18,9 +18,67 @@ export const metadata: Metadata = {
   alternates: { canonical: "/" },
 }
 
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ||
+  (process.env.VERCEL_PROJECT_PRODUCTION_URL
+    ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+    : undefined) ||
+  (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : undefined) ||
+  "https://insight-flow-bice-seven.vercel.app"
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": `${siteUrl}/#website`,
+      url: siteUrl,
+      name: "InsightFlow",
+      description:
+        "Turn spreadsheets into interactive dashboards and grounded AI executive summaries.",
+      publisher: {
+        "@type": "Organization",
+        name: "InsightFlow",
+        logo: {
+          "@type": "ImageObject",
+          url: `${siteUrl}/icon.svg`,
+        },
+      },
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": `${siteUrl}/#software`,
+      name: "InsightFlow",
+      applicationCategory: "BusinessApplication",
+      operatingSystem: "All (Web Browser)",
+      offers: {
+        "@type": "Offer",
+        price: "0",
+        priceCurrency: "USD",
+      },
+      description:
+        "Upload a CSV or Excel export and get an interactive dashboard plus an AI executive brief where every metric is mathematically grounded in your data.",
+      featureList: [
+        "Instant CSV & Excel dataset parsing",
+        "Automatic schema inference and data profiling",
+        "Interactive KPI metric tiles and charts",
+        "Sub-second analytics powered by Apache Arrow & Polars",
+        "Grounded AI executive brief with clickable FactMarks",
+        "Automated anomaly detection and trend analysis",
+      ],
+      screenshot: `${siteUrl}/opengraph-image`,
+    },
+  ],
+}
+
 export default function LandingPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+
       {/*
        * Band order, and the reason for it. The page alternates surfaces --
        * ink, panel, ink, canvas, panel, canvas, ink -- so scrolling has a
