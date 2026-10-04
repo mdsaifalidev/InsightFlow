@@ -95,6 +95,9 @@ export const metadata: Metadata = {
     icon: [{ url: "/icon.svg", type: "image/svg+xml" }],
     apple: [{ url: "/icon.svg", type: "image/svg+xml" }],
   },
+  verification: {
+    google: "PJsRTCvRYLYNRfzh9S_ccSz1cmkaWWIOJ91oAbsJ5dg",
+  },
 }
 
 export default function RootLayout({
