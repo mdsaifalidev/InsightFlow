@@ -61,13 +61,9 @@ export async function buildApp(deps: AppDeps) {
 
   await app.register(cookie)
   await app.register(cors, {
-    origin: [
-      config.WEB_ORIGIN,
-      "https://useinsightflow.vercel.app",
-      "https://insight-flow-bice-seven.vercel.app",
-      "http://localhost:3000",
-      /\.vercel\.app$/,
-    ],
+    origin: config.WEB_ORIGIN.includes(",")
+      ? config.WEB_ORIGIN.split(",").map((s) => s.trim())
+      : config.WEB_ORIGIN,
     credentials: true,
   })
   const rateLimitRedis = config.REDIS_URL ? new Redis(config.REDIS_URL, { maxRetriesPerRequest: 1 }) : undefined
