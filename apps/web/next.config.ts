@@ -32,6 +32,15 @@ const nextConfig: NextConfig = {
         : []
     )
   },
+  async redirects() {
+    return [
+      {
+        source: "/app",
+        destination: "/app/datasets",
+        permanent: false,
+      },
+    ]
+  },
 }
 
 export default nextConfig

@@ -58,7 +58,7 @@ export function SiteHeader() {
           <ThemeToggle />
           {isAuthenticated ? (
             <Button asChild className="h-9 px-4 gap-1.5">
-              <Link href="/app">
+              <Link href="/app/datasets">
                 Open app
                 <ArrowRightIcon className="size-4" />
               </Link>

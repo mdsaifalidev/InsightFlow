@@ -37,7 +37,7 @@ export function ClosingCta() {
       <div className="flex flex-col items-center gap-3 sm:flex-row sm:items-start">
         {isAuthenticated ? (
           <Button asChild className="h-11 px-6 text-base">
-            <Link href="/app">
+            <Link href="/app/datasets">
               Open app
               <ArrowRightIcon data-icon="inline-end" />
             </Link>

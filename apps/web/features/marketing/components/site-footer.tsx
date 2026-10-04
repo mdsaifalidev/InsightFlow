@@ -11,7 +11,7 @@ const SIGNED_OUT_LINKS = [
 ]
 
 const SIGNED_IN_LINKS = [
-  { href: "/app", label: "Open app" },
+  { href: "/app/datasets", label: "Open app" },
 ]
 
 export function SiteFooter() {
