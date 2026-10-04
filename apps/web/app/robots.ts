@@ -6,7 +6,7 @@ const siteUrl =
     ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
     : undefined) ||
   (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : undefined) ||
-  "https://insight-flow-bice-seven.vercel.app"
+  "https://useinsightflow.vercel.app"
 
 // Allow public landing and informational pages, but disallow private workspace
 // app routes and backend API proxies from being indexed.

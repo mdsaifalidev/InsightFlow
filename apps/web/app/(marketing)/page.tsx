@@ -24,7 +24,7 @@ const siteUrl =
     ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
     : undefined) ||
   (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : undefined) ||
-  "https://insight-flow-bice-seven.vercel.app"
+  "https://useinsightflow.vercel.app"
 
 const jsonLd = {
   "@context": "https://schema.org",

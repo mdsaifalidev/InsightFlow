@@ -25,7 +25,7 @@ const siteUrl =
     ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
     : undefined) ||
   (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : undefined) ||
-  "https://insight-flow-bice-seven.vercel.app"
+  "https://useinsightflow.vercel.app"
 
 const description =
   "Turn spreadsheets into interactive dashboards and grounded AI executive summaries. Upload CSV or Excel files with sub-second queries and automated anomaly detection."

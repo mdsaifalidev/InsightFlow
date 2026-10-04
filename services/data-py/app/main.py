@@ -55,7 +55,13 @@ def create_app(settings: Settings | None = None, jwks: JwksCache | None = None) 
     )
     app.add_middleware(
         CORSMiddleware,
-        allow_origins=[settings.web_origin],
+        allow_origins=[
+            settings.web_origin,
+            "https://useinsightflow.vercel.app",
+            "https://insight-flow-bice-seven.vercel.app",
+            "http://localhost:3000",
+        ],
+        allow_origin_regex=r"https://.*\.vercel\.app",
         allow_credentials=True,
         allow_methods=["*"],
         allow_headers=["*"],
