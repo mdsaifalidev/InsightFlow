@@ -1,5 +1,6 @@
 "use client"
 
+import * as React from "react"
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import { useRouter } from "next/navigation"
 
@@ -11,9 +12,58 @@ import type {
   RegisterRequest,
   UpdateMeRequest,
 } from "@/lib/api/types"
-import { setAccessToken } from "@/lib/auth-token"
+import {
+  getAccessToken,
+  onSessionExpired,
+  refreshAccessToken,
+  setAccessToken,
+} from "@/lib/auth-token"
 
 export const meQueryKey = ["auth", "me"] as const
+
+export function useAuthSession() {
+  const [mounted, setMounted] = React.useState(false)
+  const [isTokenActive, setIsTokenActive] = React.useState(false)
+  const queryClient = useQueryClient()
+
+  React.useEffect(() => {
+    setMounted(true)
+    if (getAccessToken() || Boolean(queryClient.getQueryData(meQueryKey))) {
+      setIsTokenActive(true)
+      return
+    }
+
+    let cancelled = false
+    refreshAccessToken().then((ok) => {
+      if (!cancelled) {
+        setIsTokenActive(ok)
+        if (ok) {
+          queryClient.invalidateQueries({ queryKey: meQueryKey })
+        }
+      }
+    })
+
+    return () => {
+      cancelled = true
+    }
+  }, [queryClient])
+
+  React.useEffect(() => {
+    return onSessionExpired(() => {
+      setIsTokenActive(false)
+    })
+  }, [])
+
+  const hasAccessToken = Boolean(getAccessToken())
+  const hasQueryUser = Boolean(queryClient.getQueryData(meQueryKey))
+  const isAuthenticated =
+    mounted && (isTokenActive || hasAccessToken || hasQueryUser)
+
+  return {
+    mounted,
+    isAuthenticated,
+  }
+}
 
 export function useMe() {
   return useQuery({

@@ -1,8 +1,12 @@
+"use client"
+
 import Link from "next/link"
+import { ArrowRightIcon } from "lucide-react"
 import { Button } from "@workspace/ui/components/button"
 
 import { Logo } from "@/components/logo"
 import { ThemeToggle } from "@/components/theme-toggle"
+import { useAuthSession } from "@/features/auth/api"
 
 const LINKS = [
   { href: "#how", label: "How it works" },
@@ -11,6 +15,8 @@ const LINKS = [
 ]
 
 export function SiteHeader() {
+  const { isAuthenticated } = useAuthSession()
+
   return (
     // Ink in both themes, like the hero it sits on and the CTA it ends on. A
     // light translucent bar directly above an ink band reads as broken, and once
@@ -48,21 +54,29 @@ export function SiteHeader() {
             </Link>
           ))}
         </nav>
-        {/* Deliberately not personalised: reading the httpOnly session cookie
-            would make the whole page dynamic, and /login already redirects a
-            signed-in visitor into the app. */}
         <div className="ml-auto flex items-center gap-2 md:ml-0">
           <ThemeToggle />
-          <Button
-            asChild
-            variant="ghost"
-            className="hidden h-9 px-3 sm:inline-flex"
-          >
-            <Link href="/login">Sign in</Link>
-          </Button>
-          <Button asChild className="h-9 px-4">
-            <Link href="/register">Get started</Link>
-          </Button>
+          {isAuthenticated ? (
+            <Button asChild className="h-9 px-4 gap-1.5">
+              <Link href="/app">
+                Open app
+                <ArrowRightIcon className="size-4" />
+              </Link>
+            </Button>
+          ) : (
+            <>
+              <Button
+                asChild
+                variant="ghost"
+                className="hidden h-9 px-3 sm:inline-flex"
+              >
+                <Link href="/login">Sign in</Link>
+              </Button>
+              <Button asChild className="h-9 px-4">
+                <Link href="/register">Get started</Link>
+              </Button>
+            </>
+          )}
         </div>
       </div>
     </header>

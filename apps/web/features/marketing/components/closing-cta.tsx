@@ -1,13 +1,18 @@
+"use client"
+
 import Link from "next/link"
 import { ArrowRightIcon } from "lucide-react"
 import { Button } from "@workspace/ui/components/button"
 
 import { SAMPLES } from "@/features/datasets/samples"
+import { useAuthSession } from "@/features/auth/api"
 
 import { Band } from "./band"
 import { Reveal } from "./reveal"
 
 export function ClosingCta() {
+  const { isAuthenticated } = useAuthSession()
+
   return (
     <Band
       tone="ink"
@@ -30,15 +35,26 @@ export function ClosingCta() {
       </Reveal>
 
       <div className="flex flex-col items-center gap-3 sm:flex-row sm:items-start">
-        <Button asChild className="h-11 px-6 text-base">
-          <Link href="/register">
-            Create an account
-            <ArrowRightIcon data-icon="inline-end" />
-          </Link>
-        </Button>
-        <Button asChild variant="outline" className="h-11 px-6 text-base">
-          <Link href="/login">Sign in</Link>
-        </Button>
+        {isAuthenticated ? (
+          <Button asChild className="h-11 px-6 text-base">
+            <Link href="/app">
+              Open app
+              <ArrowRightIcon data-icon="inline-end" />
+            </Link>
+          </Button>
+        ) : (
+          <>
+            <Button asChild className="h-11 px-6 text-base">
+              <Link href="/register">
+                Create an account
+                <ArrowRightIcon data-icon="inline-end" />
+              </Link>
+            </Button>
+            <Button asChild variant="outline" className="h-11 px-6 text-base">
+              <Link href="/login">Sign in</Link>
+            </Button>
+          </>
+        )}
       </div>
 
       {/* Ruled, not three more bordered cards -- the page already has enough

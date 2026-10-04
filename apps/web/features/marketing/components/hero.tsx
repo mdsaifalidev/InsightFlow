@@ -1,7 +1,10 @@
+"use client"
+
 import Link from "next/link"
 import { ArrowRightIcon } from "lucide-react"
 import { Button } from "@workspace/ui/components/button"
 
+import { useAuthSession } from "@/features/auth/api"
 import { Band } from "./band"
 import { HeroTransform } from "./hero-transform"
 
@@ -35,6 +38,8 @@ function Headline() {
 }
 
 export function Hero() {
+  const { isAuthenticated } = useAuthSession()
+
   return (
     <Band
       tone="ink"
@@ -74,15 +79,26 @@ export function Hero() {
         className="hero-enter flex flex-col items-center gap-3 sm:flex-row sm:items-start"
         style={{ "--enter-delay": "240ms" } as React.CSSProperties}
       >
-        <Button asChild className="h-11 px-6 text-base">
-          <Link href="/register">
-            Create an account
-            <ArrowRightIcon data-icon="inline-end" />
-          </Link>
-        </Button>
-        <Button asChild variant="outline" className="h-11 px-6 text-base">
-          <Link href="/login">Sign in</Link>
-        </Button>
+        {isAuthenticated ? (
+          <Button asChild className="h-11 px-6 text-base">
+            <Link href="/app">
+              Open app
+              <ArrowRightIcon data-icon="inline-end" />
+            </Link>
+          </Button>
+        ) : (
+          <>
+            <Button asChild className="h-11 px-6 text-base">
+              <Link href="/register">
+                Create an account
+                <ArrowRightIcon data-icon="inline-end" />
+              </Link>
+            </Button>
+            <Button asChild variant="outline" className="h-11 px-6 text-base">
+              <Link href="/login">Sign in</Link>
+            </Button>
+          </>
+        )}
       </div>
 
       {/* The best sentence on the page, and it was a 12px pill with a 6px dot.
