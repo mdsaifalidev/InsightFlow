@@ -21,7 +21,7 @@ const nextConfig: NextConfig = {
       ["/api/auth", process.env.AUTH_SERVICE_URL],
       ["/api/data", process.env.DATA_SERVICE_URL],
     ]
-    return services.flatMap(([prefix, url]) =>
+    const serviceRewrites = services.flatMap(([prefix, url]) =>
       url
         ? [
             {
@@ -31,6 +31,13 @@ const nextConfig: NextConfig = {
           ]
         : []
     )
+    return [
+      {
+        source: "/health",
+        destination: "/api/health",
+      },
+      ...serviceRewrites,
+    ]
   },
   async redirects() {
     return [

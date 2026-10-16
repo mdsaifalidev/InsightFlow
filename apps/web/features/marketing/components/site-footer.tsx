@@ -36,6 +36,14 @@ export function SiteFooter() {
               {link.label}
             </Link>
           ))}
+          <a
+            href="https://stats.uptimerobot.com/AMVhQAA8Yz"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="rounded-md text-muted-foreground transition-colors hover:text-foreground"
+          >
+            Status
+          </a>
         </nav>
       </div>
     </footer>
