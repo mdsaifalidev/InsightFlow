@@ -35,10 +35,19 @@ export async function metaRoutes(
 
   // Liveness and readiness for Docker / orchestrators (not routed by nginx).
   app.get("/health", { schema: { hide: true }, logLevel: "silent" }, async () => ({ status: "ok" }))
+  app.head("/health", { schema: { hide: true }, logLevel: "silent" }, async () => ({ status: "ok" }))
   app.get("/ready", { schema: { hide: true }, logLevel: "silent" }, async (_request, reply) => {
     try {
       // Redis backs the rate limiter and the user.deleted publisher, so a
       // healthy instance needs both.
+      await Promise.all([sql`select 1`, redis?.ping()])
+      return { status: "ok" }
+    } catch {
+      return reply.code(503).send({ status: "unavailable" })
+    }
+  })
+  app.head("/ready", { schema: { hide: true }, logLevel: "silent" }, async (_request, reply) => {
+    try {
       await Promise.all([sql`select 1`, redis?.ping()])
       return { status: "ok" }
     } catch {
