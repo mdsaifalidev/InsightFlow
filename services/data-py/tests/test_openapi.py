@@ -44,3 +44,15 @@ def test_errors_are_documented() -> None:
     responses = spec()["paths"]["/api/data/datasets/{dataset_id}"]["get"]["responses"]
     assert "404" in responses
     assert responses["404"]["content"]["application/json"]["schema"]["$ref"].endswith("Problem")
+
+
+def test_health_supports_get_and_head() -> None:
+    from starlette.testclient import TestClient
+
+    client = TestClient(create_app())
+    for path in ("/health", "/api/data/health"):
+        get_res = client.get(path)
+        assert get_res.status_code == 200
+        assert get_res.json() == {"status": "ok"}
+        head_res = client.head(path)
+        assert head_res.status_code == 200

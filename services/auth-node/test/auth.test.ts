@@ -223,7 +223,9 @@ describe("me", () => {
 describe("meta", () => {
   it("serves health, readiness and an OpenAPI document", async () => {
     expect((await t.app.inject({ url: "/health" })).json()).toEqual({ status: "ok" })
+    expect((await t.app.inject({ method: "HEAD", url: "/health" })).statusCode).toBe(200)
     expect((await t.app.inject({ url: "/ready" })).statusCode).toBe(200)
+    expect((await t.app.inject({ method: "HEAD", url: "/ready" })).statusCode).toBe(200)
     const openapi = (await t.app.inject({ url: "/api/auth/openapi.json" })).json()
     expect(Object.keys(openapi.paths)).toEqual(
       expect.arrayContaining(["/api/auth/register", "/api/auth/login", "/api/auth/refresh", "/api/auth/me"])

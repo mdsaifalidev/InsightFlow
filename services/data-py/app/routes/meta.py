@@ -1,6 +1,6 @@
 from typing import Any
 
-from fastapi import APIRouter, Request, Response
+from fastapi import APIRouter, Request
 from sqlalchemy import text
 
 from app.errors import Problem
@@ -19,7 +19,7 @@ async def health() -> dict[str, str]:
 
 @router.get("/ready")
 @router.head("/ready", include_in_schema=False)
-async def ready(request: Request) -> dict[str, Any] | Response:
+async def ready(request: Request) -> dict[str, Any]:
     """Ready when Postgres and Redis answer."""
     try:
         async with request.app.state.sessionmaker() as session:

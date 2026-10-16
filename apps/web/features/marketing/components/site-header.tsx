@@ -57,7 +57,7 @@ export function SiteHeader() {
         <div className="ml-auto flex items-center gap-2 md:ml-0">
           <ThemeToggle />
           {isAuthenticated ? (
-            <Button asChild className="h-9 px-4 gap-1.5">
+            <Button asChild className="h-9 gap-1.5 px-4">
               <Link href="/app/datasets">
                 Open app
                 <ArrowRightIcon className="size-4" />

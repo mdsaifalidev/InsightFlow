@@ -10,9 +10,7 @@ const SIGNED_OUT_LINKS = [
   { href: "/register", label: "Create account" },
 ]
 
-const SIGNED_IN_LINKS = [
-  { href: "/app/datasets", label: "Open app" },
-]
+const SIGNED_IN_LINKS = [{ href: "/app/datasets", label: "Open app" }]
 
 export function SiteFooter() {
   const { isAuthenticated } = useAuthSession()
