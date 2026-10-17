@@ -41,7 +41,9 @@ const jsonLd = {
         name: "InsightFlow",
         logo: {
           "@type": "ImageObject",
-          url: `${siteUrl}/icon.svg`,
+          url: `${siteUrl}/icon.png`,
+          width: 512,
+          height: 512,
         },
       },
     },

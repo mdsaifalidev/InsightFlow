@@ -22,8 +22,15 @@ export function SiteFooter() {
         <div className="flex items-center gap-2 text-sm text-muted-foreground">
           <LogoMark className="size-5" />
           <span>
-            InsightFlow — a portfolio project by{" "}
-            <span className="text-foreground">Md Saif Ali</span>
+            © {new Date().getFullYear()} InsightFlow — a portfolio project by{" "}
+            <a
+              href="https://buildwithsaif.vercel.app"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-medium text-foreground underline underline-offset-4 transition-colors hover:text-primary"
+            >
+              Md Saif Ali
+            </a>
           </span>
         </div>
         <nav aria-label="Footer" className="flex flex-wrap gap-4 text-sm">
@@ -36,6 +43,14 @@ export function SiteFooter() {
               {link.label}
             </Link>
           ))}
+          <a
+            href="https://buildwithsaif.vercel.app"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="rounded-md text-muted-foreground transition-colors hover:text-foreground"
+          >
+            Portfolio
+          </a>
           <a
             href="https://stats.uptimerobot.com/AMVhQAA8Yz"
             target="_blank"
